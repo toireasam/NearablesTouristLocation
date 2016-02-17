@@ -196,6 +196,4 @@ NSString *locationNameString;
      return @"unknown";
     }
 }
-
-
 @end
