@@ -75,14 +75,9 @@ NSString *locationNameString;
      * Update local nearables array and reload table view
      */
     self.nearablesArray = nearables;
-    [self checkIn];
     [self.tableView reloadData];
 }
 
--(void)checkIn
-{
-    NSLog(@"checking");
-}
 
 #pragma mark - UITableView delegate and data source
 
@@ -95,6 +90,7 @@ NSString *locationNameString;
 {
     return [self.nearablesArray count];
 }
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -197,14 +193,29 @@ NSString *locationNameString;
      return @"unknown";
     }
 }
-
+NSString *selectedPath;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"%d", indexPath.row); // you can see selected row number in your console;
+    //how can I get the text of the cell here?
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    selectedPath = cell.textLabel.text;
+    NSLog(selectedPath);
+    
+    NSLog(@"%ld", (long)indexPath.row); // you can see selected row number in your console;
     [self performSegueWithIdentifier:@"push" sender:tableView];
+
+    
+ 
    }
 
-
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([[segue identifier] isEqualToString:@"push"]) {
+        FurtherInfoViewController *nextVC = (FurtherInfoViewController *)[segue destinationViewController];
+        
+        nextVC.touristLocationNameTxt = selectedPath;
+    }
+}
 
 
 @end
