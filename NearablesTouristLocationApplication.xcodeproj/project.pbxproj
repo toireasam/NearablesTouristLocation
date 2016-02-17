@@ -30,6 +30,7 @@
 		B2E96EBA1C74AF7000CDAA8B /* parse-library-1.12.0 in Resources */ = {isa = PBXBuildFile; fileRef = B2E96EB91C74AF7000CDAA8B /* parse-library-1.12.0 */; };
 		B2E96EBC1C74AF7800CDAA8B /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2E96EBB1C74AF7800CDAA8B /* Parse.framework */; };
 		B2E96EBE1C74AF8000CDAA8B /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2E96EBD1C74AF8000CDAA8B /* Bolts.framework */; };
+		B2E96EC11C74B39500CDAA8B /* FurtherInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E96EC01C74B39500CDAA8B /* FurtherInfoViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,8 @@
 		B2E96EB91C74AF7000CDAA8B /* parse-library-1.12.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "parse-library-1.12.0"; sourceTree = "<group>"; };
 		B2E96EBB1C74AF7800CDAA8B /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "parse-library-1.12.0/Parse.framework"; sourceTree = "<group>"; };
 		B2E96EBD1C74AF8000CDAA8B /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "parse-library-1.12.0/Bolts.framework"; sourceTree = "<group>"; };
+		B2E96EBF1C74B39500CDAA8B /* FurtherInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FurtherInfoViewController.h; sourceTree = "<group>"; };
+		B2E96EC01C74B39500CDAA8B /* FurtherInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FurtherInfoViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +150,8 @@
 				95B1A6611A4ACCCD00102220 /* AppDelegate.m */,
 				95B1A6631A4ACCCD00102220 /* ViewController.h */,
 				95B1A6641A4ACCCD00102220 /* ViewController.m */,
+				B2E96EBF1C74B39500CDAA8B /* FurtherInfoViewController.h */,
+				B2E96EC01C74B39500CDAA8B /* FurtherInfoViewController.m */,
 				B2E96E9A1C7364BD00CDAA8B /* ParseCheck.h */,
 				B2E96E9B1C7364BD00CDAA8B /* ParseCheck.m */,
 				95B1A6661A4ACCCD00102220 /* Main.storyboard */,
@@ -287,6 +292,7 @@
 			files = (
 				95B1A6651A4ACCCD00102220 /* ViewController.m in Sources */,
 				B2E96E9C1C7364BD00CDAA8B /* ParseCheck.m in Sources */,
+				B2E96EC11C74B39500CDAA8B /* FurtherInfoViewController.m in Sources */,
 				95B1A6621A4ACCCD00102220 /* AppDelegate.m in Sources */,
 				95B1A65F1A4ACCCD00102220 /* main.m in Sources */,
 			);

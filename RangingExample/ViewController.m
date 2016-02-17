@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import <EstimoteSDK/EstimoteSDK.h>
 #import "ParseCheck.h"
+#import "FurtherInfoViewController.h"
 
 @interface ESTTableViewCell : UITableViewCell
 
@@ -196,4 +197,14 @@ NSString *locationNameString;
      return @"unknown";
     }
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"%d", indexPath.row); // you can see selected row number in your console;
+    [self performSegueWithIdentifier:@"push" sender:tableView];
+   }
+
+
+
+
 @end

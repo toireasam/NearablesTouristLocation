@@ -35,10 +35,40 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="GqH-Ec-BoH"/>
+                    <connections>
+                        <segue destination="3nh-Oo-ONO" kind="push" identifier="push" id="B8c-dy-arl"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-226" y="511"/>
+            <point key="canvasLocation" x="-243" y="534"/>
+        </scene>
+        <!--Further Info View Controller-->
+        <scene sceneID="rWH-JO-kpF">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rsI-1R-Iop" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="3nh-Oo-ONO" customClass="FurtherInfoViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="shQ-hh-Ipa"/>
+                        <viewControllerLayoutGuide type="bottom" id="Zks-jT-flE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="i6N-4w-Nqo">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mq4-l1-w7e">
+                                <rect key="frame" x="158" y="124" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="7MY-dV-kzC"/>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="447" y="483"/>
         </scene>
     </scenes>
 </document>
