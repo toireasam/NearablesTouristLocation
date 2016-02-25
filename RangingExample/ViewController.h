@@ -13,5 +13,6 @@
 
 +(void)RecieveParseDetails:(NSMutableArray *)locationNameArray andTheIdentifier:(NSMutableArray *)rssiArray;
 -(void)checkIn;
+
 @end
 

@@ -42,8 +42,7 @@
                 [identifiers addObject:RSSI];
                 
             }
-            // Lets send back the info
-            [ViewController RecieveParseDetails:touristLocations andTheIdentifier:identifiers];
+   
         }
         else
         {

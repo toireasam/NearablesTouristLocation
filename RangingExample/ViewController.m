@@ -10,12 +10,14 @@
 #import <EstimoteSDK/EstimoteSDK.h>
 #import "ParseCheck.h"
 #import "FurtherInfoViewController.h"
+#import "SettingsViewController.h"
+
 
 @interface ESTTableViewCell : UITableViewCell
-
 @end
 @implementation ESTTableViewCell
 NSString *locationNameString;
+
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier];
@@ -42,7 +44,7 @@ NSString *locationNameString;
 {
     [super viewDidLoad];
     
-    self.title = @"Ranged Estimote Nearables";
+    //self.title = @"Ranged Estimote Nearables";
     
     self.tableView = [[UITableView alloc] initWithFrame:self.view.frame];
     self.tableView.delegate = self;
@@ -61,12 +63,27 @@ NSString *locationNameString;
     self.nearableManager.delegate = self;
     [self.nearableManager startRangingForType:ESTNearableTypeAll];
     
-    [ParseCheck CheckRSSIInParse:@"d082874074797782"];
+  
+    
+    NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
+    
+    if ([[standardDefaults stringForKey:@"museumSwitchKey"] isEqual: @"On"]) {
+        
+        // Do Something
+        NSLog(@"museums are on");
+    }
+    
+    
+    else {
+        
+        // Do Something Else
+        NSLog(@"museums are off");
+    }
 
 }
 
 #pragma mark - ESTNearableManager delegate
-
+NSMutableArray *objectNames;
 - (void)nearableManager:(ESTNearableManager *)manager
       didRangeNearables:(NSArray *)nearables
                withType:(ESTNearableType)type
@@ -75,6 +92,35 @@ NSString *locationNameString;
      * Update local nearables array and reload table view
      */
     self.nearablesArray = nearables;
+   
+    
+    // loop to check if any museums
+
+     objectNames = [[NSMutableArray alloc] init];
+    int i;
+    for (i = 0; i < [self.nearablesArray count]; i++) {
+ 
+       // ...do something useful with myArrayElement
+             ESTNearable *nearable = [self.nearablesArray objectAtIndex:i];
+                NSString *shouldBe = [self identifierNearablType:nearable.identifier];
+       
+        if([shouldBe  isEqual: @"bag"])
+        {
+            NSLog(@"shouldnt add this object to array");
+            
+  // dont
+     
+
+        }
+        else
+        {
+           [objectNames addObject:nearable];
+            NSLog(@"trying to add in array");
+       
+            NSLog(@"array: %@",objectNames);
+        }
+            }
+
     [self.tableView reloadData];
 }
 
@@ -88,24 +134,27 @@ NSString *locationNameString;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.nearablesArray count];
+    return [objectNames count];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+   
+    
     ESTTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellIdentifier" forIndexPath:indexPath];
     
     /*
      * Fill the table with beacon data.
      */
     
-    ESTNearable *nearable = [self.nearablesArray objectAtIndex:indexPath.row];
+    ESTNearable *nearable = [objectNames objectAtIndex:indexPath.row];
     
     // Check if the nearable is in parse
     NSString *shouldBe = [self identifierNearablType:nearable.identifier];
-    
+
     cell.textLabel.text = shouldBe;
+    
     
     cell.detailTextLabel.text = [NSString stringWithFormat:@"Type: %@ / RSSI: %zd", [ESTNearableDefinitions nameForType:nearable.type], nearable.rssi];
     
