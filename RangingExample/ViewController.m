@@ -17,6 +17,7 @@
 @end
 @implementation ESTTableViewCell
 NSString *locationNameString;
+NSString *museumsOn;
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -35,6 +36,7 @@ NSString *locationNameString;
 
 @property (nonatomic, strong) NSArray *nearablesArray;
 @property (nonatomic, strong) ESTNearableManager *nearableManager;
+
 
 @end
 
@@ -71,6 +73,7 @@ NSString *locationNameString;
         
         // Do Something
         NSLog(@"museums are on");
+        museumsOn = @"true";
     }
     
     
@@ -78,6 +81,7 @@ NSString *locationNameString;
         
         // Do Something Else
         NSLog(@"museums are off");
+        museumsOn = @"false";
     }
 
 }
@@ -102,9 +106,8 @@ NSMutableArray *objectNames;
  
        // ...do something useful with myArrayElement
              ESTNearable *nearable = [self.nearablesArray objectAtIndex:i];
-                NSString *shouldBe = [self identifierNearablType:nearable.identifier];
-       
-        if([shouldBe  isEqual: @"bag"])
+                NSString *shouldBe = [self identifierNearablCategoru:nearable.identifier];
+        if([shouldBe  isEqual:@"museum" ] && [museumsOn isEqual:@"true"])
         {
             NSLog(@"shouldnt add this object to array");
             
@@ -240,6 +243,35 @@ NSMutableArray *objectNames;
     else
     {
      return @"unknown";
+    }
+}
+
+- (NSString *)identifierNearablCategoru:(NSString *)identifier
+{
+    if([identifier  isEqual: @"66e0c67afa889a0b"])
+    {
+        return @"chair";
+    }
+    
+    else if([identifier  isEqual: @"2d0159fcfa96b7b3"])
+    {
+        return @"bag";
+    }
+    else if([identifier  isEqual: @"d082874074797782"])
+    {
+        return @"door";
+    }
+    else if([identifier  isEqual: @"0d7f92edbe655539"])
+    {
+        return @"museum";
+    }
+    else if([identifier  isEqual: @"f220399a8e348d6e"])
+    {
+        return @"generic";
+    }
+    else
+    {
+        return @"unknown";
     }
 }
 NSString *selectedPath;
