@@ -8,9 +8,10 @@
 
 #import "AppDelegate.h"
 #import "Parse/Parse.h"
+#import <EstimoteSDK/EstimoteSDK.h>
 
-@interface AppDelegate ()
-
+@interface AppDelegate () <ESTBeaconManagerDelegate>
+@property (nonatomic) ESTBeaconManager *beaconManager;
 @end
 
 @implementation AppDelegate
@@ -34,8 +35,22 @@
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
     // Override point for customization after application launch.
-    return YES;
+    // 4. Instantiate the beacon manager & set its delegate
+    self.beaconManager = [ESTBeaconManager new];
+    self.beaconManager.delegate = self;
+    // add this below:
+    [self.beaconManager requestAlwaysAuthorization];
     
+    // add this below:
+    [self.beaconManager startMonitoringForRegion:[[CLBeaconRegion alloc]
+                                                  initWithProximityUUID:[[NSUUID alloc]
+                                                                         initWithUUIDString:@"4f62633A-92C3-C253-6EC3-A213C6BF7"]
+                                                  major:1 minor:1 identifier:@"monitored region"]];
+    
+    [[UIApplication sharedApplication]
+     registerUserNotificationSettings:[UIUserNotificationSettings
+                                       settingsForTypes:UIUserNotificationTypeAlert
+                                       categories:nil]];
     return YES;
 }
 
@@ -59,6 +74,13 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void)beaconManager:(id)manager didEnterRegion:(CLBeaconRegion *)region {
+    UILocalNotification *notification = [UILocalNotification new];
+    notification.alertBody =
+    @"Welcome to the Ulster Museum!";
+    [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
 }
 
 @end

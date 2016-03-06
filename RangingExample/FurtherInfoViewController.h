@@ -10,7 +10,7 @@
 #import "Parse/Parse.h"
 
 @interface FurtherInfoViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UITextView *touristLocationInfoLbl;
+@property (weak, nonatomic) IBOutlet UILabel *touristLocationInfoLbl;
 @property (weak, nonatomic) IBOutlet UILabel *touristLocationNameLbl;
 @property (nonatomic, strong) NSString *touristLocationNameTxt;
 @end

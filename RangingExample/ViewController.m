@@ -107,7 +107,7 @@ NSMutableArray *objectNames;
        // ...do something useful with myArrayElement
              ESTNearable *nearable = [self.nearablesArray objectAtIndex:i];
                 NSString *shouldBe = [self identifierNearablCategoru:nearable.identifier];
-        if([shouldBe  isEqual:@"museum" ] && [museumsOn isEqual:@"true"])
+        if([shouldBe  isEqual:@"museum" ] && [museumsOn isEqual:@"false"])
         {
             NSLog(@"shouldnt add this object to array");
             
@@ -159,7 +159,7 @@ NSMutableArray *objectNames;
     cell.textLabel.text = shouldBe;
     
     
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"Type: %@ / RSSI: %zd", [ESTNearableDefinitions nameForType:nearable.type], nearable.rssi];
+   // cell.detailTextLabel.text = [NSString stringWithFormat:@"Type: %@ / RSSI: %zd", [ESTNearableDefinitions nameForType:nearable.type], nearable.rssi];
     
     cell.imageView.image = [[UIImage alloc] init];
     cell.imageView.contentMode = UIViewContentModeScaleAspectFill;
@@ -168,6 +168,14 @@ NSMutableArray *objectNames;
     imageView.contentMode = UIViewContentModeScaleAspectFill;
     [imageView setImage:[self imageForNearableType:nearable.type]];
     [cell.contentView addSubview:imageView];
+    
+
+    shouldBe = [shouldBe stringByAppendingString:@"top"]; //str is now "hello world"
+    int index = indexPath.row;
+    if (index == 0) // Top row
+    {
+           cell.textLabel.text = shouldBe;
+    }
     
     return cell;
 }
@@ -184,34 +192,34 @@ NSMutableArray *objectNames;
     switch (type)
     {
         case ESTNearableTypeBag:
-            return [UIImage imageNamed:@"sticker_bag"];
+            return [UIImage imageNamed:@"museum"];
             break;
         case ESTNearableTypeBike:
-            return [UIImage imageNamed:@"sticker_bike"];
+            return [UIImage imageNamed:@"museum"];
             break;
         case ESTNearableTypeCar:
-            return [UIImage imageNamed:@"sticker_car"];
+            return [UIImage imageNamed:@"museum"];
             break;
         case ESTNearableTypeFridge:
-            return [UIImage imageNamed:@"sticker_fridge"];
+            return [UIImage imageNamed:@"museum"];
             break;
         case ESTNearableTypeBed:
-            return [UIImage imageNamed:@"sticker_bed"];
+            return [UIImage imageNamed:@"museum"];
             break;
         case ESTNearableTypeChair:
-            return [UIImage imageNamed:@"sticker_chair"];
+            return [UIImage imageNamed:@"museum"];
             break;
         case ESTNearableTypeShoe:
-            return [UIImage imageNamed:@"sticker_shoe"];
+            return [UIImage imageNamed:@"museum"];
             break;
         case ESTNearableTypeDoor:
-            return [UIImage imageNamed:@"sticker_door"];
+            return [UIImage imageNamed:@"museum"];
             break;
         case ESTNearableTypeDog:
-            return [UIImage imageNamed:@"sticker_dog"];
+            return [UIImage imageNamed:@"museum"];
             break;
         default:
-            return [UIImage imageNamed:@"sticker_grey"];
+            return [UIImage imageNamed:@"museum"];
             break;
     }
 }
@@ -221,24 +229,24 @@ NSMutableArray *objectNames;
 {
     if([identifier  isEqual: @"66e0c67afa889a0b"])
     {
-        return @"chair";
+        return @"The Scream";
     }
     
     else if([identifier  isEqual: @"2d0159fcfa96b7b3"])
     {
-        return @"bag";
+        return @"Guernica";
     }
     else if([identifier  isEqual: @"d082874074797782"])
     {
-        return @"door";
+        return @"Ulster museum";
     }
     else if([identifier  isEqual: @"0d7f92edbe655539"])
     {
-        return @"fridge";
+        return @"Starry Night";
     }
     else if([identifier  isEqual: @"f220399a8e348d6e"])
     {
-        return @"generic";
+        return @"The Mona Lisa";
     }
     else
     {
@@ -250,16 +258,16 @@ NSMutableArray *objectNames;
 {
     if([identifier  isEqual: @"66e0c67afa889a0b"])
     {
-        return @"chair";
+        return @"museum";
     }
     
     else if([identifier  isEqual: @"2d0159fcfa96b7b3"])
     {
-        return @"bag";
+        return @"museum";
     }
     else if([identifier  isEqual: @"d082874074797782"])
     {
-        return @"door";
+        return @"museum";
     }
     else if([identifier  isEqual: @"0d7f92edbe655539"])
     {
@@ -267,11 +275,11 @@ NSMutableArray *objectNames;
     }
     else if([identifier  isEqual: @"f220399a8e348d6e"])
     {
-        return @"generic";
+        return @"museum";
     }
     else
     {
-        return @"unknown";
+        return @"museum";
     }
 }
 NSString *selectedPath;
