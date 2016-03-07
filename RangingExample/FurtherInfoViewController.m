@@ -23,6 +23,15 @@
     NSLog(@"correct place follow");
    NSLog(touristLocationNameTxt);
     
+    // check what language
+    [[NSLocale preferredLanguages] objectAtIndex:0];
+    NSLog(@"language tag");
+    //sv-GB
+    // if its sv-GB pull from the swedish parse db
+    NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
+    NSString *swedish = @"sv-GB";
+    NSLog([[NSLocale preferredLanguages] objectAtIndex:0]);
+    
     PFQuery *query = [PFQuery queryWithClassName:@"TouristLocations"];
     [query whereKey:@"TouristLocationName" equalTo:touristLocationNameTxt];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
@@ -40,10 +49,28 @@
             {
                 
                 NSLog(@"%@", object.objectId);
-                NSLog(@"%@",object);
+                NSLog(@"%@",object);                touristLocationNameLbl.text = object[@"TouristLocationName"];
                 
-                touristLocationNameLbl.text = object[@"TouristLocationName"];
-                touristLocationInfoLbl.text = object[@"Information"];
+                NSString *touristLocationName = object[@"TouristLocationName"];
+               
+                
+               // touristLocationNameLbl.text =  [NSString stringWithFormat:NSLocalizedString(@"" +touristLocationName, nil)];
+                if([language isEqualToString:swedish])
+                    
+                {
+                    
+                     touristLocationInfoLbl.text = object[@"InformationSpanish"];
+                    
+                }
+                
+                else
+                    
+                {
+                          touristLocationInfoLbl.text = object[@"Information"];
+                    
+                    
+                }
+
                 
             }
         }

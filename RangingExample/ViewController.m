@@ -158,7 +158,6 @@ NSMutableArray *objectNames;
 
     cell.textLabel.text = shouldBe;
     
-    
    // cell.detailTextLabel.text = [NSString stringWithFormat:@"Type: %@ / RSSI: %zd", [ESTNearableDefinitions nameForType:nearable.type], nearable.rssi];
     
     cell.imageView.image = [[UIImage alloc] init];
@@ -229,7 +228,7 @@ NSMutableArray *objectNames;
 {
     if([identifier  isEqual: @"66e0c67afa889a0b"])
     {
-        return @"The Scream";
+        return @"The Scream";        
     }
     
     else if([identifier  isEqual: @"2d0159fcfa96b7b3"])
