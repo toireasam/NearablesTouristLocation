@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="8SS-6K-sue">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="b4p-rH-jxS">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -111,6 +111,65 @@
             </objects>
             <point key="canvasLocation" x="1509" y="418"/>
         </scene>
+        <!--Login View Controller-->
+        <scene sceneID="Hbb-HE-dkF">
+            <objects>
+                <viewController id="b4p-rH-jxS" customClass="LoginViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jrf-rg-xpA"/>
+                        <viewControllerLayoutGuide type="bottom" id="WX9-PW-Sfm"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="VXK-yk-jV8">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wY0-9Z-t7t">
+                                <rect key="frame" x="85" y="222" width="74" height="30"/>
+                                <state key="normal" title="Sign up"/>
+                                <connections>
+                                    <action selector="signup:" destination="b4p-rH-jxS" eventType="touchUpInside" id="kB0-KT-C9P"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kNt-Tv-daM">
+                                <rect key="frame" x="30" y="93" width="233" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kW8-JA-Urw">
+                                <rect key="frame" x="30" y="142" width="218" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sOp-zn-mKR">
+                                <rect key="frame" x="70" y="201" width="178" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wB2-gn-ZVX">
+                                <rect key="frame" x="185" y="222" width="46" height="30"/>
+                                <state key="normal" title="Login"/>
+                                <connections>
+                                    <action selector="login:" destination="b4p-rH-jxS" eventType="touchUpInside" id="I7Z-rp-Lpv"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="fDa-QU-2FX"/>
+                    <connections>
+                        <outlet property="loginBtn" destination="wB2-gn-ZVX" id="xcS-HU-mdA"/>
+                        <outlet property="passwordFieldTxt" destination="kW8-JA-Urw" id="7T8-dj-BUR"/>
+                        <outlet property="promptLbl" destination="sOp-zn-mKR" id="Zvl-ec-7cn"/>
+                        <outlet property="signUpBtn" destination="wY0-9Z-t7t" id="2LE-TM-IO3"/>
+                        <outlet property="usernameFieldTxt" destination="kNt-Tv-daM" id="qes-Xe-t8X"/>
+                        <segue destination="8SS-6K-sue" kind="push" identifier="tab" id="7bc-9x-Md6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pDi-Dh-ncX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-422" y="158"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="QFR-Vf-nnW">
             <objects>
@@ -128,7 +187,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4GW-OS-PoW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="198.93333333333334" y="212.05333333333334"/>
+            <point key="canvasLocation" x="280" y="205"/>
         </scene>
         <!--Home-->
         <scene sceneID="Ccn-Ez-rLa">
