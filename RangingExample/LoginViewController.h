@@ -14,5 +14,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *passwordFieldTxt;
 @property (weak, nonatomic) IBOutlet UILabel *promptLbl;
 @property (weak, nonatomic) IBOutlet UIButton *loginBtn;
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender;
 
 @end

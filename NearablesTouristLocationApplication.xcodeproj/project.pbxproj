@@ -18,6 +18,7 @@
 		95B1A6871A4AD1D200102220 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95B1A6861A4AD1D200102220 /* CoreBluetooth.framework */; };
 		95B1A6891A4AD1DB00102220 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95B1A6881A4AD1DB00102220 /* SystemConfiguration.framework */; };
 		95B1A68B1A4AD1E500102220 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95B1A68A1A4AD1E500102220 /* CoreLocation.framework */; };
+		B25D73FA1C9DA56C002C5AD7 /* AdminViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B25D73F91C9DA56C002C5AD7 /* AdminViewController.m */; };
 		B2BC5C6B1C8E03EF00F3A307 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2BC5C6A1C8E03EF00F3A307 /* LoginViewController.m */; };
 		B2E96E9C1C7364BD00CDAA8B /* ParseCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E96E9B1C7364BD00CDAA8B /* ParseCheck.m */; };
 		B2E96EA41C73800A00CDAA8B /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2E96EA31C73800A00CDAA8B /* AudioToolbox.framework */; };
@@ -64,6 +65,8 @@
 		95B1A6861A4AD1D200102220 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		95B1A6881A4AD1DB00102220 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		95B1A68A1A4AD1E500102220 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		B25D73F81C9DA56C002C5AD7 /* AdminViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdminViewController.h; sourceTree = "<group>"; };
+		B25D73F91C9DA56C002C5AD7 /* AdminViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdminViewController.m; sourceTree = "<group>"; };
 		B2BC5C691C8E03EF00F3A307 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		B2BC5C6A1C8E03EF00F3A307 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		B2E96E9A1C7364BD00CDAA8B /* ParseCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParseCheck.h; path = ../ParseCheck.h; sourceTree = "<group>"; };
@@ -171,6 +174,8 @@
 				B2E96E9A1C7364BD00CDAA8B /* ParseCheck.h */,
 				B2E96E9B1C7364BD00CDAA8B /* ParseCheck.m */,
 				95B1A6661A4ACCCD00102220 /* Main.storyboard */,
+				B25D73F81C9DA56C002C5AD7 /* AdminViewController.h */,
+				B25D73F91C9DA56C002C5AD7 /* AdminViewController.m */,
 				95B1A6691A4ACCCD00102220 /* Images.xcassets */,
 				95B1A66B1A4ACCCD00102220 /* LaunchScreen.xib */,
 				95B1A65C1A4ACCCD00102220 /* Supporting Files */,
@@ -308,6 +313,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B25D73FA1C9DA56C002C5AD7 /* AdminViewController.m in Sources */,
 				95B1A6651A4ACCCD00102220 /* ViewController.m in Sources */,
 				B2E96E9C1C7364BD00CDAA8B /* ParseCheck.m in Sources */,
 				B2E96EC11C74B39500CDAA8B /* FurtherInfoViewController.m in Sources */,

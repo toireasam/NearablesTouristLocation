@@ -8,12 +8,14 @@
 
 #import "LoginViewController.h"
 #import "Parse/Parse.h"
+#import "AdminViewController.h"
 
 @interface LoginViewController ()
 
 @end
 
 @implementation LoginViewController
+NSString *touristLocationAdmin;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -62,9 +64,84 @@
      {
          if (pfUser && !error) {
              // Proceed to next screen after successful login.
-             NSLog(@"should move to next screeen");
+          
              weakSelf.promptLbl.hidden = YES;
-             [weakSelf performSegueWithIdentifier:@"push" sender:self];
+             
+             // check if admin
+             NSString *athleteId = [[PFUser currentUser] objectForKey:@"Admin"];
+             // get the location admin is associated with
+             touristLocationAdmin = [[PFUser currentUser] objectForKey:@"TouristLocationName"];
+             
+             //NSLog(@"The athlete id is %@", athleteId);
+             NSLog(athleteId);
+             
+             
+             if([athleteId isEqual: @"yes"])
+             {
+                 
+                 
+                 NSLog(@"The athlete id is %@", athleteId);
+                 // go to admin
+                 NSLog(@"should move to admin screeen");
+                 [self performSegueWithIdentifier:@"admin" sender:self];
+                 NSLog(touristLocationAdmin);
+                 
+                 
+             }
+             else
+             {
+                 // they are a customer
+                 NSLog(@"The athlete id is %@", athleteId);
+                 
+                 // go to customer
+                 NSLog(@"should move to customer screeen");
+                 //[weakSelf performSegueWithIdentifier:@"test" sender:self];
+                 [self performSegueWithIdentifier:@"test" sender:self];
+                 
+                
+//                 // lets try sending to parse and this saves the data
+//                 PFObject *newPlayer = [PFObject objectWithClassName:@"Players"];
+                 
+    //             PFQuery *query = [PFQuery queryWithClassName:@"Players];
+     //            PFObject *object = [query getObjectWithId:@"Dl0dWVJWNt"];
+//                 
+//                 /*[newPlayer addObjectsFromArray:self.songsArrray forKey:@"songs"];
+//                  here i got the exception, if i uncomment it*/
+//
+   //                                [[objects object] setObject:name forKey:@"Name"];
+//                 [newPlayer setObject:@"toireasa" forKey:@"playerName"];
+//                 [newPlayer setObject:@"testing" forKey:@"playerDescription"];
+//                 [newPlayer setObject:@"random" forKey:@"playerPassword"];
+//                 
+//                 NSString *objectId = [newPlayer objectId];
+//                 [[NSUserDefaults standardUserDefaults]setObject:objectId forKey:@"id"];
+//                 
+//                 [newPlayer saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+//                     if (!error) {
+//                         NSLog(@"yahoo!!! saved data");
+//                     }
+//                     else {
+//                         NSLog(@"oh shit... data is not saved");
+//                     }
+  //               }];
+
+                 
+             }
+//
+//             if(athleteId == false)
+//             {
+//                 // go to customer
+//                    NSLog(@"should move to customer screeen");
+//                     //[weakSelf performSegueWithIdentifier:@"test" sender:self];
+//                     [self performSegueWithIdentifier:@"test" sender:self];
+//             }
+//             else
+//             {
+//                 // go to admin
+//                    NSLog(@"should move to admin screeen");
+//                     [weakSelf performSegueWithIdentifier:@"test2" sender:self];
+//             }
+         
              
          } else {
              // The login failed. Show error.
@@ -73,6 +150,20 @@
              weakSelf.promptLbl.hidden = NO;
          }
      }];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([[segue identifier] isEqualToString:@"admin"]) {
+        AdminViewController *nextVC = (AdminViewController *)[segue destinationViewController];
+        
+        
+              NSLog(@"tourist location admin is");
+              NSLog(touristLocationAdmin);
+        nextVC.touristLocationNameTxt = touristLocationAdmin;
+        nextVC.touirstLocationNameEditField = touristLocationAdmin;
+  
+    }
 }
 
 
