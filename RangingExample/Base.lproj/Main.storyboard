@@ -211,7 +211,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rnE-W7-Dgb">
-                                <rect key="frame" x="88" y="446" width="145" height="30"/>
+                                <rect key="frame" x="70" y="307" width="145" height="30"/>
                                 <state key="normal" title="Update information"/>
                                 <connections>
                                     <action selector="buttonClickUpdateInfo:" destination="XdO-Ud-G6b" eventType="touchUpInside" id="dtv-3O-vbT"/>
@@ -222,12 +222,32 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Z2-LT-vQs">
+                                <rect key="frame" x="69" y="345" width="158" height="114"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a5L-bb-GBL">
+                                <rect key="frame" x="69" y="481" width="46" height="30"/>
+                                <state key="normal" title="pic"/>
+                                <connections>
+                                    <action selector="btnCameraClicked:" destination="XdO-Ud-G6b" eventType="touchUpInside" id="6Lq-8W-LRY"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EDV-aC-JWr">
+                                <rect key="frame" x="206" y="481" width="46" height="30"/>
+                                <state key="normal" title="gallery"/>
+                                <connections>
+                                    <action selector="btnGalleryClicked:" destination="XdO-Ud-G6b" eventType="touchUpInside" id="vSq-2y-IkT"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="Xis-ly-qUY"/>
                     <connections>
                         <outlet property="UpdateLocationInfoBtn" destination="rnE-W7-Dgb" id="BJZ-oZ-fns"/>
+                        <outlet property="btnCamera" destination="a5L-bb-GBL" id="3cz-dQ-BNu"/>
+                        <outlet property="btnGallery" destination="EDV-aC-JWr" id="HaG-Vi-tgq"/>
+                        <outlet property="ivPickedImage" destination="6Z2-LT-vQs" id="vnz-VY-F1I"/>
                         <outlet property="touirstLocationInfoEditField" destination="p8E-Go-0u2" id="RLJ-1I-Zve"/>
                         <outlet property="touirstLocationNameEditField" destination="eek-EM-HfI" id="Xgt-Pm-qJd"/>
                         <outlet property="touristLocationNameEdit" destination="dJn-X2-bkX" id="uuj-7K-5C3"/>
