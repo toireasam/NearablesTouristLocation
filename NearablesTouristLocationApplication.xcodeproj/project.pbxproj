@@ -18,6 +18,7 @@
 		95B1A6871A4AD1D200102220 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95B1A6861A4AD1D200102220 /* CoreBluetooth.framework */; };
 		95B1A6891A4AD1DB00102220 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95B1A6881A4AD1DB00102220 /* SystemConfiguration.framework */; };
 		95B1A68B1A4AD1E500102220 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95B1A68A1A4AD1E500102220 /* CoreLocation.framework */; };
+		B237EB631C9F09390031136B /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B237EB621C9F09390031136B /* ParseUI.framework */; };
 		B25D73FA1C9DA56C002C5AD7 /* AdminViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B25D73F91C9DA56C002C5AD7 /* AdminViewController.m */; };
 		B2BC5C6B1C8E03EF00F3A307 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2BC5C6A1C8E03EF00F3A307 /* LoginViewController.m */; };
 		B2E96E9C1C7364BD00CDAA8B /* ParseCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E96E9B1C7364BD00CDAA8B /* ParseCheck.m */; };
@@ -65,6 +66,7 @@
 		95B1A6861A4AD1D200102220 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		95B1A6881A4AD1DB00102220 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		95B1A68A1A4AD1E500102220 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		B237EB621C9F09390031136B /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseUI.framework; path = "parse-library-1.12.0/ParseUI.framework"; sourceTree = "<group>"; };
 		B25D73F81C9DA56C002C5AD7 /* AdminViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdminViewController.h; sourceTree = "<group>"; };
 		B25D73F91C9DA56C002C5AD7 /* AdminViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdminViewController.m; sourceTree = "<group>"; };
 		B2BC5C691C8E03EF00F3A307 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -97,18 +99,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2E96EBC1C74AF7800CDAA8B /* Parse.framework in Frameworks */,
 				B2E96EBE1C74AF8000CDAA8B /* Bolts.framework in Frameworks */,
 				B2E96EB01C73804600CDAA8B /* libsqlite3.tbd in Frameworks */,
 				B2E96EAE1C73804000CDAA8B /* libz.tbd in Frameworks */,
 				95B1A6891A4AD1DB00102220 /* SystemConfiguration.framework in Frameworks */,
 				B2E96EAC1C73802D00CDAA8B /* StoreKit.framework in Frameworks */,
-				B2E96EBC1C74AF7800CDAA8B /* Parse.framework in Frameworks */,
 				B2E96EAA1C73802900CDAA8B /* Security.framework in Frameworks */,
 				B2E96EA81C73802400CDAA8B /* QuartzCore.framework in Frameworks */,
 				95B1A68B1A4AD1E500102220 /* CoreLocation.framework in Frameworks */,
 				B2E96EA61C73801A00CDAA8B /* CoreGraphics.framework in Frameworks */,
 				95B1A6851A4AD1CB00102220 /* CFNetwork.framework in Frameworks */,
 				B2E96EA41C73800A00CDAA8B /* AudioToolbox.framework in Frameworks */,
+				B237EB631C9F09390031136B /* ParseUI.framework in Frameworks */,
 				B2E96EB81C74A8BF00CDAA8B /* EstimoteSDK.framework in Frameworks */,
 				95B1A6871A4AD1D200102220 /* CoreBluetooth.framework in Frameworks */,
 			);
@@ -130,6 +133,7 @@
 				B2E96EAF1C73804600CDAA8B /* libsqlite3.tbd */,
 				B2E96EB91C74AF7000CDAA8B /* parse-library-1.12.0 */,
 				B2E96EAD1C73804000CDAA8B /* libz.tbd */,
+				B237EB621C9F09390031136B /* ParseUI.framework */,
 				B2E96EBB1C74AF7800CDAA8B /* Parse.framework */,
 				B2E96EBD1C74AF8000CDAA8B /* Bolts.framework */,
 				B2E96EAB1C73802D00CDAA8B /* StoreKit.framework */,

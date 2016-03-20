@@ -9,13 +9,13 @@
 #import "FurtherInfoViewController.h"
 
 @interface FurtherInfoViewController ()
-
 @end
 
 @implementation FurtherInfoViewController
 @synthesize touristLocationNameTxt;
 @synthesize touristLocationNameLbl;
 @synthesize touristLocationInfoLbl;
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -51,7 +51,10 @@
                 NSLog(@"%@", object.objectId);
                 NSLog(@"%@",object);                touristLocationNameLbl.text = object[@"TouristLocationName"];
                 
-                NSString *touristLocationName = object[@"TouristLocationName"];
+              //  NSString *touristLocationName = object[@"TouristLocationName"];
+                
+       
+
                
                 
                // touristLocationNameLbl.text =  [NSString stringWithFormat:NSLocalizedString(@"" +touristLocationName, nil)];
@@ -70,6 +73,11 @@
                     
                     
                 }
+                
+
+                
+                
+                
 
                 
             }
@@ -81,7 +89,50 @@
         }
         
 }];
-
+    
+ 
+        // Don't populate with info
+       query = [PFQuery queryWithClassName:@"TouristLocations"];
+    [query whereKey:@"TouristLocationName" equalTo:touristLocationNameTxt];
+        [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error)
+         {
+             if(!error)
+             {
+                 PFFile *file = [object objectForKey:@"LocationImage"];
+                 // file has not been downloaded yet, we just have a handle on this file
+                 // Tell the PFImageView about your file
+                 self.holder.file = file;
+                 
+                 // Now tell PFImageView to download the file asynchronously
+                 [self.holder loadInBackground];
+             }
+         }];
+    
+//    
+//    // Do any additional setup after loading the view.
+//        PFQuery *query = [PFQuery queryWithClassName:@"TouristLocations"];
+////    
+//    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+//        
+//        NSLog(@"Retrieved data");
+//        
+//        if (!error) {
+////            PFFile *file = [object objectForKey:@"LocationImage"];
+////            
+////            self.test.file = file;
+////            
+//            [self.holder loadInBackground];
+//            
+//            self.holder.file = [object objectForKey:@"LocationImage"];
+//            [self.holder loadInBackground];
+//        }
+//    }];
+    
+    
+   
+ 
+    
+   
 }
 
 - (void)didReceiveMemoryWarning {
