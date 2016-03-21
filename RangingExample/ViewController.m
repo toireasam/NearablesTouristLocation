@@ -9,12 +9,16 @@
 #import "ViewController.h"
 #import <EstimoteSDK/EstimoteSDK.h>
 #import "ParseCheck.h"
+#import "FurtherInfoViewController.h"
+#import "SettingsViewController.h"
+
 
 @interface ESTTableViewCell : UITableViewCell
-
 @end
 @implementation ESTTableViewCell
 NSString *locationNameString;
+NSString *museumsOn;
+
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier];
@@ -33,6 +37,7 @@ NSString *locationNameString;
 @property (nonatomic, strong) NSArray *nearablesArray;
 @property (nonatomic, strong) ESTNearableManager *nearableManager;
 
+
 @end
 
 @implementation ViewController
@@ -41,7 +46,7 @@ NSString *locationNameString;
 {
     [super viewDidLoad];
     
-    self.title = @"Ranged Estimote Nearables";
+    //self.title = @"Ranged Estimote Nearables";
     
     self.tableView = [[UITableView alloc] initWithFrame:self.view.frame];
     self.tableView.delegate = self;
@@ -60,12 +65,29 @@ NSString *locationNameString;
     self.nearableManager.delegate = self;
     [self.nearableManager startRangingForType:ESTNearableTypeAll];
     
-    [ParseCheck CheckRSSIInParse:@"d082874074797782"];
+  
+    
+    NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
+    
+    if ([[standardDefaults stringForKey:@"museumSwitchKey"] isEqual: @"On"]) {
+        
+        // Do Something
+        NSLog(@"museums are on");
+        museumsOn = @"true";
+    }
+    
+    
+    else {
+        
+        // Do Something Else
+        NSLog(@"museums are off");
+        museumsOn = @"false";
+    }
 
 }
 
 #pragma mark - ESTNearableManager delegate
-
+NSMutableArray *objectNames;
 - (void)nearableManager:(ESTNearableManager *)manager
       didRangeNearables:(NSArray *)nearables
                withType:(ESTNearableType)type
@@ -74,14 +96,37 @@ NSString *locationNameString;
      * Update local nearables array and reload table view
      */
     self.nearablesArray = nearables;
-    [self checkIn];
+   
+    
+    // loop to check if any museums
+
+     objectNames = [[NSMutableArray alloc] init];
+    int i;
+    for (i = 0; i < [self.nearablesArray count]; i++) {
+ 
+       // ...do something useful with myArrayElement
+             ESTNearable *nearable = [self.nearablesArray objectAtIndex:i];
+                NSString *shouldBe = [self identifierNearablCategoru:nearable.identifier];
+        if([shouldBe  isEqual:@"museum" ] && [museumsOn isEqual:@"false"])
+        {
+            NSLog(@"shouldnt add this object to array");
+            
+  // dont
+     
+
+        }
+        else
+        {
+           [objectNames addObject:nearable];
+            NSLog(@"trying to add in array");
+       
+            NSLog(@"array: %@",objectNames);
+        }
+            }
+
     [self.tableView reloadData];
 }
 
--(void)checkIn
-{
-    NSLog(@"checking");
-}
 
 #pragma mark - UITableView delegate and data source
 
@@ -92,25 +137,28 @@ NSString *locationNameString;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.nearablesArray count];
+    return [objectNames count];
 }
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+   
+    
     ESTTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellIdentifier" forIndexPath:indexPath];
     
     /*
      * Fill the table with beacon data.
      */
     
-    ESTNearable *nearable = [self.nearablesArray objectAtIndex:indexPath.row];
+    ESTNearable *nearable = [objectNames objectAtIndex:indexPath.row];
     
     // Check if the nearable is in parse
     NSString *shouldBe = [self identifierNearablType:nearable.identifier];
-    
+
     cell.textLabel.text = shouldBe;
     
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"Type: %@ / RSSI: %zd", [ESTNearableDefinitions nameForType:nearable.type], nearable.rssi];
+   // cell.detailTextLabel.text = [NSString stringWithFormat:@"Type: %@ / RSSI: %zd", [ESTNearableDefinitions nameForType:nearable.type], nearable.rssi];
     
     cell.imageView.image = [[UIImage alloc] init];
     cell.imageView.contentMode = UIViewContentModeScaleAspectFill;
@@ -119,6 +167,14 @@ NSString *locationNameString;
     imageView.contentMode = UIViewContentModeScaleAspectFill;
     [imageView setImage:[self imageForNearableType:nearable.type]];
     [cell.contentView addSubview:imageView];
+    
+
+    shouldBe = [shouldBe stringByAppendingString:@"top"]; //str is now "hello world"
+    int index = indexPath.row;
+    if (index == 0) // Top row
+    {
+           cell.textLabel.text = shouldBe;
+    }
     
     return cell;
 }
@@ -135,34 +191,34 @@ NSString *locationNameString;
     switch (type)
     {
         case ESTNearableTypeBag:
-            return [UIImage imageNamed:@"sticker_bag"];
+            return [UIImage imageNamed:@"museum"];
             break;
         case ESTNearableTypeBike:
-            return [UIImage imageNamed:@"sticker_bike"];
+            return [UIImage imageNamed:@"museum"];
             break;
         case ESTNearableTypeCar:
-            return [UIImage imageNamed:@"sticker_car"];
+            return [UIImage imageNamed:@"museum"];
             break;
         case ESTNearableTypeFridge:
-            return [UIImage imageNamed:@"sticker_fridge"];
+            return [UIImage imageNamed:@"museum"];
             break;
         case ESTNearableTypeBed:
-            return [UIImage imageNamed:@"sticker_bed"];
+            return [UIImage imageNamed:@"museum"];
             break;
         case ESTNearableTypeChair:
-            return [UIImage imageNamed:@"sticker_chair"];
+            return [UIImage imageNamed:@"museum"];
             break;
         case ESTNearableTypeShoe:
-            return [UIImage imageNamed:@"sticker_shoe"];
+            return [UIImage imageNamed:@"museum"];
             break;
         case ESTNearableTypeDoor:
-            return [UIImage imageNamed:@"sticker_door"];
+            return [UIImage imageNamed:@"museum"];
             break;
         case ESTNearableTypeDog:
-            return [UIImage imageNamed:@"sticker_dog"];
+            return [UIImage imageNamed:@"museum"];
             break;
         default:
-            return [UIImage imageNamed:@"sticker_grey"];
+            return [UIImage imageNamed:@"museum"];
             break;
     }
 }
@@ -172,28 +228,82 @@ NSString *locationNameString;
 {
     if([identifier  isEqual: @"66e0c67afa889a0b"])
     {
-        return @"chair";
+        return @"The Scream";        
     }
     
     else if([identifier  isEqual: @"2d0159fcfa96b7b3"])
     {
-        return @"bag";
+        return @"Guernica";
     }
     else if([identifier  isEqual: @"d082874074797782"])
     {
-        return @"door";
+        return @"Ulster museum";
     }
     else if([identifier  isEqual: @"0d7f92edbe655539"])
     {
-        return @"fridge";
+        return @"Starry Night";
     }
     else if([identifier  isEqual: @"f220399a8e348d6e"])
     {
-        return @"generic";
+        return @"The Mona Lisa";
     }
     else
     {
      return @"unknown";
     }
 }
+
+- (NSString *)identifierNearablCategoru:(NSString *)identifier
+{
+    if([identifier  isEqual: @"66e0c67afa889a0b"])
+    {
+        return @"museum";
+    }
+    
+    else if([identifier  isEqual: @"2d0159fcfa96b7b3"])
+    {
+        return @"museum";
+    }
+    else if([identifier  isEqual: @"d082874074797782"])
+    {
+        return @"museum";
+    }
+    else if([identifier  isEqual: @"0d7f92edbe655539"])
+    {
+        return @"museum";
+    }
+    else if([identifier  isEqual: @"f220399a8e348d6e"])
+    {
+        return @"museum";
+    }
+    else
+    {
+        return @"museum";
+    }
+}
+NSString *selectedPath;
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //how can I get the text of the cell here?
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    selectedPath = cell.textLabel.text;
+    NSLog(selectedPath);
+    
+    NSLog(@"%ld", (long)indexPath.row); // you can see selected row number in your console;
+    [self performSegueWithIdentifier:@"push" sender:tableView];
+
+    
+ 
+   }
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([[segue identifier] isEqualToString:@"push"]) {
+        FurtherInfoViewController *nextVC = (FurtherInfoViewController *)[segue destinationViewController];
+        
+        nextVC.touristLocationNameTxt = selectedPath;
+    }
+}
+
+
 @end

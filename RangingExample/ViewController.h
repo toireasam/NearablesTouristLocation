@@ -13,5 +13,7 @@
 
 +(void)RecieveParseDetails:(NSMutableArray *)locationNameArray andTheIdentifier:(NSMutableArray *)rssiArray;
 -(void)checkIn;
+- (NSString *)identifierNearablCategoru:(NSString *)identifier;
+
 @end
 
