@@ -10,6 +10,8 @@
 #import <EstimoteSDK/EstimoteSDK.h>
 #import "Parse/Parse.h"
 #import "ParseUI/PFImageView.h"
+#import "LoginViewController.h"
+
 
 
 @interface AppDelegate () <ESTBeaconManagerDelegate>
@@ -54,6 +56,17 @@
      registerUserNotificationSettings:[UIUserNotificationSettings
                                        settingsForTypes:UIUserNotificationTypeAlert
                                        categories:nil]];
+      NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
+    
+
+       
+     if ([[standardDefaults stringForKey:@"loggedin"] isEqual: @"out"])
+    {
+        NSLog(@"your logged out");
+         [self showLoginScreen:YES];
+    }
+    
+
 
 
     return YES;
@@ -86,6 +99,18 @@
     notification.alertBody =
     @"Welcome to the Ulster Museum!";
     [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
+}
+
+-(void) showLoginScreen:(BOOL)animated
+{
+    
+    // Get login screen from storyboard and present it
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    LoginViewController *viewController = (LoginViewController *)[storyboard instantiateViewControllerWithIdentifier:@"loginScreen"];
+    [self.window makeKeyAndVisible];
+    [self.window.rootViewController presentViewController:viewController
+                                                 animated:animated
+                                               completion:nil];
 }
 
 @end

@@ -16,6 +16,18 @@
 @synthesize museumSwitch;
 @synthesize cityHallSwitch;
 
+- (IBAction)logoutClick:(id)sender {
+    
+        
+        NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
+        [standardDefaults setObject:@"out" forKey:@"loggedin"];
+        NSLog(@"should be logged out");
+        
+        
+    
+
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.

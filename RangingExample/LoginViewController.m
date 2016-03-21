@@ -62,6 +62,7 @@ NSString *touristLocationAdmin;
                                  password:self.passwordFieldTxt.text
                                     block:^(PFUser *pfUser, NSError *error)
      {
+               NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
          if (pfUser && !error) {
              // Proceed to next screen after successful login.
           
@@ -74,6 +75,8 @@ NSString *touristLocationAdmin;
              
              //NSLog(@"The athlete id is %@", athleteId);
              NSLog(athleteId);
+             
+           
              
              
              if([athleteId isEqual: @"yes"])
@@ -92,11 +95,21 @@ NSString *touristLocationAdmin;
              {
                  // they are a customer
                  NSLog(@"The athlete id is %@", athleteId);
+           
+                 
+                 [standardDefaults setObject:@"in" forKey:@"loggedin"];
+                                
+                 // Send notification
+                 [[NSNotificationCenter defaultCenter] postNotificationName:@"loginSuccessful" object:self];
+                 
+                 // Dismiss login screen
+                 [self dismissViewControllerAnimated:YES completion:nil];
                  
                  // go to customer
                  NSLog(@"should move to customer screeen");
                  //[weakSelf performSegueWithIdentifier:@"test" sender:self];
                  [self performSegueWithIdentifier:@"test" sender:self];
+           
                  
                 
 //                 // lets try sending to parse and this saves the data
