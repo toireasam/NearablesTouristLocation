@@ -79,7 +79,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1186" y="573"/>
+            <point key="canvasLocation" x="1360" y="721"/>
         </scene>
         <!--Tourist Location View Controller-->
         <scene sceneID="HMl-td-bCg">
@@ -106,7 +106,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="q08-0v-jIt"/>
                     <connections>
-                        <segue destination="vXZ-lx-hvc" kind="push" id="4xb-qg-12c"/>
+                        <segue destination="vXZ-lx-hvc" kind="push" identifier="inside" id="4xb-qg-12c"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KRu-ah-jsp" userLabel="First Responder" sceneMemberID="firstResponder"/>

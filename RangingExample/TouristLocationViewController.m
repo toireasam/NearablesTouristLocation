@@ -16,6 +16,7 @@
 
 @implementation TouristLocationViewController
 NSMutableArray *tableData;
+NSString *categorySelected;
 - (void)viewDidLoad {
     [super viewDidLoad];
     tableData = [[NSMutableArray alloc]init];
@@ -114,7 +115,7 @@ NSMutableArray *tableData;
         return @"Ulster Museum";
     }
     
-    else if([minor isEqualToString:@"11891"])
+    else if([minor isEqualToString:@"17204"])
     {
         return @"Belfast City Hall";
     }
@@ -166,6 +167,36 @@ NSMutableArray *tableData;
     
     cell.textLabel.text = [tableData objectAtIndex:indexPath.row];
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //how can I get the text of the cell here?
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+//    selectedPath = cell.textLabel.text;
+//    NSLog(selectedPath);
+    
+    NSString  *selectedPath = cell.textLabel.text;
+    NSLog(selectedPath);
+    
+    NSLog(@"%ld", (long)indexPath.row); // you can see selected row number in your console;
+    categorySelected = selectedPath;
+    NSLog(@"decription is");
+    NSLog(categorySelected);
+    [self performSegueWithIdentifier:@"inside" sender:tableView];
+  
+    
+    
+    
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([[segue identifier] isEqualToString:@"inside"]) {
+        ViewController *nextVC = (ViewController *)[segue destinationViewController];
+        
+        nextVC.insideCategory = categorySelected;
+    }
 }
 
 

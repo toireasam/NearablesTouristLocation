@@ -19,6 +19,7 @@
 NSString *locationNameString;
 NSString *museumsOn;
 
+
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier];
@@ -38,9 +39,11 @@ NSString *museumsOn;
 @property (nonatomic, strong) ESTNearableManager *nearableManager;
 
 
+
 @end
 
 @implementation ViewController
+@synthesize insideCategory;
 
 - (void)viewDidLoad
 {
@@ -65,9 +68,9 @@ NSString *museumsOn;
     self.nearableManager.delegate = self;
     [self.nearableManager startRangingForType:ESTNearableTypeAll];
     
-  
-    
-    NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
+    NSLog(@"in the view did load, category selected is");
+    NSLog(insideCategory);
+     NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
     
     if ([[standardDefaults stringForKey:@"museumSwitchKey"] isEqual: @"On"]) {
         
@@ -115,12 +118,16 @@ NSMutableArray *objectNames;
      
 
         }
-        else
+        else if([shouldBe  isEqual:@"museum" ] && [museumsOn isEqual:@"true"] && [insideCategory isEqual:@"Ulster Museum"])
         {
            [objectNames addObject:nearable];
             NSLog(@"trying to add in array");
        
             NSLog(@"array: %@",objectNames);
+        }
+        else
+        {
+            NSLog(@"should be something else");
         }
             }
 
