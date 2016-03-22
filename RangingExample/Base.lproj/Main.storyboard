@@ -19,6 +19,9 @@
                         <subviews>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jwg-58-tj4">
                                 <rect key="frame" x="62" y="163" width="51" height="31"/>
+                                <connections>
+                                    <action selector="cityhallSwitchChanged:" destination="LGA-Ip-ZaY" eventType="valueChanged" id="X48-Wv-1Fu"/>
+                                </connections>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Museum" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VRG-Y3-rZC">
                                 <rect key="frame" x="150" y="110" width="82" height="21"/>

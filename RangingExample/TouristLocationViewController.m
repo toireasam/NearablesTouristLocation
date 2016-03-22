@@ -92,9 +92,12 @@ NSString *categorySelected;
    NSString *beaconName = [self identifyBeacon:beaconMinor];
     //[self identifyBeacon:minor];
    
-
+ // should get the category from parse and check if it's on
+    NSString *beaconCategory = [self getBeaconCategory:beaconMinor];
     
-    if (![tableData containsObject:beaconName]) {
+    NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
+
+    if (![tableData containsObject:beaconName] && [[standardDefaults stringForKey:beaconCategory] isEqual: @"On"]) {
          [tableData addObject: beaconName];
     }
     
@@ -118,6 +121,28 @@ NSString *categorySelected;
     else if([minor isEqualToString:@"17204"])
     {
         return @"Belfast City Hall";
+    }
+    
+    else
+    {
+        NSLog(@"%d", [minor integerValue]);
+        return @"unknown";
+    }
+}
+
+
+
+
+- (NSString *)getBeaconCategory:(NSString *)minor
+{
+    if([minor isEqualToString:@"10261"])
+    {
+        return @"museumSwitchKey";
+    }
+    
+    else if([minor isEqualToString:@"17204"])
+    {
+        return @"cityhallSwitchKey";
     }
     
     else
