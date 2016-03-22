@@ -45,6 +45,13 @@ NSString *museumsOn;
 @implementation ViewController
 @synthesize insideCategory;
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [objectNames removeAllObjects];
+    [self.tableView reloadData];
+}
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
