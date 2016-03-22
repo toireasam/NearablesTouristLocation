@@ -117,7 +117,7 @@ NSMutableArray *objectNames;
        // ...do something useful with myArrayElement
              ESTNearable *nearable = [self.nearablesArray objectAtIndex:i];
                 NSString *shouldBe = [self identifierNearablCategoru:nearable.identifier];
-        if([shouldBe  isEqual:@"museum" ] && [museumsOn isEqual:@"false"])
+        if([shouldBe  isEqual:@"museum" ] && [insideCategory isEqual:@"Belfast City Hall"])
         {
             NSLog(@"shouldnt add this object to array");
             
@@ -125,17 +125,22 @@ NSMutableArray *objectNames;
      
 
         }
-        else if([shouldBe  isEqual:@"museum" ] && [museumsOn isEqual:@"true"] && [insideCategory isEqual:@"Ulster Museum"])
+        else if([shouldBe  isEqual:@"cityhall" ] && [insideCategory isEqual:@"Ulster Museum"])
+        {
+            NSLog(@"shouldnt add this object to array");
+            
+            // dont
+            
+            
+        }
+        else
         {
            [objectNames addObject:nearable];
             NSLog(@"trying to add in array");
        
             NSLog(@"array: %@",objectNames);
         }
-        else
-        {
-            NSLog(@"should be something else");
-        }
+
             }
 
     [self.tableView reloadData];
