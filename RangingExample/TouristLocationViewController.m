@@ -11,11 +11,14 @@
 @property (nonatomic) ESTBeaconManager *beaconManager;
 @property (nonatomic) CLBeaconRegion *beaconRegion;
 @property (nonatomic) NSDictionary *placesByBeacons;
+
 @end
 
 @implementation TouristLocationViewController
+NSMutableArray *tableData;
 - (void)viewDidLoad {
     [super viewDidLoad];
+    tableData = [[NSMutableArray alloc]init];
     // 4. Instantiate the beacon manager & set its delegate
     NSLog(@"in the view");
     self.beaconManager = [ESTBeaconManager new];
@@ -76,13 +79,53 @@
     if (nearestBeacon) {
         NSArray *places = [self placesNearBeacon:nearestBeacon];
         // TODO: update the UI here
-        NSLog(@"%@", places); // TODO: remove after implementing the UI
+         NSLog(@"%@", places);
+       
     }
+  
+    NSString *beaconUUID =[NSString stringWithFormat:@"%@%@",nearestBeacon.proximityUUID,nearestBeacon.minor];
+    NSLog(beaconUUID);
+    NSString *beaconMinor = [NSString stringWithFormat:@"%@",nearestBeacon.minor];
+  
+  
+   NSString *beaconName = [self identifyBeacon:beaconMinor];
+    //[self identifyBeacon:minor];
+   
+
+    
+    if (![tableData containsObject:beaconName]) {
+         [tableData addObject: beaconName];
+    }
+    
+  
+    
+    [self.tableView reloadData];
+   
     
     
     
     
 }
+
+- (NSString *)identifyBeacon:(NSString *)minor
+{
+    if([minor isEqualToString:@"10261"])
+    {
+        return @"Ulster Museum";
+    }
+    
+    else if([minor isEqualToString:@"11891"])
+    {
+        return @"Belfast City Hall";
+    }
+    
+    else
+    {
+        NSLog(@"%d", [minor integerValue]);
+        return @"unknown";
+    }
+}
+
 
 - (void)beaconManager:(id)manager didFailWithError:(nonnull NSError *)error
 {
@@ -106,6 +149,24 @@
     return sortedPlaces;
 }
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [tableData count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *simpleTableIdentifier = @"SimpleTableItem";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
+    }
+    
+    cell.textLabel.text = [tableData objectAtIndex:indexPath.row];
+    return cell;
+}
 
 
 @end

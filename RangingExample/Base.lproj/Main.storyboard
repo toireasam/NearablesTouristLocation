@@ -79,7 +79,39 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1186" y="537"/>
+            <point key="canvasLocation" x="1186" y="573"/>
+        </scene>
+        <!--Tourist Location View Controller-->
+        <scene sceneID="HMl-td-bCg">
+            <objects>
+                <tableViewController id="1Lb-nf-8Vk" customClass="TouristLocationViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="dnp-9X-O27">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="dJF-8n-cFY">
+                                <rect key="frame" x="0.0" y="92" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dJF-8n-cFY" id="HTi-z3-R8N">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="1Lb-nf-8Vk" id="nLd-Vp-BCP"/>
+                            <outlet property="delegate" destination="1Lb-nf-8Vk" id="ka3-Rh-OcK"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="q08-0v-jIt"/>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="push" id="4xb-qg-12c"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KRu-ah-jsp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="962" y="840"/>
         </scene>
         <!--Further Info View Controller-->
         <scene sceneID="rWH-JO-kpF">
@@ -211,34 +243,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="6f2-Qf-8rT" kind="relationship" relationship="rootViewController" id="q3n-kb-S34"/>
+                        <segue destination="1Lb-nf-8Vk" kind="relationship" relationship="rootViewController" id="DLf-vO-OQa"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xFX-VW-FK0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="445" y="349"/>
-        </scene>
-        <!--Tourist Location View Controller-->
-        <scene sceneID="pkW-NO-Hh3">
-            <objects>
-                <viewController id="6f2-Qf-8rT" customClass="TouristLocationViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="J3E-tM-VqR"/>
-                        <viewControllerLayoutGuide type="bottom" id="CwH-sP-e1b"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="iLi-Vu-g4f">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="gQh-LK-1XZ"/>
-                    <connections>
-                        <segue destination="vXZ-lx-hvc" kind="push" id="HwH-zi-PXl"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Udx-bX-DMG" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="894" y="298"/>
+            <point key="canvasLocation" x="509" y="517"/>
         </scene>
         <!--Settings-->
         <scene sceneID="iSq-iD-Kwl">

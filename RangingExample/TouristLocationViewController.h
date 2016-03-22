@@ -1,5 +1,6 @@
 #import "ViewController.h"
 
-@interface TouristLocationViewController : UIViewController
+@interface TouristLocationViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource>
 
+- (NSString *)identifyBeacon:(NSString *)minor;
 @end
