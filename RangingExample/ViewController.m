@@ -188,11 +188,12 @@ NSMutableArray *objectNames;
     [cell.contentView addSubview:imageView];
     
 
-    shouldBe = [shouldBe stringByAppendingString:@"top"]; //str is now "hello world"
+    //shouldBe = [shouldBe stringByAppendingString:@"top"]; //str is now "hello world"
     int index = indexPath.row;
     if (index == 0) // Top row
     {
            cell.textLabel.text = shouldBe;
+        [cell.textLabel setTextColor:[UIColor redColor]];
     }
     
     return cell;
