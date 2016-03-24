@@ -37,6 +37,7 @@ NSString *museumsOn;
 
 @property (nonatomic, strong) NSArray *nearablesArray;
 @property (nonatomic, strong) ESTNearableManager *nearableManager;
+@property (nonatomic) NSDictionary *placesByBeacons;
 
 
 
@@ -44,6 +45,8 @@ NSString *museumsOn;
 
 @implementation ViewController
 @synthesize insideCategory;
+NSArray *places;
+
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -93,6 +96,17 @@ NSString *museumsOn;
         NSLog(@"museums are off");
         museumsOn = @"false";
     }
+    
+    self.placesByBeacons = @{
+                             @"f220399a8e348d6e": @{
+                                     @"0": @0,
+                                      @"500": @500,
+                                     },
+                             @"0d7f92edbe655539": @{
+                                     @"0": @0,
+                                      @"500": @500
+                                     }
+                             };
 
 }
 
@@ -105,6 +119,12 @@ NSMutableArray *objectNames;
     /*
      * Update local nearables array and reload table view
      */
+    
+    ESTNearable *nearestBeacon = nearables.firstObject;
+    if (nearestBeacon) {
+        places = [self placesNearBeacon:nearestBeacon];
+    }
+
     self.nearablesArray = nearables;
    
     
@@ -175,6 +195,8 @@ NSMutableArray *objectNames;
     // Check if the nearable is in parse
     NSString *shouldBe = [self identifierNearablType:nearable.identifier];
 
+    NSString *place = [places objectAtIndex:indexPath.row];
+    shouldBe = [shouldBe stringByAppendingString:place];
     cell.textLabel.text = shouldBe;
     
    // cell.detailTextLabel.text = [NSString stringWithFormat:@"Type: %@ / RSSI: %zd", [ESTNearableDefinitions nameForType:nearable.type], nearable.rssi];
@@ -323,6 +345,16 @@ NSString *selectedPath;
         
         nextVC.touristLocationNameTxt = selectedPath;
     }
+}
+
+- (NSArray *)placesNearBeacon:(ESTNearable *)beacon {
+    NSString *beaconKey = beacon.identifier;
+    NSDictionary *places = [self.placesByBeacons objectForKey:beaconKey];
+    NSArray *sortedPlaces = [places keysSortedByValueUsingComparator:
+                             ^NSComparisonResult(id obj1, id obj2) {
+                                 return [obj1 compare:obj2];
+                             }];
+    return sortedPlaces;
 }
 
 
