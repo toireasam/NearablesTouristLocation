@@ -21,6 +21,7 @@
 		B237EB631C9F09390031136B /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B237EB621C9F09390031136B /* ParseUI.framework */; };
 		B237EBF71CA187C70031136B /* TouristLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B237EBF61CA187C70031136B /* TouristLocationViewController.m */; };
 		B25D73FA1C9DA56C002C5AD7 /* AdminViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B25D73F91C9DA56C002C5AD7 /* AdminViewController.m */; };
+		B2B523601CAD0CB400EFC946 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = B2B5235F1CAD0CB400EFC946 /* iCarousel.m */; };
 		B2BC5C6B1C8E03EF00F3A307 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2BC5C6A1C8E03EF00F3A307 /* LoginViewController.m */; };
 		B2E96E9C1C7364BD00CDAA8B /* ParseCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E96E9B1C7364BD00CDAA8B /* ParseCheck.m */; };
 		B2E96EA41C73800A00CDAA8B /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2E96EA31C73800A00CDAA8B /* AudioToolbox.framework */; };
@@ -72,6 +73,8 @@
 		B237EBF61CA187C70031136B /* TouristLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouristLocationViewController.m; sourceTree = "<group>"; };
 		B25D73F81C9DA56C002C5AD7 /* AdminViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdminViewController.h; sourceTree = "<group>"; };
 		B25D73F91C9DA56C002C5AD7 /* AdminViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdminViewController.m; sourceTree = "<group>"; };
+		B2B5235E1CAD0CB400EFC946 /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iCarousel.h; path = "../../../Downloads/iCarousel-master 2/iCarousel/iCarousel.h"; sourceTree = "<group>"; };
+		B2B5235F1CAD0CB400EFC946 /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iCarousel.m; path = "../../../Downloads/iCarousel-master 2/iCarousel/iCarousel.m"; sourceTree = "<group>"; };
 		B2BC5C691C8E03EF00F3A307 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		B2BC5C6A1C8E03EF00F3A307 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		B2E96E9A1C7364BD00CDAA8B /* ParseCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParseCheck.h; path = ../ParseCheck.h; sourceTree = "<group>"; };
@@ -169,6 +172,8 @@
 			children = (
 				95B1A6601A4ACCCD00102220 /* AppDelegate.h */,
 				95B1A6611A4ACCCD00102220 /* AppDelegate.m */,
+				B2B5235E1CAD0CB400EFC946 /* iCarousel.h */,
+				B2B5235F1CAD0CB400EFC946 /* iCarousel.m */,
 				B2BC5C691C8E03EF00F3A307 /* LoginViewController.h */,
 				B2BC5C6A1C8E03EF00F3A307 /* LoginViewController.m */,
 				95B1A6631A4ACCCD00102220 /* ViewController.h */,
@@ -325,6 +330,7 @@
 				B25D73FA1C9DA56C002C5AD7 /* AdminViewController.m in Sources */,
 				95B1A6651A4ACCCD00102220 /* ViewController.m in Sources */,
 				B237EBF71CA187C70031136B /* TouristLocationViewController.m in Sources */,
+				B2B523601CAD0CB400EFC946 /* iCarousel.m in Sources */,
 				B2E96E9C1C7364BD00CDAA8B /* ParseCheck.m in Sources */,
 				B2E96EC11C74B39500CDAA8B /* FurtherInfoViewController.m in Sources */,
 				B2FF1D1D1C78ED9800A65ACD /* SettingsViewController.m in Sources */,

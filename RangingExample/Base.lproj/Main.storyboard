@@ -82,7 +82,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1360" y="721"/>
+            <point key="canvasLocation" x="1195" y="718"/>
         </scene>
         <!--Tourist Location View Controller-->
         <scene sceneID="HMl-td-bCg">
@@ -116,7 +116,7 @@
             </objects>
             <point key="canvasLocation" x="962" y="840"/>
         </scene>
-        <!--Further Info View Controller-->
+        <!--Data Source-->
         <scene sceneID="rWH-JO-kpF">
             <objects>
                 <viewController id="3nh-Oo-ONO" customClass="FurtherInfoViewController" sceneMemberID="viewController">
@@ -128,28 +128,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mq4-l1-w7e">
-                                <rect key="frame" x="15" y="299" width="142" height="59.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Dk-U4-q2J">
-                                <rect key="frame" x="15" y="338" width="351" height="181"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rej-HZ-CeM" customClass="PFImageView">
-                                <rect key="frame" x="51" y="85" width="240" height="128"/>
+                                <rect key="frame" x="-21" y="64" width="341" height="106"/>
                             </imageView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TWz-nX-Bht" customClass="iCarousel">
+                                <rect key="frame" x="112" y="196" width="162" height="140"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="3nh-Oo-ONO" id="UWp-SO-6G7"/>
+                                    <outlet property="delegate" destination="3nh-Oo-ONO" id="gi4-fW-b9c"/>
+                                </connections>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="flm-22-LUy">
+                                <rect key="frame" x="82" y="377" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mq4-l1-w7e">
+                                <rect key="frame" x="-5" y="269" width="142" height="59.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="7MY-dV-kzC"/>
                     <connections>
+                        <outlet property="carousel" destination="TWz-nX-Bht" id="csA-ij-WHC"/>
                         <outlet property="holder" destination="Rej-HZ-CeM" id="opP-o1-wWb"/>
-                        <outlet property="touristLocationInfoLbl" destination="8Dk-U4-q2J" id="WVs-0q-znk"/>
+                        <outlet property="touristLocationInfoLbl" destination="flm-22-LUy" id="G9u-8I-Cxo"/>
                         <outlet property="touristLocationNameLbl" destination="mq4-l1-w7e" id="66r-pW-I0i"/>
                     </connections>
                 </viewController>

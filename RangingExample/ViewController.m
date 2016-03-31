@@ -196,7 +196,7 @@ NSMutableArray *objectNames;
     NSString *shouldBe = [self identifierNearablType:nearable.identifier];
 
     NSString *place = [places objectAtIndex:indexPath.row];
-    shouldBe = [shouldBe stringByAppendingString:place];
+   // DONT DELETE shouldBe = [shouldBe stringByAppendingString:place];
     cell.textLabel.text = shouldBe;
     
    // cell.detailTextLabel.text = [NSString stringWithFormat:@"Type: %@ / RSSI: %zd", [ESTNearableDefinitions nameForType:nearable.type], nearable.rssi];

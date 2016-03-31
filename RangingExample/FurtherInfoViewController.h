@@ -10,12 +10,15 @@
 #import "Parse/Parse.h"
 #import <PARSEUI/PFImageView.h>
 #import <PARSEUI/PFImageView.h>
+#import "iCarousel.h"
 
 @interface FurtherInfoViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UILabel *touristLocationInfoLbl;
 @property (weak, nonatomic) IBOutlet UILabel *touristLocationNameLbl;
 @property (nonatomic, strong) NSString *touristLocationNameTxt;
 @property (weak, nonatomic) IBOutlet PFImageView *holder;
+@property (weak, nonatomic) IBOutlet iCarousel *carousel;
+
 
 
 
