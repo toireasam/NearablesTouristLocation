@@ -114,6 +114,7 @@ NSMutableArray *items;
     items = [NSMutableArray array];
     
     query = [PFQuery queryWithClassName:@"TestClass"];
+      [query whereKey:@"TouristLocationName" equalTo:touristLocationNameTxt];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             // The find succeeded. The first 100 objects are available in objects
