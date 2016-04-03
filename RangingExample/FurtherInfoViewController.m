@@ -8,6 +8,8 @@
 
 #import "FurtherInfoViewController.h"
 
+#import "iCarousel.h"
+
 @interface FurtherInfoViewController ()
 @end
 
@@ -15,6 +17,7 @@
 @synthesize touristLocationNameTxt;
 @synthesize touristLocationNameLbl;
 @synthesize touristLocationInfoLbl;
+NSMutableArray *items;
 
 
 - (void)viewDidLoad {
@@ -90,49 +93,86 @@
         
 }];
     
+// 
+//        // Don't populate with info
+//       query = [PFQuery queryWithClassName:@"TouristLocations"];
+//    [query whereKey:@"TouristLocationName" equalTo:touristLocationNameTxt];
+//        [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error)
+//         {
+//             if(!error)
+//             {
+//                 PFFile *file = [object objectForKey:@"LocationImage"];
+//                 // file has not been downloaded yet, we just have a handle on this file
+//                 // Tell the PFImageView about your file
+//                 self.holder.file = file;
+//                 
+//                 // Now tell PFImageView to download the file asynchronously
+//                 [self.holder loadInBackground];
+//             }
+//         }];
+    
+    items = [NSMutableArray array];
+    
+    query = [PFQuery queryWithClassName:@"TestClass"];
+      [query whereKey:@"TouristLocationName" equalTo:touristLocationNameTxt];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            // The find succeeded. The first 100 objects are available in objects
+            [items addObjectsFromArray:objects];
+             [_carousel reloadData];
+            
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+    
+    //configure carousel
+    _carousel.type = iCarouselTypeRotary;
+    
+    //_carousel.viewpointOffset = CGSizeMake(0.0f, 100.0f);
+   // [_carousel setContentOffset:CGSizeMake(0.0f, -60.0f)];
+
+    //configure carousel
+    _carousel.type = iCarouselTypeCoverFlow2;
+
+
  
-        // Don't populate with info
-       query = [PFQuery queryWithClassName:@"TouristLocations"];
-    [query whereKey:@"TouristLocationName" equalTo:touristLocationNameTxt];
-        [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error)
-         {
-             if(!error)
-             {
-                 PFFile *file = [object objectForKey:@"LocationImage"];
-                 // file has not been downloaded yet, we just have a handle on this file
-                 // Tell the PFImageView about your file
-                 self.holder.file = file;
-                 
-                 // Now tell PFImageView to download the file asynchronously
-                 [self.holder loadInBackground];
-             }
-         }];
-    
-//    
-//    // Do any additional setup after loading the view.
-//        PFQuery *query = [PFQuery queryWithClassName:@"TouristLocations"];
-////    
-//    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-//        
-//        NSLog(@"Retrieved data");
-//        
-//        if (!error) {
-////            PFFile *file = [object objectForKey:@"LocationImage"];
-////            
-////            self.test.file = file;
-////            
-//            [self.holder loadInBackground];
-//            
-//            self.holder.file = [object objectForKey:@"LocationImage"];
-//            [self.holder loadInBackground];
-//        }
-//    }];
-    
     
    
- 
+}
+
+-(void)viewDidDisappear:(BOOL)animated
+{
+      [items removeAllObjects];
+}
+
+
+
+- (NSInteger)numberOfItemsInCarousel:(iCarousel *)carousel
+{
+    //return the total number of items in the carousel
+    return [items count];
+}
+
+-(UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSUInteger)index reusingView:(UIView *)view {
     
-   
+    //create new view if no view is available for recycling
+    if (view == nil)
+    {
+        view = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 300.0f, 300.0f)];
+ 
+    }
+    
+    PFObject *eachObject = [items objectAtIndex:index];
+    PFFile *theImage = [eachObject objectForKey:@"Image"];
+    NSData *imageData = [theImage getData];
+    UIImage *image = [UIImage imageWithData:imageData];
+    
+    ((UIImageView *)view).image = image;
+    view.contentMode = UIViewContentModeCenter;
+    
+    return view;
 }
 
 - (void)didReceiveMemoryWarning {

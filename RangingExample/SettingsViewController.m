@@ -39,12 +39,17 @@
                              
                              isEqualToString:@"On"]) ? (YES) : (NO);
     
+    self.cityHallSwitch.on = ([[standardDefaults stringForKey:@"cityhallSwitchKey"]
+                             
+                             isEqualToString:@"On"]) ? (YES) : (NO);
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 /*
 #pragma mark - Navigation
@@ -74,4 +79,22 @@
     
 }
 
+- (IBAction)cityhallSwitchChanged:(UISwitch *)sender {
+    
+    NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
+    
+    if (sender.on == 0) {
+        
+        [standardDefaults setObject:@"Off" forKey:@"cityhallSwitchKey"];
+        
+    } else if (sender.on == 1) {
+        
+        [standardDefaults setObject:@"On" forKey:@"cityhallSwitchKey"];
+        
+    }
+    
+    [standardDefaults synchronize];
+    
+
+}
 @end

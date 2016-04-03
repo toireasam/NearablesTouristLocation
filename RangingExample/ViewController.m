@@ -19,6 +19,7 @@
 NSString *locationNameString;
 NSString *museumsOn;
 
+
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier];
@@ -36,11 +37,23 @@ NSString *museumsOn;
 
 @property (nonatomic, strong) NSArray *nearablesArray;
 @property (nonatomic, strong) ESTNearableManager *nearableManager;
+@property (nonatomic) NSDictionary *placesByBeacons;
+
 
 
 @end
 
 @implementation ViewController
+@synthesize insideCategory;
+NSArray *places;
+
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [objectNames removeAllObjects];
+    [self.tableView reloadData];
+}
+
 
 - (void)viewDidLoad
 {
@@ -65,9 +78,9 @@ NSString *museumsOn;
     self.nearableManager.delegate = self;
     [self.nearableManager startRangingForType:ESTNearableTypeAll];
     
-  
-    
-    NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
+    NSLog(@"in the view did load, category selected is");
+    NSLog(insideCategory);
+     NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
     
     if ([[standardDefaults stringForKey:@"museumSwitchKey"] isEqual: @"On"]) {
         
@@ -83,6 +96,17 @@ NSString *museumsOn;
         NSLog(@"museums are off");
         museumsOn = @"false";
     }
+    
+    self.placesByBeacons = @{
+                             @"f220399a8e348d6e": @{
+                                     @"0": @0,
+                                      @"500": @500,
+                                     },
+                             @"0d7f92edbe655539": @{
+                                     @"0": @0,
+                                      @"500": @500
+                                     }
+                             };
 
 }
 
@@ -95,6 +119,12 @@ NSMutableArray *objectNames;
     /*
      * Update local nearables array and reload table view
      */
+    
+    ESTNearable *nearestBeacon = nearables.firstObject;
+    if (nearestBeacon) {
+        places = [self placesNearBeacon:nearestBeacon];
+    }
+
     self.nearablesArray = nearables;
    
     
@@ -107,13 +137,21 @@ NSMutableArray *objectNames;
        // ...do something useful with myArrayElement
              ESTNearable *nearable = [self.nearablesArray objectAtIndex:i];
                 NSString *shouldBe = [self identifierNearablCategoru:nearable.identifier];
-        if([shouldBe  isEqual:@"museum" ] && [museumsOn isEqual:@"false"])
+        if([shouldBe  isEqual:@"museum" ] && [insideCategory isEqual:@"Belfast City Hall"])
         {
             NSLog(@"shouldnt add this object to array");
             
   // dont
      
 
+        }
+        else if([shouldBe  isEqual:@"cityhall" ] && [insideCategory isEqual:@"Ulster Museum"])
+        {
+            NSLog(@"shouldnt add this object to array");
+            
+            // dont
+            
+            
         }
         else
         {
@@ -122,6 +160,7 @@ NSMutableArray *objectNames;
        
             NSLog(@"array: %@",objectNames);
         }
+
             }
 
     [self.tableView reloadData];
@@ -156,6 +195,8 @@ NSMutableArray *objectNames;
     // Check if the nearable is in parse
     NSString *shouldBe = [self identifierNearablType:nearable.identifier];
 
+    NSString *place = [places objectAtIndex:indexPath.row];
+   // DONT DELETE shouldBe = [shouldBe stringByAppendingString:place];
     cell.textLabel.text = shouldBe;
     
    // cell.detailTextLabel.text = [NSString stringWithFormat:@"Type: %@ / RSSI: %zd", [ESTNearableDefinitions nameForType:nearable.type], nearable.rssi];
@@ -169,11 +210,12 @@ NSMutableArray *objectNames;
     [cell.contentView addSubview:imageView];
     
 
-    shouldBe = [shouldBe stringByAppendingString:@"top"]; //str is now "hello world"
+    //shouldBe = [shouldBe stringByAppendingString:@"top"]; //str is now "hello world"
     int index = indexPath.row;
     if (index == 0) // Top row
     {
            cell.textLabel.text = shouldBe;
+        [cell.textLabel setTextColor:[UIColor redColor]];
     }
     
     return cell;
@@ -303,6 +345,16 @@ NSString *selectedPath;
         
         nextVC.touristLocationNameTxt = selectedPath;
     }
+}
+
+- (NSArray *)placesNearBeacon:(ESTNearable *)beacon {
+    NSString *beaconKey = beacon.identifier;
+    NSDictionary *places = [self.placesByBeacons objectForKey:beaconKey];
+    NSArray *sortedPlaces = [places keysSortedByValueUsingComparator:
+                             ^NSComparisonResult(id obj1, id obj2) {
+                                 return [obj1 compare:obj2];
+                             }];
+    return sortedPlaces;
 }
 
 
