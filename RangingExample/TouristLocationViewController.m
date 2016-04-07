@@ -7,7 +7,7 @@
 
 // 2. Add the ESTBeaconManagerDelegate protocol
 @interface TouristLocationViewController () <ESTBeaconManagerDelegate>
-// 3. Add properties to hold the beacon manager and the beacon region
+
 @property (nonatomic) ESTBeaconManager *beaconManager;
 @property (nonatomic) CLBeaconRegion *beaconRegion;
 @property (nonatomic) NSDictionary *placesByBeacons;
@@ -16,14 +16,30 @@
 
 @implementation TouristLocationViewController
 NSMutableArray *tableData;
-NSString *categorySelected;
+NSString *touristLocationOutsideSelected;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     tableData = [[NSMutableArray alloc]init];
-    // 4. Instantiate the beacon manager & set its delegate
-    NSLog(@"in the view");
+
     self.beaconManager = [ESTBeaconManager new];
     
+    [self setBeaconPlaces];
+    
+    self.beaconManager.delegate = self;
+    self.beaconRegion = [[CLBeaconRegion alloc]
+                         initWithProximityUUID:[[NSUUID alloc]
+                                                initWithUUIDString:@"8492E75F-4FD6-469D-B132-043FE94921D8"]
+                         identifier:@"ranged region"];
+    [self.beaconManager requestAlwaysAuthorization];
+    
+    
+    
+    
+}
+
+-(void)setBeaconPlaces
+{
     self.placesByBeacons = @{
                              @"437:10261": @{
                                      @"cup": @50, // read as: it's 50 meters from
@@ -39,20 +55,6 @@ NSString *categorySelected;
                                      }
                              
                              };
-    
-    
-    self.beaconManager.delegate = self;
-    // 5. Instantiate the beacon region
-    self.beaconRegion = [[CLBeaconRegion alloc]
-                         initWithProximityUUID:[[NSUUID alloc]
-                                                initWithUUIDString:@"8492E75F-4FD6-469D-B132-043FE94921D8"]
-                         identifier:@"ranged region"];
-    // 6. We need to request this authorization for every beacon manager
-    [self.beaconManager requestAlwaysAuthorization];
-    
-    
-    
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -65,45 +67,47 @@ NSString *categorySelected;
     [self.beaconManager stopRangingBeaconsInRegion:self.beaconRegion];
 }
 
-
-- (void)beaconManager:(id)manager didRangeBeacons:(NSArray *)beacons
-             inRegion:(CLBeaconRegion *)region {
-    NSLog(@"RAN");
-    
-    
-    //    NSString *deviceId = [region.proximityUUID UUIDString];
-    //    NSString *deviceMajor = [region.major UUIDS
-    //
-    //    NSLog(deviceId);
-    
-    CLBeacon *nearestBeacon = beacons.firstObject;
-    if (nearestBeacon) {
-        NSArray *places = [self placesNearBeacon:nearestBeacon];
+-(void)getBeaconPlaces:(CLBeacon *)beacon
+{
+    if (beacon) {
+        NSArray *places = [self placesNearBeacon:beacon];
         // TODO: update the UI here
-         NSLog(@"%@", places);
-       
+        NSLog(@"%@", places);
+        
     }
-  
-    NSString *beaconUUID =[NSString stringWithFormat:@"%@%@",nearestBeacon.proximityUUID,nearestBeacon.minor];
-    NSLog(beaconUUID);
-    NSString *beaconMinor = [NSString stringWithFormat:@"%@",nearestBeacon.minor];
-  
-  
-   NSString *beaconName = [self identifyBeacon:beaconMinor];
-    //[self identifyBeacon:minor];
-   
- // should get the category from parse and check if it's on
+}
+
+-(void)displayBeaconsForCategories:(NSString *)beaconMinor and:(NSString *)beaconName
+{
+    
+    // should get the category from parse and check if it's on
     NSString *beaconCategory = [self getBeaconCategory:beaconMinor];
     
     NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
-
+    
     if (![tableData containsObject:beaconName] && [[standardDefaults stringForKey:beaconCategory] isEqual: @"On"]) {
-         [tableData addObject: beaconName];
+        [tableData addObject: beaconName];
     }
     
-  
+    
     
     [self.tableView reloadData];
+}
+
+
+- (void)beaconManager:(id)manager didRangeBeacons:(NSArray *)beacons
+             inRegion:(CLBeaconRegion *)region {
+   
+  
+  CLBeacon *nearestBeacon = beacons.firstObject;
+    
+        [self getBeaconPlaces:nearestBeacon];
+    
+
+    NSString *beaconMinor = [NSString stringWithFormat:@"%@",nearestBeacon.minor];
+    NSString *beaconName = [self identifyBeacon:beaconMinor];
+
+    [self displayBeaconsForCategories:beaconMinor and:beaconName];
    
     
     
@@ -159,11 +163,6 @@ NSString *categorySelected;
 }
 
 
-- (void)beaconManager:(id)manager didStartMonitoringForRegion:(nonnull CLBeaconRegion *)region
-{
-    NSLog(@"hello");
-}
-
 - (NSArray *)placesNearBeacon:(CLBeacon *)beacon {
     NSString *beaconKey = [NSString stringWithFormat:@"%@:%@",
                            beacon.major, beacon.minor];
@@ -196,31 +195,20 @@ NSString *categorySelected;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //how can I get the text of the cell here?
+
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-//    selectedPath = cell.textLabel.text;
-//    NSLog(selectedPath);
-    
     NSString  *selectedPath = cell.textLabel.text;
-    NSLog(selectedPath);
-    
-    NSLog(@"%ld", (long)indexPath.row); // you can see selected row number in your console;
-    categorySelected = selectedPath;
-    NSLog(@"decription is");
-    NSLog(categorySelected);
-    [self performSegueWithIdentifier:@"inside" sender:tableView];
-  
-    
-    
+    touristLocationOutsideSelected = selectedPath;
+    [self performSegueWithIdentifier:@"insideTouristAttraction" sender:tableView];
     
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
-    if ([[segue identifier] isEqualToString:@"inside"]) {
+    if ([[segue identifier] isEqualToString:@"insideTouristAttraction"]) {
         ViewController *nextVC = (ViewController *)[segue destinationViewController];
         
-        nextVC.insideCategory = categorySelected;
+        nextVC.insideCategory = touristLocationOutsideSelected;
     }
 }
 
