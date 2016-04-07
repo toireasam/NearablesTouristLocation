@@ -7,7 +7,8 @@
 //
 
 #import "FurtherInfoViewController.h"
-
+#import "TouristLocationPainting.h"
+#import "LanguageManager.h"
 #import "iCarousel.h"
 
 @interface FurtherInfoViewController ()
@@ -17,26 +18,50 @@
 @synthesize touristLocationNameTxt;
 @synthesize touristLocationNameLbl;
 @synthesize touristLocationInfoLbl;
-NSMutableArray *items;
-
+NSMutableArray *imagesOfAttraction;
+@synthesize locationPainting;
+LanguageManager *languageManager;
+NSString *currentLanguage;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    NSLog(@"correct place follow");
-   NSLog(touristLocationNameTxt);
     
-    // check what language
-    [[NSLocale preferredLanguages] objectAtIndex:0];
-    NSLog(@"language tag");
-    //sv-GB
-    // if its sv-GB pull from the swedish parse db
-    NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
-    NSString *swedish = @"sv-GB";
-    NSLog([[NSLocale preferredLanguages] objectAtIndex:0]);
+    languageManager = [[LanguageManager alloc]init];
+    currentLanguage = languageManager.presentCurrentLanguage;
     
-    PFQuery *query = [PFQuery queryWithClassName:@"TouristLocations"];
-    [query whereKey:@"TouristLocationName" equalTo:touristLocationNameTxt];
+    [self getLocationInfoAndDisplay];
+    [self getLocationImagesAndDisplay];
+
+    //configure carousel
+    _carousel.type = iCarouselTypeCoverFlow2;
+
+}
+
+-(void)getLocationImagesAndDisplay
+{
+    imagesOfAttraction = [NSMutableArray array];
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"TestClass"];
+    [query whereKey:@"TouristLocationName" equalTo:locationPainting.touristLocationName];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            // The find succeeded. The first 100 objects are available in objects
+            [imagesOfAttraction addObjectsFromArray:objects];
+            [_carousel reloadData];
+            
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+    
+}
+
+-(void)getLocationInfoAndDisplay
+{
+    PFQuery *query = [PFQuery queryWithClassName:currentLanguage];
+    [query whereKey:@"TouristLocationName" equalTo:locationPainting.touristLocationName];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error)
         {
@@ -52,107 +77,30 @@ NSMutableArray *items;
             {
                 
                 NSLog(@"%@", object.objectId);
-                NSLog(@"%@",object);                touristLocationNameLbl.text = object[@"TouristLocationName"];
-                
-              //  NSString *touristLocationName = object[@"TouristLocationName"];
-                
-       
-
-               
-                
-               // touristLocationNameLbl.text =  [NSString stringWithFormat:NSLocalizedString(@"" +touristLocationName, nil)];
-                if([language isEqualToString:swedish])
-                    
-                {
-                    
-                     touristLocationInfoLbl.text = object[@"InformationSpanish"];
-                    
-                }
-                
-                else
-                    
-                {
-                          touristLocationInfoLbl.text = object[@"Information"];
-                    
-                    
-                }
-                
-
-                
-                
-                
-
-                
+                NSLog(@"%@",object);
+                touristLocationNameLbl.text = object[@"TouristLocationName"];
+                touristLocationInfoLbl.text = object[@"Information"];
             }
         }
         else
         {
             // Log details of the failure
-            NSLog(@"Error: %@ %@", error, [error userInfo]);            
-        }
-        
-}];
-    
-// 
-//        // Don't populate with info
-//       query = [PFQuery queryWithClassName:@"TouristLocations"];
-//    [query whereKey:@"TouristLocationName" equalTo:touristLocationNameTxt];
-//        [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error)
-//         {
-//             if(!error)
-//             {
-//                 PFFile *file = [object objectForKey:@"LocationImage"];
-//                 // file has not been downloaded yet, we just have a handle on this file
-//                 // Tell the PFImageView about your file
-//                 self.holder.file = file;
-//                 
-//                 // Now tell PFImageView to download the file asynchronously
-//                 [self.holder loadInBackground];
-//             }
-//         }];
-    
-    items = [NSMutableArray array];
-    
-    query = [PFQuery queryWithClassName:@"TestClass"];
-      [query whereKey:@"TouristLocationName" equalTo:touristLocationNameTxt];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            // The find succeeded. The first 100 objects are available in objects
-            [items addObjectsFromArray:objects];
-             [_carousel reloadData];
-            
-        } else {
-            // Log details of the failure
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
+        
     }];
     
-    //configure carousel
-    _carousel.type = iCarouselTypeRotary;
-    
-    //_carousel.viewpointOffset = CGSizeMake(0.0f, 100.0f);
-   // [_carousel setContentOffset:CGSizeMake(0.0f, -60.0f)];
-
-    //configure carousel
-    _carousel.type = iCarouselTypeCoverFlow2;
-
-
- 
-    
-   
 }
 
 -(void)viewDidDisappear:(BOOL)animated
 {
-      [items removeAllObjects];
+      [imagesOfAttraction removeAllObjects];
 }
-
-
 
 - (NSInteger)numberOfItemsInCarousel:(iCarousel *)carousel
 {
     //return the total number of items in the carousel
-    return [items count];
+    return [imagesOfAttraction count];
 }
 
 -(UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSUInteger)index reusingView:(UIView *)view {
@@ -164,7 +112,7 @@ NSMutableArray *items;
  
     }
     
-    PFObject *eachObject = [items objectAtIndex:index];
+    PFObject *eachObject = [imagesOfAttraction objectAtIndex:index];
     PFFile *theImage = [eachObject objectForKey:@"Image"];
     NSData *imageData = [theImage getData];
     UIImage *image = [UIImage imageWithData:imageData];
@@ -179,15 +127,5 @@ NSMutableArray *items;
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

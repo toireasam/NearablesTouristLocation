@@ -18,21 +18,26 @@
 
 - (IBAction)logoutClick:(id)sender {
     
-        
-        NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
-        [standardDefaults setObject:@"out" forKey:@"loggedin"];
-        NSLog(@"should be logged out");
-        
-        
+    [self setUserDefaults];
     
+}
 
+-(void)setUserDefaults
+{
+    NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
+    [standardDefaults setObject:@"out" forKey:@"loggedin"];
+    
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
+    [self getUserDefaults];
     
+}
+
+-(void)getUserDefaults
+{
     NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
     
     self.museumSwitch.on = ([[standardDefaults stringForKey:@"museumSwitchKey"]
@@ -40,9 +45,8 @@
                              isEqualToString:@"On"]) ? (YES) : (NO);
     
     self.cityHallSwitch.on = ([[standardDefaults stringForKey:@"cityhallSwitchKey"]
-                             
-                             isEqualToString:@"On"]) ? (YES) : (NO);
-    
+                               
+                               isEqualToString:@"On"]) ? (YES) : (NO);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -50,18 +54,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
-- (IBAction)switchChanged:(UISwitch *)sender {
+- (IBAction)museumSwitchChanged:(UISwitch *)sender {
     
     NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
     
@@ -95,6 +88,6 @@
     
     [standardDefaults synchronize];
     
-
 }
+
 @end

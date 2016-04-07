@@ -6,7 +6,7 @@
 //  Copyright © 2016 Estimote. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "InsideAttractionViewController.h"
 
 @interface AdminViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 {

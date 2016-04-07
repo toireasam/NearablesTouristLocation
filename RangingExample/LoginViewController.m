@@ -15,16 +15,15 @@
 @end
 
 @implementation LoginViewController
-NSString *touristLocationAdmin;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-      self.promptLbl.hidden = YES;
-    // Tab the view to dismiss keyboard
+    
+    self.promptLbl.hidden = YES;
+    
     UITapGestureRecognizer *tapViewGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapOnView)];
     [self.view addGestureRecognizer:tapViewGR];
-
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -57,104 +56,40 @@ NSString *touristLocationAdmin;
 }
 
 - (IBAction)login:(id)sender {
+    
+    [self checkCredentials];
+}
+
+-(void)checkCredentials
+{
     __weak typeof(self) weakSelf = self;
     [PFUser logInWithUsernameInBackground:self.usernameFieldTxt.text
                                  password:self.passwordFieldTxt.text
                                     block:^(PFUser *pfUser, NSError *error)
      {
-               NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
          if (pfUser && !error) {
+             
              // Proceed to next screen after successful login.
-          
+             
              weakSelf.promptLbl.hidden = YES;
              
-             // check if admin
-             NSString *athleteId = [[PFUser currentUser] objectForKey:@"Admin"];
-             // get the location admin is associated with
-             touristLocationAdmin = [[PFUser currentUser] objectForKey:@"TouristLocationName"];
-             
-             //NSLog(@"The athlete id is %@", athleteId);
-             NSLog(athleteId);
-             
-           
+             // Check if admin
+             NSString *accessLevels = [[PFUser currentUser] objectForKey:@"Admin"];
              
              
-             if([athleteId isEqual: @"yes"])
+             if([accessLevels isEqual: @"no"])
              {
                  
+                 // They are a tourist but not an admin
                  
-                 NSLog(@"The athlete id is %@", athleteId);
-                 // go to admin
-                 NSLog(@"should move to admin screeen");
-                 [self performSegueWithIdentifier:@"admin" sender:self];
-                 NSLog(touristLocationAdmin);
+                 [self setUserDefaults:@"in"];
                  
-                 
-             }
-             else
-             {
-                 // they are a customer
-                 NSLog(@"The athlete id is %@", athleteId);
-           
-                 
-                 [standardDefaults setObject:@"in" forKey:@"loggedin"];
-                                
                  // Send notification
                  [[NSNotificationCenter defaultCenter] postNotificationName:@"loginSuccessful" object:self];
                  
                  // Dismiss login screen
                  [self dismissViewControllerAnimated:YES completion:nil];
-                 
-                 // go to customer
-                 NSLog(@"should move to customer screeen");
-                 //[weakSelf performSegueWithIdentifier:@"test" sender:self];
-                 [self performSegueWithIdentifier:@"test" sender:self];
-           
-                 
-                
-//                 // lets try sending to parse and this saves the data
-//                 PFObject *newPlayer = [PFObject objectWithClassName:@"Players"];
-                 
-    //             PFQuery *query = [PFQuery queryWithClassName:@"Players];
-     //            PFObject *object = [query getObjectWithId:@"Dl0dWVJWNt"];
-//                 
-//                 /*[newPlayer addObjectsFromArray:self.songsArrray forKey:@"songs"];
-//                  here i got the exception, if i uncomment it*/
-//
-   //                                [[objects object] setObject:name forKey:@"Name"];
-//                 [newPlayer setObject:@"toireasa" forKey:@"playerName"];
-//                 [newPlayer setObject:@"testing" forKey:@"playerDescription"];
-//                 [newPlayer setObject:@"random" forKey:@"playerPassword"];
-//                 
-//                 NSString *objectId = [newPlayer objectId];
-//                 [[NSUserDefaults standardUserDefaults]setObject:objectId forKey:@"id"];
-//                 
-//                 [newPlayer saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-//                     if (!error) {
-//                         NSLog(@"yahoo!!! saved data");
-//                     }
-//                     else {
-//                         NSLog(@"oh shit... data is not saved");
-//                     }
-  //               }];
-
-                 
              }
-//
-//             if(athleteId == false)
-//             {
-//                 // go to customer
-//                    NSLog(@"should move to customer screeen");
-//                     //[weakSelf performSegueWithIdentifier:@"test" sender:self];
-//                     [self performSegueWithIdentifier:@"test" sender:self];
-//             }
-//             else
-//             {
-//                 // go to admin
-//                    NSLog(@"should move to admin screeen");
-//                     [weakSelf performSegueWithIdentifier:@"test2" sender:self];
-//             }
-         
              
          } else {
              // The login failed. Show error.
@@ -165,29 +100,10 @@ NSString *touristLocationAdmin;
      }];
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
-    if ([[segue identifier] isEqualToString:@"admin"]) {
-        AdminViewController *nextVC = (AdminViewController *)[segue destinationViewController];
-        
-        
-              NSLog(@"tourist location admin is");
-              NSLog(touristLocationAdmin);
-        nextVC.touristLocationNameTxt = touristLocationAdmin;
-        nextVC.touirstLocationNameEditField = touristLocationAdmin;
-  
-    }
+-(void)setUserDefaults:(NSString *)loggedInStatus
+{
+    NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
+    [standardDefaults setObject:loggedInStatus forKey:@"loggedin"];    
 }
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

@@ -106,7 +106,7 @@ BeaconParseManager *beaconParseManager;
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     if ([[segue identifier] isEqualToString:@"insideTouristAttraction"]) {
-        ViewController *nextVC = (ViewController *)[segue destinationViewController];
+        InsideAttractionViewController *nextVC = (InsideAttractionViewController *)[segue destinationViewController];
         
         nextVC.insideCategory = touristLocationOutsideSelected;
     }

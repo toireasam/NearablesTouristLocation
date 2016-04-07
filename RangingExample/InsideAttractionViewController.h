@@ -10,11 +10,8 @@
 #import <Parse/Parse.h>
 #import "NearableParseManager.h"
 
-@interface ViewController : UIViewController
+@interface InsideAttractionViewController : UIViewController
 
-+(void)RecieveParseDetails:(NSMutableArray *)locationNameArray andTheIdentifier:(NSMutableArray *)rssiArray;
--(void)checkIn;
-- (NSString *)identifierNearablCategoru:(NSString *)identifier;
 @property (nonatomic, strong) NSString *insideCategory;
 
 @end

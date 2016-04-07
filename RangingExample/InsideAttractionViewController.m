@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Estimote. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "InsideAttractionViewController.h"
 #import <EstimoteSDK/EstimoteSDK.h>
 #import "FurtherInfoViewController.h"
 #import "SettingsViewController.h"
@@ -32,7 +32,7 @@ NSArray *places;
 }
 @end
 
-@interface ViewController () <UITableViewDelegate, UITableViewDataSource, ESTNearableManagerDelegate>
+@interface InsideAttractionViewController () <UITableViewDelegate, UITableViewDataSource, ESTNearableManagerDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 
@@ -44,7 +44,7 @@ NSArray *places;
 
 @end
 
-@implementation ViewController
+@implementation InsideAttractionViewController
 @synthesize insideCategory;
 
 TouristLocationPainting *locationPainting;
@@ -109,7 +109,6 @@ NearablesParseManager *nearablesParseManager;
             NSLog(@"shouldnt add this object to array");
             
             // dont
-            
             
         }
         else if([locationPainting  isEqual:@"cityhall" ] && [insideCategory isEqual:@"Ulster Museum"])
@@ -249,6 +248,7 @@ NSMutableArray *insideTouristAttractionBeacons;
         FurtherInfoViewController *nextVC = (FurtherInfoViewController *)[segue destinationViewController];
         
         nextVC.touristLocationNameTxt = locationPainting.touristLocationName;
+        nextVC.locationPainting = locationPainting;
     }
 }
 
