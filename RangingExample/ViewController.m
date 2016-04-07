@@ -8,9 +8,10 @@
 
 #import "ViewController.h"
 #import <EstimoteSDK/EstimoteSDK.h>
-#import "ParseCheck.h"
 #import "FurtherInfoViewController.h"
 #import "SettingsViewController.h"
+#import "TouristLocationPainting.h"
+#import "NearablesParseManager.h"
 
 
 @interface ESTTableViewCell : UITableViewCell
@@ -18,7 +19,7 @@
 @implementation ESTTableViewCell
 NSString *locationNameString;
 NSString *museumsOn;
-
+NSArray *places;
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -45,22 +46,25 @@ NSString *museumsOn;
 
 @implementation ViewController
 @synthesize insideCategory;
-NSArray *places;
+
+TouristLocationPainting *locationPainting;
+NearablesParseManager *nearablesParseManager;
 
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [objectNames removeAllObjects];
+    [insideTouristAttractionBeacons removeAllObjects];
     [self.tableView reloadData];
 }
-
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    //self.title = @"Ranged Estimote Nearables";
+    locationPainting = [[TouristLocationPainting alloc]init];
     
+    nearablesParseManager = [[NearablesParseManager alloc]init];
+
     self.tableView = [[UITableView alloc] initWithFrame:self.view.frame];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -68,84 +72,39 @@ NSArray *places;
     
     [self.view addSubview:self.tableView];
     
-    /*
-    * Initialize nearables manager and start ranging
-    * devices around with any possible type. When nearables are ranged
-    * propper delegate method is invoke. Delegate method updates
-    * nearables array and reload table view.
-    */
     self.nearableManager = [ESTNearableManager new];
     self.nearableManager.delegate = self;
     [self.nearableManager startRangingForType:ESTNearableTypeAll];
-    
-    NSLog(@"in the view did load, category selected is");
-    NSLog(insideCategory);
-     NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
-    
-    if ([[standardDefaults stringForKey:@"museumSwitchKey"] isEqual: @"On"]) {
-        
-        // Do Something
-        NSLog(@"museums are on");
-        museumsOn = @"true";
-    }
-    
-    
-    else {
-        
-        // Do Something Else
-        NSLog(@"museums are off");
-        museumsOn = @"false";
-    }
-    
-    self.placesByBeacons = @{
-                             @"f220399a8e348d6e": @{
-                                     @"0": @0,
-                                      @"500": @500,
-                                     },
-                             @"0d7f92edbe655539": @{
-                                     @"0": @0,
-                                      @"500": @500
-                                     }
-                             };
+    [nearablesParseManager setPlacesbyNearable];
 
 }
 
-#pragma mark - ESTNearableManager delegate
-NSMutableArray *objectNames;
-- (void)nearableManager:(ESTNearableManager *)manager
-      didRangeNearables:(NSArray *)nearables
-               withType:(ESTNearableType)type
+-(void)getUserDefaults
 {
-    /*
-     * Update local nearables array and reload table view
-     */
     
-    ESTNearable *nearestBeacon = nearables.firstObject;
-    if (nearestBeacon) {
-        places = [self placesNearBeacon:nearestBeacon];
+    NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
+    
+    if ([[standardDefaults stringForKey:@"museumSwitchKey"] isEqual: @"On"]) {
+        
+        museumsOn = @"true";
     }
-
-    self.nearablesArray = nearables;
-   
     
-    // loop to check if any museums
+    else
+    {
+        museumsOn = @"false";
+    }
+    
+}
 
-     objectNames = [[NSMutableArray alloc] init];
+-(void)getRelevantNearables
+{
+    insideTouristAttractionBeacons = [[NSMutableArray alloc] init];
     int i;
     for (i = 0; i < [self.nearablesArray count]; i++) {
- 
-       // ...do something useful with myArrayElement
-             ESTNearable *nearable = [self.nearablesArray objectAtIndex:i];
-                NSString *shouldBe = [self identifierNearablCategoru:nearable.identifier];
-        if([shouldBe  isEqual:@"museum" ] && [insideCategory isEqual:@"Belfast City Hall"])
-        {
-            NSLog(@"shouldnt add this object to array");
-            
-  // dont
-     
-
-        }
-        else if([shouldBe  isEqual:@"cityhall" ] && [insideCategory isEqual:@"Ulster Museum"])
+        
+        ESTNearable *nearable = [self.nearablesArray objectAtIndex:i];
+        locationPainting.touristLocationCategory = [nearablesParseManager identifierNearablCategoru:nearable.identifier];
+        if([locationPainting.touristLocationCategory  isEqual:@"museum" ] && [insideCategory isEqual:@"Belfast City Hall"])
         {
             NSLog(@"shouldnt add this object to array");
             
@@ -153,17 +112,37 @@ NSMutableArray *objectNames;
             
             
         }
+        else if([locationPainting  isEqual:@"cityhall" ] && [insideCategory isEqual:@"Ulster Museum"])
+        {
+            NSLog(@"shouldnt add this object to array");
+        
+        }
         else
         {
-           [objectNames addObject:nearable];
-            NSLog(@"trying to add in array");
-       
-            NSLog(@"array: %@",objectNames);
+            [insideTouristAttractionBeacons addObject:nearable];
+
         }
-
-            }
-
+        
+    }
+    
     [self.tableView reloadData];
+}
+
+#pragma mark - ESTNearableManager delegate
+NSMutableArray *insideTouristAttractionBeacons;
+- (void)nearableManager:(ESTNearableManager *)manager
+      didRangeNearables:(NSArray *)nearables
+               withType:(ESTNearableType)type
+{
+    
+    ESTNearable *nearestBeacon = nearables.firstObject;
+
+    places = [nearablesParseManager getPlacesByNearable:nearestBeacon];
+    
+    self.nearablesArray = nearables;
+    
+    [self getRelevantNearables];
+    
 }
 
 
@@ -176,57 +155,8 @@ NSMutableArray *objectNames;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [objectNames count];
+    return [insideTouristAttractionBeacons count];
 }
-
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-   
-    
-    ESTTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellIdentifier" forIndexPath:indexPath];
-    
-    /*
-     * Fill the table with beacon data.
-     */
-    
-    ESTNearable *nearable = [objectNames objectAtIndex:indexPath.row];
-    
-    // Check if the nearable is in parse
-    NSString *shouldBe = [self identifierNearablType:nearable.identifier];
-
-    NSString *place = [places objectAtIndex:indexPath.row];
-   // DONT DELETE shouldBe = [shouldBe stringByAppendingString:place];
-    cell.textLabel.text = shouldBe;
-    
-   // cell.detailTextLabel.text = [NSString stringWithFormat:@"Type: %@ / RSSI: %zd", [ESTNearableDefinitions nameForType:nearable.type], nearable.rssi];
-    
-    cell.imageView.image = [[UIImage alloc] init];
-    cell.imageView.contentMode = UIViewContentModeScaleAspectFill;
-
-    UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(self.view.frame.size.width - 60, 30, 30, 30)];
-    imageView.contentMode = UIViewContentModeScaleAspectFill;
-    [imageView setImage:[self imageForNearableType:nearable.type]];
-    [cell.contentView addSubview:imageView];
-    
-
-    //shouldBe = [shouldBe stringByAppendingString:@"top"]; //str is now "hello world"
-    int index = indexPath.row;
-    if (index == 0) // Top row
-    {
-           cell.textLabel.text = shouldBe;
-        [cell.textLabel setTextColor:[UIColor redColor]];
-    }
-    
-    return cell;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 80;
-}
-
-#pragma mark - Utility methods
 
 - (UIImage *)imageForNearableType:(ESTNearableType)type
 {
@@ -266,95 +196,61 @@ NSMutableArray *objectNames;
 }
 
 
-- (NSString *)identifierNearablType:(NSString *)identifier
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if([identifier  isEqual: @"66e0c67afa889a0b"])
+   
+    ESTNearable *nearable;
+    ESTTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellIdentifier" forIndexPath:indexPath];
+    
+    // Check if the nearable is in parse
+    locationPainting.touristLocationName = [nearablesParseManager identifierNearablType:nearable.identifier];
+
+    NSString *place = [places objectAtIndex:indexPath.row];
+   // DONT DELETE shouldBe = [shouldBe stringByAppendingString:place];
+    cell.textLabel.text = locationPainting.touristLocationName;
+    
+    cell.imageView.image = [[UIImage alloc] init];
+    cell.imageView.contentMode = UIViewContentModeScaleAspectFill;
+
+    UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(self.view.frame.size.width - 60, 30, 30, 30)];
+    imageView.contentMode = UIViewContentModeScaleAspectFill;
+    [imageView setImage:[self imageForNearableType:nearable.type]];
+    [cell.contentView addSubview:imageView];
+    
+    if (indexPath.row == 0) // Top row
     {
-        return @"The Scream";        
+        cell.textLabel.text = locationPainting.touristLocationName;
+        [cell.textLabel setTextColor:[UIColor redColor]];
     }
     
-    else if([identifier  isEqual: @"2d0159fcfa96b7b3"])
-    {
-        return @"Guernica";
-    }
-    else if([identifier  isEqual: @"d082874074797782"])
-    {
-        return @"Ulster museum";
-    }
-    else if([identifier  isEqual: @"0d7f92edbe655539"])
-    {
-        return @"Starry Night";
-    }
-    else if([identifier  isEqual: @"f220399a8e348d6e"])
-    {
-        return @"The Mona Lisa";
-    }
-    else
-    {
-     return @"unknown";
-    }
+    return cell;
 }
 
-- (NSString *)identifierNearablCategoru:(NSString *)identifier
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if([identifier  isEqual: @"66e0c67afa889a0b"])
-    {
-        return @"museum";
-    }
-    
-    else if([identifier  isEqual: @"2d0159fcfa96b7b3"])
-    {
-        return @"museum";
-    }
-    else if([identifier  isEqual: @"d082874074797782"])
-    {
-        return @"museum";
-    }
-    else if([identifier  isEqual: @"0d7f92edbe655539"])
-    {
-        return @"museum";
-    }
-    else if([identifier  isEqual: @"f220399a8e348d6e"])
-    {
-        return @"museum";
-    }
-    else
-    {
-        return @"museum";
-    }
+    return 80;
 }
-NSString *selectedPath;
+
+#pragma mark - Utility methods
+
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //how can I get the text of the cell here?
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    selectedPath = cell.textLabel.text;
-    NSLog(selectedPath);
-    
-    NSLog(@"%ld", (long)indexPath.row); // you can see selected row number in your console;
-    [self performSegueWithIdentifier:@"push" sender:tableView];
 
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    locationPainting.touristLocationName = cell.textLabel.text;
     
+    [self performSegueWithIdentifier:@"push" sender:tableView];
  
-   }
+}
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     if ([[segue identifier] isEqualToString:@"push"]) {
         FurtherInfoViewController *nextVC = (FurtherInfoViewController *)[segue destinationViewController];
         
-        nextVC.touristLocationNameTxt = selectedPath;
+        nextVC.touristLocationNameTxt = locationPainting.touristLocationName;
     }
-}
-
-- (NSArray *)placesNearBeacon:(ESTNearable *)beacon {
-    NSString *beaconKey = beacon.identifier;
-    NSDictionary *places = [self.placesByBeacons objectForKey:beaconKey];
-    NSArray *sortedPlaces = [places keysSortedByValueUsingComparator:
-                             ^NSComparisonResult(id obj1, id obj2) {
-                                 return [obj1 compare:obj2];
-                             }];
-    return sortedPlaces;
 }
 
 

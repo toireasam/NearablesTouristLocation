@@ -1,20 +1,17 @@
 #import "TouristLocationViewController.h"
-
-// 1. Add an import
 #import <EstimoteSDK/EstimoteSDK.h>
 #import "BeaconParseManager.h"
 
 
-// 2. Add the ESTBeaconManagerDelegate protocol
 @interface TouristLocationViewController () <ESTBeaconManagerDelegate>
 
 @property (nonatomic) ESTBeaconManager *beaconManager;
 @property (nonatomic) CLBeaconRegion *beaconRegion;
-@property (nonatomic) NSDictionary *placesByBeacons;
 
 @end
 
 @implementation TouristLocationViewController
+
 NSMutableArray *tableData;
 NSString *touristLocationOutsideSelected;
 BeaconParseManager *beaconParseManager;
@@ -26,8 +23,6 @@ BeaconParseManager *beaconParseManager;
     beaconParseManager = [[BeaconParseManager alloc]init];
 
     self.beaconManager = [ESTBeaconManager new];
-    
-    
     self.beaconManager.delegate = self;
     self.beaconRegion = [[CLBeaconRegion alloc]
                          initWithProximityUUID:[[NSUUID alloc]
@@ -35,11 +30,7 @@ BeaconParseManager *beaconParseManager;
                          identifier:@"ranged region"];
     [self.beaconManager requestAlwaysAuthorization];
     
-    
-    
-    
 }
-
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -51,11 +42,9 @@ BeaconParseManager *beaconParseManager;
     [self.beaconManager stopRangingBeaconsInRegion:self.beaconRegion];
 }
 
-
-
--(void)displayBeaconsForCategories:(CLBeacon *)nearestBeacon{
+- (void)displayBeaconsForCategories:(CLBeacon *)nearestBeacon{
     
-    // should get the category from parse and check if it's on
+    
     NSString *beaconMinor = [NSString stringWithFormat:@"%@",nearestBeacon.minor];
     NSString *beaconName = [beaconParseManager identifyBeacon:beaconMinor];
     NSString *beaconCategory = [beaconParseManager getBeaconCategory:beaconMinor];
@@ -66,36 +55,24 @@ BeaconParseManager *beaconParseManager;
         [tableData addObject: beaconName];
     }
     
-    
-    
     [self.tableView reloadData];
 }
 
-
 - (void)beaconManager:(id)manager didRangeBeacons:(NSArray *)beacons
              inRegion:(CLBeaconRegion *)region {
-   
-  
+    
   CLBeacon *nearestBeacon = beacons.firstObject;
     
+  [beaconParseManager getBeaconPlaces:nearestBeacon];
     
-    
-        [beaconParseManager getBeaconPlaces:nearestBeacon];
-    
-
-    [self displayBeaconsForCategories:nearestBeacon];
+   [self displayBeaconsForCategories:nearestBeacon];
    
-    
-    
 }
 
 - (void)beaconManager:(id)manager didFailWithError:(nonnull NSError *)error
 {
     NSLog(@"error");
 }
-
-
-
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -104,7 +81,7 @@ BeaconParseManager *beaconParseManager;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *simpleTableIdentifier = @"SimpleTableItem";
+    static NSString *simpleTableIdentifier = @"TableItemIdentifier";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
     
@@ -134,7 +111,6 @@ BeaconParseManager *beaconParseManager;
         nextVC.insideCategory = touristLocationOutsideSelected;
     }
 }
-
 
 @end
 

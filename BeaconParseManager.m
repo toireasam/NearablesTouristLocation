@@ -89,9 +89,6 @@
 {
     if (beacon) {
         NSArray *places = [self placesNearBeacon:beacon];
-        // TODO: update the UI here
-        NSLog(@"%@", places);
-        
     }
 }
 

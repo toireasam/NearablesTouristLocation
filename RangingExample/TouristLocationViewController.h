@@ -2,6 +2,7 @@
 
 @interface TouristLocationViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource>
 
-- (NSString *)identifyBeacon:(NSString *)minor;
-- (NSString *)getBeaconCategory:(NSString *)minor;
+- (void)displayBeaconsForCategories:(CLBeacon *)nearestBeacon;
+- (void)beaconManager:(id)manager didRangeBeacons:(NSArray *)beacons;
+
 @end
