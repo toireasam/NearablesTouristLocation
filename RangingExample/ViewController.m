@@ -198,8 +198,7 @@ NSMutableArray *insideTouristAttractionBeacons;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-   
-    ESTNearable *nearable;
+     ESTNearable *nearable = [insideTouristAttractionBeacons objectAtIndex:indexPath.row];
     ESTTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellIdentifier" forIndexPath:indexPath];
     
     // Check if the nearable is in parse
