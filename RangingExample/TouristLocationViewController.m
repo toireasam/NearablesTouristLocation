@@ -2,7 +2,7 @@
 
 // 1. Add an import
 #import <EstimoteSDK/EstimoteSDK.h>
-
+#import "BeaconParseManager.h"
 
 
 // 2. Add the ESTBeaconManagerDelegate protocol
@@ -17,14 +17,16 @@
 @implementation TouristLocationViewController
 NSMutableArray *tableData;
 NSString *touristLocationOutsideSelected;
+BeaconParseManager *beaconParseManager;
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     tableData = [[NSMutableArray alloc]init];
+    beaconParseManager = [[BeaconParseManager alloc]init];
 
     self.beaconManager = [ESTBeaconManager new];
     
-    [self setBeaconPlaces];
     
     self.beaconManager.delegate = self;
     self.beaconRegion = [[CLBeaconRegion alloc]
@@ -38,24 +40,6 @@ NSString *touristLocationOutsideSelected;
     
 }
 
--(void)setBeaconPlaces
-{
-    self.placesByBeacons = @{
-                             @"437:10261": @{
-                                     @"cup": @50, // read as: it's 50 meters from
-                                     // "Heavenly Sandwiches" to the beacon with
-                                     // major 6574 and minor 54631
-                                     @"Green & Green Salads": @150,
-                                     @"Mini Panini": @325
-                                     },
-                             @"10108:11891": @{
-                                     @"urban": @25000,
-                                     @"seat": @1100,
-                                     @"stickers": @23330
-                                     }
-                             
-                             };
-}
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -67,21 +51,14 @@ NSString *touristLocationOutsideSelected;
     [self.beaconManager stopRangingBeaconsInRegion:self.beaconRegion];
 }
 
--(void)getBeaconPlaces:(CLBeacon *)beacon
-{
-    if (beacon) {
-        NSArray *places = [self placesNearBeacon:beacon];
-        // TODO: update the UI here
-        NSLog(@"%@", places);
-        
-    }
-}
 
--(void)displayBeaconsForCategories:(NSString *)beaconMinor and:(NSString *)beaconName
-{
+
+-(void)displayBeaconsForCategories:(CLBeacon *)nearestBeacon{
     
     // should get the category from parse and check if it's on
-    NSString *beaconCategory = [self getBeaconCategory:beaconMinor];
+    NSString *beaconMinor = [NSString stringWithFormat:@"%@",nearestBeacon.minor];
+    NSString *beaconName = [beaconParseManager identifyBeacon:beaconMinor];
+    NSString *beaconCategory = [beaconParseManager getBeaconCategory:beaconMinor];
     
     NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
     
@@ -101,61 +78,16 @@ NSString *touristLocationOutsideSelected;
   
   CLBeacon *nearestBeacon = beacons.firstObject;
     
-        [self getBeaconPlaces:nearestBeacon];
+    
+    
+        [beaconParseManager getBeaconPlaces:nearestBeacon];
     
 
-    NSString *beaconMinor = [NSString stringWithFormat:@"%@",nearestBeacon.minor];
-    NSString *beaconName = [self identifyBeacon:beaconMinor];
-
-    [self displayBeaconsForCategories:beaconMinor and:beaconName];
+    [self displayBeaconsForCategories:nearestBeacon];
    
     
     
-    
-    
 }
-
-- (NSString *)identifyBeacon:(NSString *)minor
-{
-    if([minor isEqualToString:@"10261"])
-    {
-        return @"Ulster Museum";
-    }
-    
-    else if([minor isEqualToString:@"17204"])
-    {
-        return @"Belfast City Hall";
-    }
-    
-    else
-    {
-        NSLog(@"%d", [minor integerValue]);
-        return @"unknown";
-    }
-}
-
-
-
-
-- (NSString *)getBeaconCategory:(NSString *)minor
-{
-    if([minor isEqualToString:@"10261"])
-    {
-        return @"museumSwitchKey";
-    }
-    
-    else if([minor isEqualToString:@"17204"])
-    {
-        return @"cityhallSwitchKey";
-    }
-    
-    else
-    {
-        NSLog(@"%d", [minor integerValue]);
-        return @"unknown";
-    }
-}
-
 
 - (void)beaconManager:(id)manager didFailWithError:(nonnull NSError *)error
 {
@@ -163,16 +95,7 @@ NSString *touristLocationOutsideSelected;
 }
 
 
-- (NSArray *)placesNearBeacon:(CLBeacon *)beacon {
-    NSString *beaconKey = [NSString stringWithFormat:@"%@:%@",
-                           beacon.major, beacon.minor];
-    NSDictionary *places = [self.placesByBeacons objectForKey:beaconKey];
-    NSArray *sortedPlaces = [places keysSortedByValueUsingComparator:
-                             ^NSComparisonResult(id obj1, id obj2) {
-                                 return [obj1 compare:obj2];
-                             }];
-    return sortedPlaces;
-}
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
