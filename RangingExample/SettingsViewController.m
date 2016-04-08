@@ -7,6 +7,7 @@
 //
 
 #import "SettingsViewController.h"
+#import "LoginViewController.h"
 
 @interface SettingsViewController ()
 
@@ -20,6 +21,12 @@
 - (IBAction)logoutClick:(id)sender {
     
     [self setUserDefaults];
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    LoginViewController *viewController = (LoginViewController *)[storyboard instantiateViewControllerWithIdentifier:@"loginScreen"];
+    [viewController setModalPresentationStyle:UIModalPresentationFullScreen];
+    [self presentViewController:viewController animated:NO completion:nil];
+
     
 }
 
