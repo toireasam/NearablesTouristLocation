@@ -15,6 +15,7 @@
 @implementation SettingsViewController
 @synthesize museumSwitch;
 @synthesize cityHallSwitch;
+@synthesize logoutBtn;
 
 - (IBAction)logoutClick:(id)sender {
     
@@ -32,11 +33,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self getUserDefaults];
+    [self getUserCategoryDefaults];
+    [self getUserNameDefaults];
     
 }
 
--(void)getUserDefaults
+-(void)getUserNameDefaults
+{
+    NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *logoutMsg = @"click here to log out";
+    NSString *username = [standardDefaults stringForKey:@"username"];
+    username = [logoutMsg stringByAppendingString:username];
+    
+    [logoutBtn setTitle: username forState: UIControlStateNormal];
+    
+}
+
+-(void)getUserCategoryDefaults
 {
     NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
     

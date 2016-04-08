@@ -9,12 +9,14 @@
 #import "LoginViewController.h"
 #import "Parse/Parse.h"
 #import "AdminViewController.h"
+#import "User.h"
 
 @interface LoginViewController ()
 
 @end
 
 @implementation LoginViewController
+User *currentUser;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -75,14 +77,16 @@
              
              // Check if admin
              NSString *accessLevels = [[PFUser currentUser] objectForKey:@"Admin"];
-             
+             currentUser = [[User alloc]init];
+             currentUser.username = [[PFUser currentUser] objectForKey:@"username"];
+             [self setUsernameDefaults:currentUser.username];
              
              if([accessLevels isEqual: @"no"])
              {
                  
                  // They are a tourist but not an admin
                  
-                 [self setUserDefaults:@"in"];
+                 [self setLoginStatusDefaults:@"in"];
                  
                  // Send notification
                  [[NSNotificationCenter defaultCenter] postNotificationName:@"loginSuccessful" object:self];
@@ -100,10 +104,16 @@
      }];
 }
 
--(void)setUserDefaults:(NSString *)loggedInStatus
+-(void)setLoginStatusDefaults:(NSString *)loggedInStatus
 {
     NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
     [standardDefaults setObject:loggedInStatus forKey:@"loggedin"];    
+}
+
+-(void)setUsernameDefaults:(NSString *)username
+{
+    NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
+    [standardDefaults setObject:username forKey:@"username"];
 }
 
 @end

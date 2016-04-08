@@ -12,6 +12,7 @@
 @property (weak, nonatomic) IBOutlet UISwitch *museumSwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *cityHallSwitch;
 - (IBAction)switchChanged:(UISwitch *)sender;
+@property (weak, nonatomic) IBOutlet UIButton *logoutBtn;
 
 
 

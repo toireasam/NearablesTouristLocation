@@ -43,7 +43,7 @@
                                 </connections>
                             </switch>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dP2-Rv-ZZD">
-                                <rect key="frame" x="150" y="383" width="46" height="30"/>
+                                <rect key="frame" x="41" y="383" width="212" height="30"/>
                                 <state key="normal" title="logout"/>
                                 <connections>
                                     <action selector="logoutClick:" destination="LGA-Ip-ZaY" eventType="touchUpInside" id="cnD-z2-mDr"/>
@@ -55,6 +55,7 @@
                     <navigationItem key="navigationItem" id="HDV-ry-Z0r"/>
                     <connections>
                         <outlet property="cityHallSwitch" destination="jwg-58-tj4" id="bT8-2v-DvV"/>
+                        <outlet property="logoutBtn" destination="dP2-Rv-ZZD" id="Rt3-jE-crD"/>
                         <outlet property="museumSwitch" destination="8sy-VI-ayD" id="zss-0h-r7o"/>
                     </connections>
                 </viewController>
@@ -223,7 +224,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pDi-Dh-ncX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1174" y="-174"/>
+            <point key="canvasLocation" x="1395" y="-358"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="QFR-Vf-nnW">
