@@ -88,6 +88,29 @@ User *currentUser;
          }
      }];
 }
+- (IBAction)forgotPasswordBtnClick:(id)sender {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Email Address"
+                                                        message:@"Enter the email for your account:"
+                                                       delegate:self
+                                              cancelButtonTitle:@"Cancel"
+                                              otherButtonTitles:@"Ok", nil];
+    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [alertView show];}
+
+- (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex{
+    if(buttonIndex==1){
+        
+        UITextField *emailAddress = [alertView textFieldAtIndex:0];
+        
+        [PFUser requestPasswordResetForEmailInBackground: emailAddress.text];
+        
+        UIAlertView *alertViewSuccess = [[UIAlertView alloc] initWithTitle:@"Success! A reset email was sent to you" message:@""
+                                                                  delegate:self
+                                                         cancelButtonTitle:@"Ok"
+                                                         otherButtonTitles:nil];
+        [alertViewSuccess show];
+    }
+}
 
 -(void)setLoginStatusDefaults:(NSString *)loggedInStatus
 {
