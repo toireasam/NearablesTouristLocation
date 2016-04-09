@@ -7,6 +7,7 @@
 //
 
 #import "LoginViewController.h"
+#import "SignupViewController.h"
 #import "Parse/Parse.h"
 #import "AdminViewController.h"
 #import "User.h"
@@ -39,22 +40,11 @@ User *currentUser;
 }
 
 - (IBAction)signup:(id)sender {
-    PFUser *pfUser = [PFUser user];
-    pfUser.username = self.usernameFieldTxt.text;
-    pfUser.password = self.passwordFieldTxt.text;
     
-    __weak typeof(self) weakSelf = self;
-    [pfUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (!error) {
-            weakSelf.promptLbl.textColor = [UIColor greenColor];
-            weakSelf.promptLbl.text = @"Signup successful!";
-            weakSelf.promptLbl.hidden = NO;
-        } else {
-            weakSelf.promptLbl.textColor = [UIColor redColor];
-            weakSelf.promptLbl.text = [error userInfo][@"error"];
-            weakSelf.promptLbl.hidden = NO;
-        }
-    }];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    SignupViewController *viewController = (SignupViewController *)[storyboard instantiateViewControllerWithIdentifier:@"signupScreen"];
+    [viewController setModalPresentationStyle:UIModalPresentationFullScreen];
+    [self presentViewController:viewController animated:NO completion:nil];
 }
 
 - (IBAction)login:(id)sender {
@@ -75,15 +65,10 @@ User *currentUser;
              
              weakSelf.promptLbl.hidden = YES;
              
-             // Check if admin
-             NSString *accessLevels = [[PFUser currentUser] objectForKey:@"Admin"];
              currentUser = [[User alloc]init];
              currentUser.username = [[PFUser currentUser] objectForKey:@"username"];
              [self setUsernameDefaults:currentUser.username];
              
-             if([accessLevels isEqual: @"no"])
-             {
-                 
                  // They are a tourist but not an admin
                  
                  [self setLoginStatusDefaults:@"in"];
@@ -95,7 +80,7 @@ User *currentUser;
                  [self dismissViewControllerAnimated:YES completion:nil];
              }
              
-         } else {
+          else {
              // The login failed. Show error.
              weakSelf.promptLbl.textColor = [UIColor redColor];
              weakSelf.promptLbl.text = [error userInfo][@"error"];

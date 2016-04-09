@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "95B1A6581A4ACCCD00102220"
-               BuildableName = "d.app"
+               BuildableName = "bAdventurous.app"
                BlueprintName = "bAdventurous"
                ReferencedContainer = "container:bAdventurous.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "95B1A6581A4ACCCD00102220"
-            BuildableName = "d.app"
+            BuildableName = "bAdventurous.app"
             BlueprintName = "bAdventurous"
             ReferencedContainer = "container:bAdventurous.xcodeproj">
          </BuildableReference>
@@ -66,7 +66,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "95B1A6581A4ACCCD00102220"
-            BuildableName = "d.app"
+            BuildableName = "bAdventurous.app"
             BlueprintName = "bAdventurous"
             ReferencedContainer = "container:bAdventurous.xcodeproj">
          </BuildableReference>
@@ -85,7 +85,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "95B1A6581A4ACCCD00102220"
-            BuildableName = "d.app"
+            BuildableName = "bAdventurous.app"
             BlueprintName = "bAdventurous"
             ReferencedContainer = "container:bAdventurous.xcodeproj">
          </BuildableReference>
