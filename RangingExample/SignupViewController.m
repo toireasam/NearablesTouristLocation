@@ -93,6 +93,10 @@
 -(BOOL)validateCredentials:(NSString *)password andUsername:(NSString *)username
 
 {
+    NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    BOOL isValid = [emailTest evaluateWithObject:emailFieldEditTxt.text];
+    
     if(password.length >= 6 && [password rangeOfCharacterFromSet:[NSCharacterSet decimalDigitCharacterSet]].location != NSNotFound && usernameFieldEditTxt.text.length > 0)
     {
         return TRUE;
@@ -100,9 +104,19 @@
     else if(password.length < 6 && [password rangeOfCharacterFromSet:[NSCharacterSet decimalDigitCharacterSet]].location == NSNotFound && usernameFieldEditTxt.text.length <= 0)
         
     {
-        
-        promptlbl.text = @"Minimum 6 chars and contain 1 number and username empty";
+        if(emailFieldEditTxt.text.length > 0 && isValid != TRUE)
+        {
+            promptlbl.text = @"Minimum 6 chars and contain 1 number and username empty and email";
+
+            NSLog(@"Bool value: %d",isValid);
+            return FALSE;
+            
+        }
+        else
+        {
+        promptlbl.text = @"Minimum 6 chars and contain 1 number and username empty a";
         return FALSE;
+        }
     }
     else if(usernameFieldEditTxt.text.length <= 0)
     {
@@ -125,6 +139,14 @@
     NSString *emailRegex = email;
     NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
     BOOL isValid = [emailTest evaluateWithObject:email];
+    if(!isValid)
+    {
+        NSLog(@"email add");
+    }
+    else
+    {
+        NSLog(@"valid");
+    }
     return isValid;
 }
 
