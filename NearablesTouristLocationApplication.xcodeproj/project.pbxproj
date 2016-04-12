@@ -15,6 +15,7 @@
 		95B1A66D1A4ACCCD00102220 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95B1A66B1A4ACCCD00102220 /* LaunchScreen.xib */; };
 		95B1A6791A4ACCCD00102220 /* RangingExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B1A6781A4ACCCD00102220 /* RangingExampleTests.m */; };
 		B237EBF71CA187C70031136B /* TouristLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B237EBF61CA187C70031136B /* TouristLocationViewController.m */; };
+		B27CA43C1CBD76770005F642 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B27CA43B1CBD76770005F642 /* SignupViewController.m */; };
 		B2BC5C6B1C8E03EF00F3A307 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2BC5C6A1C8E03EF00F3A307 /* LoginViewController.m */; };
 		B2D9880B1CB67C4D00BFF980 /* BeaconParseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D9880A1CB67C4D00BFF980 /* BeaconParseManager.m */; };
 		B2D988111CB67C5B00BFF980 /* TouristLocationPainting.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D988101CB67C5B00BFF980 /* TouristLocationPainting.m */; };
@@ -69,6 +70,8 @@
 		95B1A6781A4ACCCD00102220 /* RangingExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RangingExampleTests.m; sourceTree = "<group>"; };
 		B237EBF51CA187C70031136B /* TouristLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouristLocationViewController.h; sourceTree = "<group>"; };
 		B237EBF61CA187C70031136B /* TouristLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouristLocationViewController.m; sourceTree = "<group>"; };
+		B27CA43A1CBD76770005F642 /* SignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupViewController.h; sourceTree = "<group>"; };
+		B27CA43B1CBD76770005F642 /* SignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignupViewController.m; sourceTree = "<group>"; };
 		B2BC5C691C8E03EF00F3A307 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		B2BC5C6A1C8E03EF00F3A307 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		B2D988071CB67C3400BFF980 /* BeaconParseManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BeaconParseManager.h; path = "../../../Downloads/Coffee-Shop-MVC-master 2/Models/BeaconParseManager.h"; sourceTree = "<group>"; };
@@ -184,6 +187,8 @@
 				95B1A6611A4ACCCD00102220 /* AppDelegate.m */,
 				B2BC5C691C8E03EF00F3A307 /* LoginViewController.h */,
 				B2BC5C6A1C8E03EF00F3A307 /* LoginViewController.m */,
+				B27CA43A1CBD76770005F642 /* SignupViewController.h */,
+				B27CA43B1CBD76770005F642 /* SignupViewController.m */,
 				B237EBF51CA187C70031136B /* TouristLocationViewController.h */,
 				B237EBF61CA187C70031136B /* TouristLocationViewController.m */,
 				95B1A6631A4ACCCD00102220 /* InsideAttractionViewController.h */,
@@ -344,6 +349,7 @@
 				95B1A6651A4ACCCD00102220 /* InsideAttractionViewController.m in Sources */,
 				B237EBF71CA187C70031136B /* TouristLocationViewController.m in Sources */,
 				B2D9880B1CB67C4D00BFF980 /* BeaconParseManager.m in Sources */,
+				B27CA43C1CBD76770005F642 /* SignupViewController.m in Sources */,
 				B2F3AF421CB163BE007EF759 /* iCarousel.m in Sources */,
 				B2E96EC11C74B39500CDAA8B /* FurtherInfoViewController.m in Sources */,
 				B2FF1D1D1C78ED9800A65ACD /* SettingsViewController.m in Sources */,

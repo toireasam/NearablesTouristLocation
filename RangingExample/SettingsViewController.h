@@ -11,7 +11,7 @@
 @interface SettingsViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UISwitch *museumSwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *cityHallSwitch;
-- (IBAction)switchChanged:(UISwitch *)sender;
+//- (IBAction)switchChanged:(UISwitch *)sender;
 @property (weak, nonatomic) IBOutlet UIButton *logoutBtn;
 
 

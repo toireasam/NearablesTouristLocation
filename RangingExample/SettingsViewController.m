@@ -41,7 +41,7 @@
     [super viewDidLoad];
     
     [self getUserCategoryDefaults];
-    [self getUserNameDefaults];
+    //[self getUserNameDefaults];
     
 }
 
