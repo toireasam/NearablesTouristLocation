@@ -14,43 +14,118 @@
 @end
 
 @implementation SignupViewController
+
 @synthesize passwordFieldEditTxt;
 @synthesize usernameFieldEditTxt;
 @synthesize promptlbl;
 @synthesize loginBtn;
-
+@synthesize emailFieldEditTxt;
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     loginBtn.hidden = YES;
+    
 }
 
 - (void)didReceiveMemoryWarning {
+    
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    
 }
+
 - (IBAction)signUpBtnClick:(id)sender {
     
+    if(self.emailFieldEditTxt.text.length <= 0)
+        
+    {
+        // email is null
+        if([self validateCredentials:passwordFieldEditTxt.text andUsername:usernameFieldEditTxt.text])
+        {
+            [self sendToParse:self.usernameFieldEditTxt.text andUsername:self.passwordFieldEditTxt.text andEmail:NULL];
+        }
+    }
+    else
+    {
+        if([self validateCredentials:passwordFieldEditTxt.text andUsername:usernameFieldEditTxt.text] && [self validateEmail:emailFieldEditTxt.text])
+            
+        {
+            [self sendToParse:self.usernameFieldEditTxt.text andUsername:self.passwordFieldEditTxt.text andEmail:emailFieldEditTxt.text];
+        }
+    }
+}
+
+-(void)sendToParse:(NSString *)password andUsername:(NSString *)username andEmail:(NSString *)email
+
+{
     PFUser *pfUser = [PFUser user];
     pfUser.username = self.usernameFieldEditTxt.text;
     pfUser.password = self.passwordFieldEditTxt.text;
+    if(email != NULL)
+    {
+            pfUser.email = email;
+    }
+
     
     __weak typeof(self) weakSelf = self;
+    
     [pfUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        
         if (!error) {
+            
             weakSelf.promptlbl
             .textColor = [UIColor greenColor];
             weakSelf.promptlbl.text = @"Signup successful!";
             weakSelf.promptlbl.hidden = NO;
-                loginBtn.hidden = NO;
+            loginBtn.hidden = NO;
+            
         } else {
+            
             weakSelf.promptlbl.textColor = [UIColor redColor];
             weakSelf.promptlbl.text = [error userInfo][@"error"];
             weakSelf.promptlbl.hidden = NO;
         }
     }];
-    
+}
+
+-(BOOL)validateCredentials:(NSString *)password andUsername:(NSString *)username
+
+{
+    if(password.length >= 6 && [password rangeOfCharacterFromSet:[NSCharacterSet decimalDigitCharacterSet]].location != NSNotFound && usernameFieldEditTxt.text.length > 0)
+    {
+        return TRUE;
+    }
+    else if(password.length < 6 && [password rangeOfCharacterFromSet:[NSCharacterSet decimalDigitCharacterSet]].location == NSNotFound && usernameFieldEditTxt.text.length <= 0)
+        
+    {
+        
+        promptlbl.text = @"Minimum 6 chars and contain 1 number and username empty";
+        return FALSE;
+    }
+    else if(usernameFieldEditTxt.text.length <= 0)
+    {
+        
+        promptlbl.text = @"Username empty";
+        return FALSE;
+    }
+    else if(password.length < 6 || [password rangeOfCharacterFromSet:[NSCharacterSet decimalDigitCharacterSet]].location == NSNotFound)
+    {
+        promptlbl.text =
+        @"Minimum 6 chars and contain 1 number";
+        return FALSE;
+    }
+    return FALSE;
+}
+
+-(BOOL)validateEmail:(NSString *)email
+
+{
+    NSString *emailRegex = email;
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    BOOL isValid = [emailTest evaluateWithObject:email];
+    return isValid;
 }
 
 - (IBAction)loginBtnClick:(id)sender {
@@ -59,15 +134,5 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 @end
+
