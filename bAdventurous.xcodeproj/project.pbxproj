@@ -15,6 +15,17 @@
 		95B1A66D1A4ACCCD00102220 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95B1A66B1A4ACCCD00102220 /* LaunchScreen.xib */; };
 		95B1A6791A4ACCCD00102220 /* RangingExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B1A6781A4ACCCD00102220 /* RangingExampleTests.m */; };
 		B207CA081CB80DA60057E3FC /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = B207CA071CB80DA60057E3FC /* User.m */; };
+		B22B6F9D1CBE8B23000A840C /* AJWNumericValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = B22B6F871CBE8B23000A840C /* AJWNumericValidator.m */; };
+		B22B6F9E1CBE8B23000A840C /* AJWStringValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = B22B6F891CBE8B23000A840C /* AJWStringValidator.m */; };
+		B22B6F9F1CBE8B23000A840C /* AJWValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = B22B6F8B1CBE8B23000A840C /* AJWValidator.m */; };
+		B22B6FA01CBE8B23000A840C /* AJWValidatorCustomRule.m in Sources */ = {isa = PBXBuildFile; fileRef = B22B6F8E1CBE8B23000A840C /* AJWValidatorCustomRule.m */; };
+		B22B6FA11CBE8B23000A840C /* AJWValidatorEqualRule.m in Sources */ = {isa = PBXBuildFile; fileRef = B22B6F901CBE8B23000A840C /* AJWValidatorEqualRule.m */; };
+		B22B6FA21CBE8B23000A840C /* AJWValidatorRangeRule.m in Sources */ = {isa = PBXBuildFile; fileRef = B22B6F921CBE8B23000A840C /* AJWValidatorRangeRule.m */; };
+		B22B6FA31CBE8B23000A840C /* AJWValidatorRegularExpressionRule.m in Sources */ = {isa = PBXBuildFile; fileRef = B22B6F941CBE8B23000A840C /* AJWValidatorRegularExpressionRule.m */; };
+		B22B6FA41CBE8B23000A840C /* AJWValidatorRemoteRule.m in Sources */ = {isa = PBXBuildFile; fileRef = B22B6F961CBE8B23000A840C /* AJWValidatorRemoteRule.m */; };
+		B22B6FA51CBE8B23000A840C /* AJWValidatorRequiredRule.m in Sources */ = {isa = PBXBuildFile; fileRef = B22B6F981CBE8B23000A840C /* AJWValidatorRequiredRule.m */; };
+		B22B6FA61CBE8B23000A840C /* AJWValidatorRule.m in Sources */ = {isa = PBXBuildFile; fileRef = B22B6F9A1CBE8B23000A840C /* AJWValidatorRule.m */; };
+		B22B6FA71CBE8B23000A840C /* UIView+AJWValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = B22B6F9C1CBE8B23000A840C /* UIView+AJWValidator.m */; };
 		B237EBF71CA187C70031136B /* TouristLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B237EBF61CA187C70031136B /* TouristLocationViewController.m */; };
 		B29F634B1CB93A9000D2AF20 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B29F634A1CB93A9000D2AF20 /* SignupViewController.m */; };
 		B2BC5C6B1C8E03EF00F3A307 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2BC5C6A1C8E03EF00F3A307 /* LoginViewController.m */; };
@@ -71,6 +82,29 @@
 		95B1A6781A4ACCCD00102220 /* RangingExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RangingExampleTests.m; sourceTree = "<group>"; };
 		B207CA061CB80DA60057E3FC /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		B207CA071CB80DA60057E3FC /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		B22B6F861CBE8B23000A840C /* AJWNumericValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AJWNumericValidator.h; path = "../../Downloads/Validator-objc 2/AJWValidator/AJWNumericValidator.h"; sourceTree = "<group>"; };
+		B22B6F871CBE8B23000A840C /* AJWNumericValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AJWNumericValidator.m; path = "../../Downloads/Validator-objc 2/AJWValidator/AJWNumericValidator.m"; sourceTree = "<group>"; };
+		B22B6F881CBE8B23000A840C /* AJWStringValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AJWStringValidator.h; path = "../../Downloads/Validator-objc 2/AJWValidator/AJWStringValidator.h"; sourceTree = "<group>"; };
+		B22B6F891CBE8B23000A840C /* AJWStringValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AJWStringValidator.m; path = "../../Downloads/Validator-objc 2/AJWValidator/AJWStringValidator.m"; sourceTree = "<group>"; };
+		B22B6F8A1CBE8B23000A840C /* AJWValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AJWValidator.h; path = "../../Downloads/Validator-objc 2/AJWValidator/AJWValidator.h"; sourceTree = "<group>"; };
+		B22B6F8B1CBE8B23000A840C /* AJWValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AJWValidator.m; path = "../../Downloads/Validator-objc 2/AJWValidator/AJWValidator.m"; sourceTree = "<group>"; };
+		B22B6F8C1CBE8B23000A840C /* AJWValidator+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AJWValidator+Private.h"; path = "../../Downloads/Validator-objc 2/AJWValidator/AJWValidator+Private.h"; sourceTree = "<group>"; };
+		B22B6F8D1CBE8B23000A840C /* AJWValidatorCustomRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AJWValidatorCustomRule.h; path = "../../Downloads/Validator-objc 2/AJWValidator/AJWValidatorCustomRule.h"; sourceTree = "<group>"; };
+		B22B6F8E1CBE8B23000A840C /* AJWValidatorCustomRule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AJWValidatorCustomRule.m; path = "../../Downloads/Validator-objc 2/AJWValidator/AJWValidatorCustomRule.m"; sourceTree = "<group>"; };
+		B22B6F8F1CBE8B23000A840C /* AJWValidatorEqualRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AJWValidatorEqualRule.h; path = "../../Downloads/Validator-objc 2/AJWValidator/AJWValidatorEqualRule.h"; sourceTree = "<group>"; };
+		B22B6F901CBE8B23000A840C /* AJWValidatorEqualRule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AJWValidatorEqualRule.m; path = "../../Downloads/Validator-objc 2/AJWValidator/AJWValidatorEqualRule.m"; sourceTree = "<group>"; };
+		B22B6F911CBE8B23000A840C /* AJWValidatorRangeRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AJWValidatorRangeRule.h; path = "../../Downloads/Validator-objc 2/AJWValidator/AJWValidatorRangeRule.h"; sourceTree = "<group>"; };
+		B22B6F921CBE8B23000A840C /* AJWValidatorRangeRule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AJWValidatorRangeRule.m; path = "../../Downloads/Validator-objc 2/AJWValidator/AJWValidatorRangeRule.m"; sourceTree = "<group>"; };
+		B22B6F931CBE8B23000A840C /* AJWValidatorRegularExpressionRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AJWValidatorRegularExpressionRule.h; path = "../../Downloads/Validator-objc 2/AJWValidator/AJWValidatorRegularExpressionRule.h"; sourceTree = "<group>"; };
+		B22B6F941CBE8B23000A840C /* AJWValidatorRegularExpressionRule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AJWValidatorRegularExpressionRule.m; path = "../../Downloads/Validator-objc 2/AJWValidator/AJWValidatorRegularExpressionRule.m"; sourceTree = "<group>"; };
+		B22B6F951CBE8B23000A840C /* AJWValidatorRemoteRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AJWValidatorRemoteRule.h; path = "../../Downloads/Validator-objc 2/AJWValidator/AJWValidatorRemoteRule.h"; sourceTree = "<group>"; };
+		B22B6F961CBE8B23000A840C /* AJWValidatorRemoteRule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AJWValidatorRemoteRule.m; path = "../../Downloads/Validator-objc 2/AJWValidator/AJWValidatorRemoteRule.m"; sourceTree = "<group>"; };
+		B22B6F971CBE8B23000A840C /* AJWValidatorRequiredRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AJWValidatorRequiredRule.h; path = "../../Downloads/Validator-objc 2/AJWValidator/AJWValidatorRequiredRule.h"; sourceTree = "<group>"; };
+		B22B6F981CBE8B23000A840C /* AJWValidatorRequiredRule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AJWValidatorRequiredRule.m; path = "../../Downloads/Validator-objc 2/AJWValidator/AJWValidatorRequiredRule.m"; sourceTree = "<group>"; };
+		B22B6F991CBE8B23000A840C /* AJWValidatorRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AJWValidatorRule.h; path = "../../Downloads/Validator-objc 2/AJWValidator/AJWValidatorRule.h"; sourceTree = "<group>"; };
+		B22B6F9A1CBE8B23000A840C /* AJWValidatorRule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AJWValidatorRule.m; path = "../../Downloads/Validator-objc 2/AJWValidator/AJWValidatorRule.m"; sourceTree = "<group>"; };
+		B22B6F9B1CBE8B23000A840C /* UIView+AJWValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+AJWValidator.h"; path = "../../Downloads/Validator-objc 2/AJWValidator/UIView+AJWValidator.h"; sourceTree = "<group>"; };
+		B22B6F9C1CBE8B23000A840C /* UIView+AJWValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+AJWValidator.m"; path = "../../Downloads/Validator-objc 2/AJWValidator/UIView+AJWValidator.m"; sourceTree = "<group>"; };
 		B237EBF51CA187C70031136B /* TouristLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouristLocationViewController.h; sourceTree = "<group>"; };
 		B237EBF61CA187C70031136B /* TouristLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouristLocationViewController.m; sourceTree = "<group>"; };
 		B29F63491CB93A9000D2AF20 /* SignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupViewController.h; sourceTree = "<group>"; };
@@ -151,6 +185,7 @@
 		95B1A6501A4ACCCD00102220 = {
 			isa = PBXGroup;
 			children = (
+				B22B6F851CBE8B18000A840C /* Validator */,
 				B2E96EAF1C73804600CDAA8B /* libsqlite3.tbd */,
 				B2E96EAD1C73804000CDAA8B /* libz.tbd */,
 				B2D988341CB6AEE800BFF980 /* SVProgressHUD.bundle */,
@@ -247,6 +282,36 @@
 				95B1A6771A4ACCCD00102220 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B22B6F851CBE8B18000A840C /* Validator */ = {
+			isa = PBXGroup;
+			children = (
+				B22B6F861CBE8B23000A840C /* AJWNumericValidator.h */,
+				B22B6F871CBE8B23000A840C /* AJWNumericValidator.m */,
+				B22B6F881CBE8B23000A840C /* AJWStringValidator.h */,
+				B22B6F891CBE8B23000A840C /* AJWStringValidator.m */,
+				B22B6F8A1CBE8B23000A840C /* AJWValidator.h */,
+				B22B6F8B1CBE8B23000A840C /* AJWValidator.m */,
+				B22B6F8C1CBE8B23000A840C /* AJWValidator+Private.h */,
+				B22B6F8D1CBE8B23000A840C /* AJWValidatorCustomRule.h */,
+				B22B6F8E1CBE8B23000A840C /* AJWValidatorCustomRule.m */,
+				B22B6F8F1CBE8B23000A840C /* AJWValidatorEqualRule.h */,
+				B22B6F901CBE8B23000A840C /* AJWValidatorEqualRule.m */,
+				B22B6F911CBE8B23000A840C /* AJWValidatorRangeRule.h */,
+				B22B6F921CBE8B23000A840C /* AJWValidatorRangeRule.m */,
+				B22B6F931CBE8B23000A840C /* AJWValidatorRegularExpressionRule.h */,
+				B22B6F941CBE8B23000A840C /* AJWValidatorRegularExpressionRule.m */,
+				B22B6F951CBE8B23000A840C /* AJWValidatorRemoteRule.h */,
+				B22B6F961CBE8B23000A840C /* AJWValidatorRemoteRule.m */,
+				B22B6F971CBE8B23000A840C /* AJWValidatorRequiredRule.h */,
+				B22B6F981CBE8B23000A840C /* AJWValidatorRequiredRule.m */,
+				B22B6F991CBE8B23000A840C /* AJWValidatorRule.h */,
+				B22B6F9A1CBE8B23000A840C /* AJWValidatorRule.m */,
+				B22B6F9B1CBE8B23000A840C /* UIView+AJWValidator.h */,
+				B22B6F9C1CBE8B23000A840C /* UIView+AJWValidator.m */,
+			);
+			name = Validator;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -353,10 +418,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B22B6FA01CBE8B23000A840C /* AJWValidatorCustomRule.m in Sources */,
+				B22B6FA31CBE8B23000A840C /* AJWValidatorRegularExpressionRule.m in Sources */,
 				B207CA081CB80DA60057E3FC /* User.m in Sources */,
+				B22B6FA51CBE8B23000A840C /* AJWValidatorRequiredRule.m in Sources */,
+				B22B6F9D1CBE8B23000A840C /* AJWNumericValidator.m in Sources */,
+				B22B6F9F1CBE8B23000A840C /* AJWValidator.m in Sources */,
 				95B1A6651A4ACCCD00102220 /* InsideAttractionViewController.m in Sources */,
 				B237EBF71CA187C70031136B /* TouristLocationViewController.m in Sources */,
 				B2D9880B1CB67C4D00BFF980 /* BeaconParseManager.m in Sources */,
+				B22B6FA21CBE8B23000A840C /* AJWValidatorRangeRule.m in Sources */,
 				B2F3AF421CB163BE007EF759 /* iCarousel.m in Sources */,
 				B2E96EC11C74B39500CDAA8B /* FurtherInfoViewController.m in Sources */,
 				B2FF1D1D1C78ED9800A65ACD /* SettingsViewController.m in Sources */,
@@ -364,8 +435,13 @@
 				B2D988111CB67C5B00BFF980 /* TouristLocationPainting.m in Sources */,
 				95B1A6621A4ACCCD00102220 /* AppDelegate.m in Sources */,
 				B2D988141CB6808100BFF980 /* NearablesParseManager.m in Sources */,
+				B22B6FA11CBE8B23000A840C /* AJWValidatorEqualRule.m in Sources */,
+				B22B6FA71CBE8B23000A840C /* UIView+AJWValidator.m in Sources */,
 				95B1A65F1A4ACCCD00102220 /* main.m in Sources */,
 				B29F634B1CB93A9000D2AF20 /* SignupViewController.m in Sources */,
+				B22B6FA41CBE8B23000A840C /* AJWValidatorRemoteRule.m in Sources */,
+				B22B6FA61CBE8B23000A840C /* AJWValidatorRule.m in Sources */,
+				B22B6F9E1CBE8B23000A840C /* AJWStringValidator.m in Sources */,
 				B2D988171CB69B9400BFF980 /* LanguageManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

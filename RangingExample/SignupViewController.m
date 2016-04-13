@@ -8,6 +8,7 @@
 
 #import "SignupViewController.h"
 #import "Parse/Parse.h"
+#import "AJWValidator.h"
 
 @interface SignupViewController ()
 
@@ -20,14 +21,66 @@
 @synthesize promptlbl;
 @synthesize loginBtn;
 @synthesize emailFieldEditTxt;
+AJWValidator *validator;
+@synthesize promptLblUsername;
+@synthesize promptLblEmail;
 
 - (void)viewDidLoad {
     
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     loginBtn.hidden = YES;
+    validator = [AJWValidator validatorWithType:AJWValidatorTypeString];
+    [validator addValidationToEnsureMinimumLength:6 invalidMessage:NSLocalizedString(@"Min length is 6 characters!", nil)];
+    [self setValidator:validator];
     
 }
+
+- (void)setValidator:(AJWValidator *)validator
+{
+    validator = validator;
+    
+    __typeof__(self) __weak weakSelf = self;
+    
+    validator.validatorStateChangedHandler = ^(AJWValidatorState newState) {
+        
+        switch (newState) {
+            case AJWValidatorValidationStateValid: {
+                [weakSelf handleValid];
+                break;
+            }
+            case AJWValidatorValidationStateInvalid: {
+                [weakSelf handleInvalid];
+                break;
+            }
+            case AJWValidatorValidationStateWaitingForRemote: {
+                [weakSelf handleWaiting];
+                break;
+            }
+        }
+    };
+}
+- (void)handleValid
+{
+    UIColor *validGreen = [UIColor colorWithRed:0.27 green:0.63 blue:0.27 alpha:1];
+    self.passwordFieldEditTxt.backgroundColor = [validGreen colorWithAlphaComponent:0.3];
+    self.promptlbl.text = NSLocalizedString(@"No errors 😃", nil);
+    self.promptlbl.textColor = validGreen;
+}
+
+- (void)handleInvalid
+{
+    UIColor *invalidRed = [UIColor colorWithRed:0.89 green:0.18 blue:0.16 alpha:1];
+    self.passwordFieldEditTxt.backgroundColor = [invalidRed colorWithAlphaComponent:0.3];
+    self.promptlbl.text = [validator.errorMessages componentsJoinedByString:@" 💣\n"];
+    self.passwordFieldEditTxt.textColor = invalidRed;
+}
+
+- (void)handleWaiting
+{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+}
+
 
 - (void)didReceiveMemoryWarning {
     
@@ -38,23 +91,65 @@
 
 - (IBAction)signUpBtnClick:(id)sender {
     
-    if(self.emailFieldEditTxt.text.length <= 0)
-        
+    [validator validate:self.passwordFieldEditTxt.text];
+    // validate username
+    // check email is present
+    if(emailFieldEditTxt.text.length > 0)
     {
-        // email is null
-        if([self validateCredentials:passwordFieldEditTxt.text andUsername:usernameFieldEditTxt.text])
+        BOOL isValidEmail = [self validateEmail:emailFieldEditTxt.text];
+        BOOL isValid = [self validateUsername];
+        promptLblEmail.hidden = NO;
+        if(validator.isValid && isValid && isValidEmail)
         {
-            [self sendToParse:self.usernameFieldEditTxt.text andUsername:self.passwordFieldEditTxt.text andEmail:NULL];
+            NSLog(@"Valid");
+            
+        }
+        else
+        {
+            NSLog(@"Invalid");
         }
     }
     else
+    {   promptLblEmail.hidden = YES;
+            BOOL isValid = [self validateUsername];
+        if(validator.isValid && isValid)
     {
-        if([self validateCredentials:passwordFieldEditTxt.text andUsername:usernameFieldEditTxt.text] && [self validateEmail:emailFieldEditTxt.text])
-            
-        {
-            [self sendToParse:self.usernameFieldEditTxt.text andUsername:self.passwordFieldEditTxt.text andEmail:emailFieldEditTxt.text];
-        }
+        NSLog(@"Valid 2 ");
+        
     }
+    else
+    {
+        NSLog(@"Invalid 2");
+    }
+
+        
+    }
+   
+  
+   
+
+}
+
+-(BOOL)validateUsername
+{
+    if(usernameFieldEditTxt.text.length == 0)
+    {
+      
+        UIColor *invalidRed = [UIColor colorWithRed:0.89 green:0.18 blue:0.16 alpha:1];
+        self.usernameFieldEditTxt.backgroundColor = [invalidRed colorWithAlphaComponent:0.3];
+        promptLblUsername.text = @"Field is required";
+        self.usernameFieldEditTxt.textColor = invalidRed;
+        return FALSE;
+        
+    }
+    else
+    {
+        promptLblUsername.text = @"";
+        UIColor *validGreen = [UIColor colorWithRed:0.27 green:0.63 blue:0.27 alpha:1];
+        self.usernameFieldEditTxt.backgroundColor = [validGreen colorWithAlphaComponent:0.3];
+        return TRUE;
+    }
+  
 }
 
 -(void)sendToParse:(NSString *)password andUsername:(NSString *)username andEmail:(NSString *)email
@@ -90,74 +185,37 @@
     }];
 }
 
--(BOOL)validateCredentials:(NSString *)password andUsername:(NSString *)username
-
-{
-    NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
-    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
-    BOOL isValid = [emailTest evaluateWithObject:emailFieldEditTxt.text];
-    
-    if(password.length >= 6 && [password rangeOfCharacterFromSet:[NSCharacterSet decimalDigitCharacterSet]].location != NSNotFound && usernameFieldEditTxt.text.length > 0)
-    {
-        return TRUE;
-    }
-    else if(password.length < 6 && [password rangeOfCharacterFromSet:[NSCharacterSet decimalDigitCharacterSet]].location == NSNotFound && usernameFieldEditTxt.text.length <= 0)
-        
-    {
-        if(emailFieldEditTxt.text.length > 0 && isValid != TRUE)
-        {
-            promptlbl.text = @"Minimum 6 chars and contain 1 number and username empty and email";
-
-            NSLog(@"Bool value: %d",isValid);
-            return FALSE;
-            
-        }
-        else
-        {
-        promptlbl.text = @"Minimum 6 chars and contain 1 number and username empty a";
-        return FALSE;
-        }
-    }
-    else if(usernameFieldEditTxt.text.length <= 0)
-    {
-        if(emailFieldEditTxt.text.length > 0 && isValid != TRUE)
-        {
-            promptlbl.text = @"Username empty and email invalid";
-            return FALSE;
-            
-        }
-        
-        promptlbl.text = @"Username empty";
-        return FALSE;
-    }
-    else if(password.length < 6 || [password rangeOfCharacterFromSet:[NSCharacterSet decimalDigitCharacterSet]].location == NSNotFound)
-    {
-        if(emailFieldEditTxt.text.length > 0 && isValid != TRUE)
-        {
-            promptlbl.text =
-            @"Minimum 6 chars and contain 1 number and invalid email";
-            return FALSE;
-        }
-        promptlbl.text =
-        @"Minimum 6 chars and contain 1 number";
-        return FALSE;
-    }
-    return FALSE;
-}
 
 -(BOOL)validateEmail:(NSString *)email
 
 {
-    NSString *emailRegex = email;
+    NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
     NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
     BOOL isValid = [emailTest evaluateWithObject:email];
-    if(!isValid)
+    if(isValid)
     {
-        NSLog(@"email add");
-    }
+
+        promptLblEmail.text = @"";
+    
+        
+        UIColor *validGreen = [UIColor colorWithRed:0.27 green:0.63 blue:0.27 alpha:1];
+        self.emailFieldEditTxt.backgroundColor = [validGreen colorWithAlphaComponent:0.3];
+        
+
+ 
+        
+
+          }
     else
     {
-        NSLog(@"valid");
+       
+             promptLblEmail.text = @"Invalid email";
+       UIColor *invalidRed = [UIColor colorWithRed:0.89 green:0.18 blue:0.16 alpha:1];
+        self.emailFieldEditTxt.backgroundColor = [invalidRed colorWithAlphaComponent:0.3];
+        self.emailFieldEditTxt.textColor = invalidRed;
+        
+
+        
     }
     return isValid;
 }
