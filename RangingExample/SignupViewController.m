@@ -91,6 +91,21 @@ AJWValidator *validator;
 
 - (IBAction)signUpBtnClick:(id)sender {
     
+    BOOL validCredentials = [self validateCredentials];
+    
+    if(validCredentials)
+    {
+        [self sendToParse:passwordFieldEditTxt.text andUsername:usernameFieldEditTxt.text andEmail:emailFieldEditTxt.text];
+    }
+ 
+
+  
+   
+
+}
+
+-(BOOL)validateCredentials
+{
     [validator validate:self.passwordFieldEditTxt.text];
     // validate username
     // check email is present
@@ -102,32 +117,32 @@ AJWValidator *validator;
         if(validator.isValid && isValid && isValidEmail)
         {
             NSLog(@"Valid");
+            return TRUE;
             
         }
         else
         {
             NSLog(@"Invalid");
+            return FALSE;
         }
     }
     else
     {   promptLblEmail.hidden = YES;
-            BOOL isValid = [self validateUsername];
+        BOOL isValid = [self validateUsername];
         if(validator.isValid && isValid)
-    {
-        NSLog(@"Valid 2 ");
+        {
+            NSLog(@"Valid 2 ");
+            return TRUE;
+            
+        }
+        else
+        {
+            NSLog(@"Invalid 2");
+            return FALSE;
+        }
+        
         
     }
-    else
-    {
-        NSLog(@"Invalid 2");
-    }
-
-        
-    }
-   
-  
-   
-
 }
 
 -(BOOL)validateUsername
@@ -179,8 +194,11 @@ AJWValidator *validator;
         } else {
             
             weakSelf.promptlbl.textColor = [UIColor redColor];
+            UIColor *invalidRed = [UIColor colorWithRed:0.89 green:0.18 blue:0.16 alpha:1];
+            usernameFieldEditTxt.backgroundColor = [invalidRed colorWithAlphaComponent:0.3];
             weakSelf.promptlbl.text = [error userInfo][@"error"];
             weakSelf.promptlbl.hidden = NO;
+            
         }
     }];
 }
