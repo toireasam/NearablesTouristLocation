@@ -120,12 +120,24 @@
     }
     else if(usernameFieldEditTxt.text.length <= 0)
     {
+        if(emailFieldEditTxt.text.length > 0 && isValid != TRUE)
+        {
+            promptlbl.text = @"Username empty and email invalid";
+            return FALSE;
+            
+        }
         
         promptlbl.text = @"Username empty";
         return FALSE;
     }
     else if(password.length < 6 || [password rangeOfCharacterFromSet:[NSCharacterSet decimalDigitCharacterSet]].location == NSNotFound)
     {
+        if(emailFieldEditTxt.text.length > 0 && isValid != TRUE)
+        {
+            promptlbl.text =
+            @"Minimum 6 chars and contain 1 number and invalid email";
+            return FALSE;
+        }
         promptlbl.text =
         @"Minimum 6 chars and contain 1 number";
         return FALSE;
