@@ -1,41 +1,40 @@
-//
 //  FurtherInformationControllerViewController.m
-//  NearablesTouristLocationApplication
-//
-//  Created by Toireasa Moley on 17/02/2016.
-//  Copyright © 2016 Estimote. All rights reserved.
-//
 
 #import "FurtherInfoViewController.h"
-#import "TouristLocationPainting.h"
+#import "TouristLocationArtefact.h"
 #import "LanguageManager.h"
 #import "iCarousel.h"
+#import "TouristLocationArtefact.h"
 
 @interface FurtherInfoViewController ()
+
 @end
 
 @implementation FurtherInfoViewController
-@synthesize touristLocationNameTxt;
-@synthesize touristLocationNameLbl;
-@synthesize touristLocationInfoLbl;
+
+@synthesize artefactNameTxt;
+@synthesize artefactNameLbl;
+@synthesize artefactInfoLbl;
 NSMutableArray *imagesOfAttraction;
-@synthesize locationPainting;
-LanguageManager *languageManager;
 NSString *currentLanguage;
+LanguageManager *languageManager;
+TouristLocationArtefact *locationArtefact;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    locationArtefact = [[TouristLocationArtefact alloc]init];
+    locationArtefact.artefactName = artefactNameTxt;
     
     languageManager = [[LanguageManager alloc]init];
     currentLanguage = languageManager.presentCurrentLanguage;
     
     [self getLocationInfoAndDisplay];
     [self getLocationImagesAndDisplay];
-
-    //configure carousel
+    
+    // Configure carousel
     _carousel.type = iCarouselTypeCoverFlow2;
-
+    
 }
 
 -(void)getLocationImagesAndDisplay
@@ -43,25 +42,26 @@ NSString *currentLanguage;
     imagesOfAttraction = [NSMutableArray array];
     
     PFQuery *query = [PFQuery queryWithClassName:@"InsideTouristLocation"];
-    [query whereKey:@"InsideTouristLocationArtefact" equalTo:locationPainting.touristLocationName];
+    [query whereKey:@"InsideTouristLocationArtefact" equalTo:locationArtefact.artefactName];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             // The find succeeded. The first 100 objects are available in objects
             [imagesOfAttraction addObjectsFromArray:objects];
             [_carousel reloadData];
             
-        } else {
+        }
+        else
+        {
             // Log details of the failure
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
     }];
-    
 }
 
 -(void)getLocationInfoAndDisplay
 {
     PFQuery *query = [PFQuery queryWithClassName:currentLanguage];
-    [query whereKey:@"InsideTouristLocationArtefact" equalTo:locationPainting.touristLocationName];
+    [query whereKey:@"InsideTouristLocationArtefact" equalTo:locationArtefact.artefactName];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error)
         {
@@ -78,8 +78,8 @@ NSString *currentLanguage;
                 
                 NSLog(@"%@", object.objectId);
                 NSLog(@"%@",object);
-                touristLocationNameLbl.text = object[@"TouristLocationName"];
-                touristLocationInfoLbl.text = object[@"Information"];
+                artefactNameLbl.text = object[@"TouristLocationName"];
+                artefactInfoLbl.text = object[@"Information"];
             }
         }
         else
@@ -94,7 +94,7 @@ NSString *currentLanguage;
 
 -(void)viewDidDisappear:(BOOL)animated
 {
-      [imagesOfAttraction removeAllObjects];
+    [imagesOfAttraction removeAllObjects];
 }
 
 - (NSInteger)numberOfItemsInCarousel:(iCarousel *)carousel
@@ -109,7 +109,7 @@ NSString *currentLanguage;
     if (view == nil)
     {
         view = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 300.0f, 300.0f)];
- 
+        
     }
     
     PFObject *eachObject = [imagesOfAttraction objectAtIndex:index];

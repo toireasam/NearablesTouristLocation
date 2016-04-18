@@ -1,10 +1,4 @@
-//
 //  LoginViewController.m
-//  NearablesTouristLocationApplication
-//
-//  Created by Toireasa Moley on 07/03/2016.
-//  Copyright © 2016 Estimote. All rights reserved.
-//
 
 #import "LoginViewController.h"
 #import "SignupViewController.h"
@@ -17,26 +11,28 @@
 @end
 
 @implementation LoginViewController
+
+@synthesize promptLblGeneral;
+@synthesize passwordTxt;
+@synthesize usernameTxt;
 User *currentUser;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.promptLbl.hidden = YES;
+    self.promptLblGeneral.hidden = YES;
     
     UITapGestureRecognizer *tapViewGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapOnView)];
     [self.view addGestureRecognizer:tapViewGR];
-    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)didTapOnView {
-    [self.usernameFieldTxt resignFirstResponder];
-    [self.passwordFieldTxt resignFirstResponder];
+    [self.usernameTxt resignFirstResponder];
+    [self.passwordTxt resignFirstResponder];
 }
 
 - (IBAction)signup:(id)sender {
@@ -55,23 +51,22 @@ User *currentUser;
 -(void)checkCredentials
 {
     __weak typeof(self) weakSelf = self;
-    [PFUser logInWithUsernameInBackground:self.usernameFieldTxt.text
-                                 password:self.passwordFieldTxt.text
+    [PFUser logInWithUsernameInBackground:self.usernameTxt.text
+                                 password:self.passwordTxt.text
                                     block:^(PFUser *pfUser, NSError *error)
      {
          if (pfUser && !error) {
              
              // Proceed to next screen after successful login.
              NSString *userType = [[PFUser currentUser] objectForKey:@"UserType"];
-            
+             
              if([userType isEqual: @"Tourist"])
              {
-                 weakSelf.promptLbl.hidden = YES;
+                 weakSelf.promptLblGeneral.hidden = YES;
                  
                  currentUser = [[User alloc]init];
                  currentUser.username = [[PFUser currentUser] objectForKey:@"username"];
                  [self setUsernameDefaults:currentUser.username];
-                 
                  
                  [self setLoginStatusDefaults:@"in"];
                  
@@ -85,22 +80,23 @@ User *currentUser;
              else
              {
                  // The login failed. Show error.
-                 weakSelf.promptLbl.textColor = [UIColor redColor];
-                 weakSelf.promptLbl.text = NSLocalizedString(@"invalid login parameters", nil);
-                 weakSelf.promptLbl.hidden = NO;
+                 weakSelf.promptLblGeneral.textColor = [UIColor redColor];
+                 weakSelf.promptLblGeneral.text = NSLocalizedString(@"invalid login parameters", nil);
+                 weakSelf.promptLblGeneral.hidden = NO;
                  
              }
-            
-             }
              
-          else {
+         }
+         else
+         {
              // The login failed. Show error.
-             weakSelf.promptLbl.textColor = [UIColor redColor];
-             weakSelf.promptLbl.text = NSLocalizedString(@"invalid login parameters", nil);
-             weakSelf.promptLbl.hidden = NO;
+             weakSelf.promptLblGeneral.textColor = [UIColor redColor];
+             weakSelf.promptLblGeneral.text = NSLocalizedString(@"invalid login parameters", nil);
+             weakSelf.promptLblGeneral.hidden = NO;
          }
      }];
 }
+
 - (IBAction)forgotPasswordBtnClick:(id)sender {
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Email Address", nil)
                                                         message:NSLocalizedString(@"Enter the email for your account:", nil)
@@ -128,7 +124,7 @@ User *currentUser;
 -(void)setLoginStatusDefaults:(NSString *)loggedInStatus
 {
     NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
-    [standardDefaults setObject:loggedInStatus forKey:@"loggedin"];    
+    [standardDefaults setObject:loggedInStatus forKey:@"loggedin"];
 }
 
 -(void)setUsernameDefaults:(NSString *)username

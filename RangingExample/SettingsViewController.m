@@ -1,10 +1,4 @@
-//
 //  SettingsViewController.m
-//  NearablesTouristLocationApplication
-//
-//  Created by Toireasa Moley on 20/02/2016.
-//  Copyright © 2016 Estimote. All rights reserved.
-//
 
 #import "SettingsViewController.h"
 #import "LoginViewController.h"
@@ -14,6 +8,7 @@
 @end
 
 @implementation SettingsViewController
+
 @synthesize museumSwitch;
 @synthesize cityHallSwitch;
 @synthesize logoutBtn;
@@ -26,7 +21,6 @@
     LoginViewController *viewController = (LoginViewController *)[storyboard instantiateViewControllerWithIdentifier:@"loginScreen"];
     [viewController setModalPresentationStyle:UIModalPresentationFullScreen];
     [self presentViewController:viewController animated:NO completion:nil];
-
     
 }
 
@@ -34,26 +28,12 @@
 {
     NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
     [standardDefaults setObject:@"out" forKey:@"loggedin"];
-    
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [self getUserCategoryDefaults];
-    //[self getUserNameDefaults];
-    
-}
-
--(void)getUserNameDefaults
-{
-    NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *logoutMsg = @"click here to log out";
-    NSString *username = [standardDefaults stringForKey:@"username"];
-    username = [logoutMsg stringByAppendingString:username];
-    
-    [logoutBtn setTitle: username forState: UIControlStateNormal];
-    
 }
 
 -(void)getUserCategoryDefaults
@@ -89,7 +69,6 @@
     }
     
     [standardDefaults synchronize];
-    
 }
 
 - (IBAction)cityhallSwitchChanged:(UISwitch *)sender {
@@ -107,7 +86,6 @@
     }
     
     [standardDefaults synchronize];
-    
 }
 
 @end

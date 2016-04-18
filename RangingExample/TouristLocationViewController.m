@@ -1,7 +1,9 @@
+//  TouristLocationViewController.m
+
 #import "TouristLocationViewController.h"
 #import <EstimoteSDK/EstimoteSDK.h>
 #import "BeaconParseManager.h"
-
+#import "TouristLocation.h"
 
 @interface TouristLocationViewController () <ESTBeaconManagerDelegate>
 
@@ -15,13 +17,13 @@
 NSMutableArray *tableData;
 NSString *touristLocationOutsideSelected;
 BeaconParseManager *beaconParseManager;
-
+TouristLocation *touristLocation;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     tableData = [[NSMutableArray alloc]init];
     beaconParseManager = [[BeaconParseManager alloc]init];
-
+    
     self.beaconManager = [ESTBeaconManager new];
     self.beaconManager.delegate = self;
     self.beaconRegion = [[CLBeaconRegion alloc]
@@ -44,7 +46,6 @@ BeaconParseManager *beaconParseManager;
 
 - (void)displayBeaconsForCategories:(CLBeacon *)nearestBeacon{
     
-    
     NSString *beaconMinor = [NSString stringWithFormat:@"%@",nearestBeacon.minor];
     NSString *beaconName = [beaconParseManager identifyBeacon:beaconMinor];
     NSString *beaconCategory = [beaconParseManager getBeaconCategory:beaconMinor];
@@ -52,7 +53,10 @@ BeaconParseManager *beaconParseManager;
     NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
     
     if (![tableData containsObject:beaconName] && [[standardDefaults stringForKey:beaconCategory] isEqual: @"On"]) {
-        [tableData addObject: beaconName];
+        
+        touristLocation = [[TouristLocation alloc]init];
+        touristLocation.touristLocationName = beaconName;
+        [tableData addObject: touristLocation.touristLocationName];
     }
     
     [self.tableView reloadData];
@@ -61,12 +65,9 @@ BeaconParseManager *beaconParseManager;
 - (void)beaconManager:(id)manager didRangeBeacons:(NSArray *)beacons
              inRegion:(CLBeaconRegion *)region {
     
-  CLBeacon *nearestBeacon = beacons.firstObject;
+    CLBeacon *nearestBeacon = beacons.firstObject;
     
-  [beaconParseManager getBeaconPlaces:nearestBeacon];
-    
-   [self displayBeaconsForCategories:nearestBeacon];
-   
+    [self displayBeaconsForCategories:nearestBeacon];
 }
 
 - (void)beaconManager:(id)manager didFailWithError:(nonnull NSError *)error
@@ -95,20 +96,19 @@ BeaconParseManager *beaconParseManager;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     NSString  *selectedPath = cell.textLabel.text;
-    touristLocationOutsideSelected = selectedPath;
-    [self performSegueWithIdentifier:@"insideTouristAttraction" sender:tableView];
-    
+    touristLocation.touristLocationName = selectedPath;
+    [self performSegueWithIdentifier:@"insideTouristAttractionScreen" sender:tableView];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
-    if ([[segue identifier] isEqualToString:@"insideTouristAttraction"]) {
+    if ([[segue identifier] isEqualToString:@"insideTouristAttractionScreen"]) {
         InsideAttractionViewController *nextVC = (InsideAttractionViewController *)[segue destinationViewController];
         
-        nextVC.insideCategory = touristLocationOutsideSelected;
+        nextVC.touristLocationName = touristLocation.touristLocationName;
     }
 }
 

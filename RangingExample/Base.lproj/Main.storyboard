@@ -78,12 +78,12 @@
                     <tabBarItem key="tabBarItem" title="Home" id="brQ-ny-fwe"/>
                     <navigationItem key="navigationItem" id="GqH-Ec-BoH"/>
                     <connections>
-                        <segue destination="3nh-Oo-ONO" kind="push" identifier="push" id="Nyu-fq-pPD"/>
+                        <segue destination="3nh-Oo-ONO" kind="push" identifier="furtherInfoScreen" id="Nyu-fq-pPD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1445" y="726"/>
+            <point key="canvasLocation" x="1187" y="718"/>
         </scene>
         <!--Tourist Location View Controller-->
         <scene sceneID="HMl-td-bCg">
@@ -110,7 +110,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="q08-0v-jIt"/>
                     <connections>
-                        <segue destination="vXZ-lx-hvc" kind="push" identifier="insideTouristAttraction" id="4xb-qg-12c"/>
+                        <segue destination="vXZ-lx-hvc" kind="push" identifier="insideTouristAttractionScreen" id="4xb-qg-12c"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KRu-ah-jsp" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -157,10 +157,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="7MY-dV-kzC"/>
                     <connections>
+                        <outlet property="artefactInfoLbl" destination="flm-22-LUy" id="AgW-gp-ste"/>
+                        <outlet property="artefactNameLbl" destination="mq4-l1-w7e" id="VgH-A4-LnJ"/>
                         <outlet property="carousel" destination="TWz-nX-Bht" id="csA-ij-WHC"/>
                         <outlet property="holder" destination="Rej-HZ-CeM" id="opP-o1-wWb"/>
-                        <outlet property="touristLocationInfoLbl" destination="flm-22-LUy" id="G9u-8I-Cxo"/>
-                        <outlet property="touristLocationNameLbl" destination="mq4-l1-w7e" id="66r-pW-I0i"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rsI-1R-Iop" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -193,11 +193,6 @@
                                     <action selector="login:" destination="b4p-rH-jxS" eventType="touchUpInside" id="I7Z-rp-Lpv"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kW8-JA-Urw">
-                                <rect key="frame" x="30" y="142" width="218" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sOp-zn-mKR">
                                 <rect key="frame" x="20" y="201" width="285" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -216,16 +211,21 @@
                                     <action selector="forgotPasswordBtnClick:" destination="b4p-rH-jxS" eventType="touchUpInside" id="AoZ-l2-kta"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kW8-JA-Urw">
+                                <rect key="frame" x="30" y="142" width="218" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="fDa-QU-2FX"/>
                     <connections>
                         <outlet property="loginBtn" destination="wB2-gn-ZVX" id="xcS-HU-mdA"/>
-                        <outlet property="passwordFieldTxt" destination="kW8-JA-Urw" id="7T8-dj-BUR"/>
-                        <outlet property="promptLbl" destination="sOp-zn-mKR" id="Zvl-ec-7cn"/>
+                        <outlet property="passwordTxt" destination="kW8-JA-Urw" id="g6j-OK-c2b"/>
+                        <outlet property="promptLblGeneral" destination="sOp-zn-mKR" id="Bi5-M0-pF1"/>
                         <outlet property="signUpBtn" destination="wY0-9Z-t7t" id="2LE-TM-IO3"/>
-                        <outlet property="usernameFieldTxt" destination="kNt-Tv-daM" id="qes-Xe-t8X"/>
+                        <outlet property="usernameTxt" destination="kNt-Tv-daM" id="Lz7-vx-UW0"/>
                         <segue destination="tlb-4H-rdH" kind="push" identifier="" id="4g3-kC-bW1"/>
                     </connections>
                 </viewController>
@@ -246,7 +246,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="De3-5a-QnZ">
-                                <rect key="frame" x="102" y="195" width="74" height="30"/>
+                                <rect key="frame" x="107" y="212" width="74" height="30"/>
                                 <state key="normal" title="Sign up"/>
                                 <connections>
                                     <action selector="signUpBtnClick:" destination="tlb-4H-rdH" eventType="touchUpInside" id="klC-o0-LPf"/>
@@ -292,18 +292,25 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EAd-qr-rUB">
+                                <rect key="frame" x="-55" y="183" width="254" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="yfn-3H-Ywm"/>
                     <connections>
-                        <outlet property="emailFieldEditTxt" destination="cdQ-mt-tLn" id="VYf-Wz-1JE"/>
+                        <outlet property="emailTxt" destination="cdQ-mt-tLn" id="EKa-Qx-1i4"/>
                         <outlet property="loginBtn" destination="Svc-Oa-ovx" id="oX6-vp-iJb"/>
-                        <outlet property="passwordFieldEditTxt" destination="KRi-yI-Fn1" id="dgp-c4-l2k"/>
+                        <outlet property="passwordTxt" destination="KRi-yI-Fn1" id="mSq-6d-Huv"/>
                         <outlet property="promptLblEmail" destination="BiB-XI-fbf" id="lDX-ZT-Vfl"/>
+                        <outlet property="promptLblGeneral" destination="csm-T8-BjZ" id="ARl-hi-kM1"/>
+                        <outlet property="promptLblPassword" destination="EAd-qr-rUB" id="EOp-7g-6ww"/>
                         <outlet property="promptLblUsername" destination="IFV-YA-l80" id="8EX-AP-j8Z"/>
-                        <outlet property="promptlbl" destination="csm-T8-BjZ" id="1pz-uq-2JF"/>
-                        <outlet property="usernameFieldEditTxt" destination="jFk-XW-Rf7" id="VIC-cT-v72"/>
+                        <outlet property="usernameTxt" destination="jFk-XW-Rf7" id="olF-6y-Mec"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IC9-ME-MsK" userLabel="First Responder" sceneMemberID="firstResponder"/>

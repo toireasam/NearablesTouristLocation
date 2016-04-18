@@ -1,18 +1,13 @@
-//
-//  ViewController.h
-//  RangingExample
-//
-//  Created by Marcin Klimek on 24/12/14.
-//  Copyright (c) 2014 Estimote. All rights reserved.
-//
+//  InsideAttractionViewController.h
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 #import "NearableParseManager.h"
+#import "TouristLocation.h"
 
 @interface InsideAttractionViewController : UIViewController
 
-@property (nonatomic, strong) NSString *insideCategory;
+@property (nonatomic, strong) NSString *touristLocationName;
 
 @end
 

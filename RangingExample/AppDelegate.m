@@ -1,10 +1,4 @@
-//
 //  AppDelegate.m
-//  RangingExample
-//
-//  Created by Marcin Klimek on 24/12/14.
-//  Copyright (c) 2014 Estimote. All rights reserved.
-//
 
 #import "AppDelegate.h"
 #import <EstimoteSDK/EstimoteSDK.h>
@@ -12,41 +6,31 @@
 #import "ParseUI/PFImageView.h"
 #import "LoginViewController.h"
 
-
-
 @interface AppDelegate () <ESTBeaconManagerDelegate>
+
 @property (nonatomic) ESTBeaconManager *beaconManager;
+
 @end
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
     
-     [PFImageView class];
+    [PFImageView class];
     
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     
+    // Key to interact with Parse API
     [Parse enableLocalDatastore];
-    
-    
-    // Initialize Parse.
     [Parse setApplicationId:@"ZoFHgn6IfSnsuYTSkvZOkecTejs8Wa00dpEWU6go"
                   clientKey:@"RcYERJZfY2fDRpmz48rs7i6DpLWshMtuMliLA5qP"];
     
-    // [Optional] Track statistics around application opens.
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
-   
     
-    // Override point for customization after application launch.
-    // 4. Instantiate the beacon manager & set its delegate
+    // Set up the beacon region to monitor
     self.beaconManager = [ESTBeaconManager new];
     self.beaconManager.delegate = self;
-    // add this below:
     [self.beaconManager requestAlwaysAuthorization];
-    
-    // add this below:
     [self.beaconManager startMonitoringForRegion:[[CLBeaconRegion alloc]
                                                   initWithProximityUUID:[[NSUUID alloc]
                                                                          initWithUUIDString:@"8492E75F-4FD6-469D-B132-043FE94921D8"]
@@ -56,21 +40,16 @@
      registerUserNotificationSettings:[UIUserNotificationSettings
                                        settingsForTypes:UIUserNotificationTypeAlert
                                        categories:nil]];
-      NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
     
-
-       
-     if ([[standardDefaults stringForKey:@"loggedin"] isEqual: @"out"])
+    // Present login screen if user has not yet logged in
+    NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
+    if ([[standardDefaults stringForKey:@"loggedin"] isEqual: @"out"])
     {
-        NSLog(@"your logged out");
-         [self showLoginScreen:YES];
+        [self showLoginScreen:YES];
     }
     
-
-
-
     return YES;
-      }
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -95,6 +74,8 @@
 }
 
 - (void)beaconManager:(id)manager didEnterRegion:(CLBeaconRegion *)region {
+    
+    // Present notification to user on entry of region
     UILocalNotification *notification = [UILocalNotification new];
     notification.alertBody =
     @"Welcome to the Ulster Museum!";
@@ -103,8 +84,6 @@
 
 -(void) showLoginScreen:(BOOL)animated
 {
-    
-    // Get login screen from storyboard and present it
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     LoginViewController *viewController = (LoginViewController *)[storyboard instantiateViewControllerWithIdentifier:@"loginScreen"];
     [self.window makeKeyAndVisible];

@@ -1,25 +1,17 @@
-//
-//  ViewController.m
-//  RangingExample
-//
-//  Created by Marcin Klimek on 24/12/14.
-//  Copyright (c) 2014 Estimote. All rights reserved.
-//
+//  InsideAttractionViewController.m
 
 #import "InsideAttractionViewController.h"
 #import <EstimoteSDK/EstimoteSDK.h>
 #import "FurtherInfoViewController.h"
 #import "SettingsViewController.h"
-#import "TouristLocationPainting.h"
+#import "TouristLocationArtefact.h"
 #import "NearablesParseManager.h"
 
-
 @interface ESTTableViewCell : UITableViewCell
+
 @end
+
 @implementation ESTTableViewCell
-NSString *locationNameString;
-NSString *museumsOn;
-NSArray *places;
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -30,26 +22,26 @@ NSArray *places;
     }
     return self;
 }
+
 @end
 
 @interface InsideAttractionViewController () <UITableViewDelegate, UITableViewDataSource, ESTNearableManagerDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
-
 @property (nonatomic, strong) NSArray *nearablesArray;
 @property (nonatomic, strong) ESTNearableManager *nearableManager;
 @property (nonatomic) NSDictionary *placesByBeacons;
 
-
-
 @end
 
 @implementation InsideAttractionViewController
-@synthesize insideCategory;
 
-TouristLocationPainting *locationPainting;
+@synthesize touristLocationName;
+NSString *museumsOn;
+NSArray *places;
+TouristLocationArtefact *locationPainting;
 NearablesParseManager *nearablesParseManager;
-
+TouristLocation *touristLocation;
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -61,8 +53,7 @@ NearablesParseManager *nearablesParseManager;
 {
     [super viewDidLoad];
     
-    locationPainting = [[TouristLocationPainting alloc]init];
-    
+    locationPainting = [[TouristLocationArtefact alloc]init];
     nearablesParseManager = [[NearablesParseManager alloc]init];
 
     self.tableView = [[UITableView alloc] initWithFrame:self.view.frame];
@@ -76,7 +67,6 @@ NearablesParseManager *nearablesParseManager;
     self.nearableManager.delegate = self;
     [self.nearableManager startRangingForType:ESTNearableTypeAll];
     [nearablesParseManager setPlacesbyNearable];
-
 }
 
 -(void)getUserDefaults
@@ -87,13 +77,11 @@ NearablesParseManager *nearablesParseManager;
     if ([[standardDefaults stringForKey:@"museumSwitchKey"] isEqual: @"On"]) {
         
         museumsOn = @"true";
-    }
-    
+    }    
     else
     {
         museumsOn = @"false";
     }
-    
 }
 
 -(void)getRelevantNearables
@@ -104,12 +92,14 @@ NearablesParseManager *nearablesParseManager;
         
         ESTNearable *nearable = [self.nearablesArray objectAtIndex:i];
         locationPainting.touristLocationCategory = [nearablesParseManager identifierNearablCategoru:nearable.identifier];
-        if([locationPainting.touristLocationCategory  isEqual:@"museum" ] && [insideCategory isEqual:@"Ulster Museum"])
+        touristLocation = [[TouristLocation alloc]init];
+        touristLocation.touristLocationName = touristLocationName;
+        if([locationPainting.touristLocationCategory  isEqual:@"museum" ] && [touristLocationName isEqual:@"Ulster Museum"])
         {
              [insideTouristAttractionBeacons addObject:nearable];
             
         }
-        else if([locationPainting.touristLocationCategory  isEqual:@"cityhall" ] && [insideCategory isEqual:@"Belfast City Hall"])
+        else if([locationPainting.touristLocationCategory  isEqual:@"cityhall" ] && [touristLocationName isEqual:@"Belfast City Hall"])
         {
 
          [insideTouristAttractionBeacons addObject:nearable];
@@ -117,7 +107,6 @@ NearablesParseManager *nearablesParseManager;
         }
         else
         {
-            // don't add to array
 
         }
         
@@ -126,13 +115,11 @@ NearablesParseManager *nearablesParseManager;
     [self.tableView reloadData];
 }
 
-#pragma mark - ESTNearableManager delegate
 NSMutableArray *insideTouristAttractionBeacons;
 - (void)nearableManager:(ESTNearableManager *)manager
       didRangeNearables:(NSArray *)nearables
                withType:(ESTNearableType)type
 {
-    
     ESTNearable *nearestBeacon = nearables.firstObject;
 
     places = [nearablesParseManager getPlacesByNearable:nearestBeacon];
@@ -140,11 +127,7 @@ NSMutableArray *insideTouristAttractionBeacons;
     self.nearablesArray = nearables;
     
     [self getRelevantNearables];
-    
 }
-
-
-#pragma mark - UITableView delegate and data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -193,18 +176,14 @@ NSMutableArray *insideTouristAttractionBeacons;
     }
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ESTNearable *nearable = [insideTouristAttractionBeacons objectAtIndex:indexPath.row];
     ESTTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellIdentifier" forIndexPath:indexPath];
     
-    // Check if the nearable is in parse
-    locationPainting.touristLocationName = [nearablesParseManager identifierNearablType:nearable.identifier];
+    locationPainting.artefactName = [nearablesParseManager identifierNearablType:nearable.identifier];
 
-    NSString *place = [places objectAtIndex:indexPath.row];
-   // DONT DELETE shouldBe = [shouldBe stringByAppendingString:place];
-    cell.textLabel.text = locationPainting.touristLocationName;
+    cell.textLabel.text = locationPainting.artefactName;
     
     cell.imageView.image = [[UIImage alloc] init];
     cell.imageView.contentMode = UIViewContentModeScaleAspectFill;
@@ -216,7 +195,7 @@ NSMutableArray *insideTouristAttractionBeacons;
     
     if (indexPath.row == 0) // Top row
     {
-        cell.textLabel.text = locationPainting.touristLocationName;
+        cell.textLabel.text = locationPainting.artefactName;
         [cell.textLabel setTextColor:[UIColor redColor]];
     }
     
@@ -228,26 +207,19 @@ NSMutableArray *insideTouristAttractionBeacons;
     return 80;
 }
 
-#pragma mark - Utility methods
-
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    locationPainting.touristLocationName = cell.textLabel.text;
+    locationPainting.artefactName = cell.textLabel.text;
     
-    [self performSegueWithIdentifier:@"push" sender:tableView];
- 
+    [self performSegueWithIdentifier:@"furtherInfoScreen" sender:tableView];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
-    if ([[segue identifier] isEqualToString:@"push"]) {
-        FurtherInfoViewController *nextVC = (FurtherInfoViewController *)[segue destinationViewController];
-        
-        nextVC.touristLocationNameTxt = locationPainting.touristLocationName;
-        nextVC.locationPainting = locationPainting;
+    if ([[segue identifier] isEqualToString:@"furtherInfoScreen"]) {
+        FurtherInfoViewController *nextVC = (FurtherInfoViewController *)[segue destinationViewController];        
+        nextVC.artefactNameTxt = locationPainting.artefactName;
     }
 }
 

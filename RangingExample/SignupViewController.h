@@ -1,20 +1,16 @@
-//
 //  SignupViewController.h
-//  bAdventurous
-//
-//  Created by Toireasa Moley on 09/04/2016.
-//  Copyright © 2016 Estimote. All rights reserved.
-//
 
 #import <UIKit/UIKit.h>
 
 @interface SignupViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UITextField *usernameFieldEditTxt;
-@property (weak, nonatomic) IBOutlet UITextField *passwordFieldEditTxt;
-@property (weak, nonatomic) IBOutlet UILabel *promptlbl;
-@property (weak, nonatomic) IBOutlet UIButton *loginBtn;
-@property (weak, nonatomic) IBOutlet UITextField *emailFieldEditTxt;
+
+@property (weak, nonatomic) IBOutlet UITextField *usernameTxt;
+@property (weak, nonatomic) IBOutlet UITextField *passwordTxt;
+@property (weak, nonatomic) IBOutlet UITextField *emailTxt;
+@property (weak, nonatomic) IBOutlet UILabel *promptLblGeneral;
 @property (weak, nonatomic) IBOutlet UILabel *promptLblUsername;
+@property (weak, nonatomic) IBOutlet UILabel *promptLblPassword;
 @property (weak, nonatomic) IBOutlet UILabel *promptLblEmail;
+@property (weak, nonatomic) IBOutlet UIButton *loginBtn;
 
 @end
