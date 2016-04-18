@@ -86,7 +86,7 @@ User *currentUser;
              {
                  // The login failed. Show error.
                  weakSelf.promptLbl.textColor = [UIColor redColor];
-                 weakSelf.promptLbl.text = @"invalid credentials";
+                 weakSelf.promptLbl.text = NSLocalizedString(@"invalid login parameters", nil);
                  weakSelf.promptLbl.hidden = NO;
                  
              }
@@ -96,17 +96,17 @@ User *currentUser;
           else {
              // The login failed. Show error.
              weakSelf.promptLbl.textColor = [UIColor redColor];
-             weakSelf.promptLbl.text = [error userInfo][@"error"];
+             weakSelf.promptLbl.text = NSLocalizedString(@"invalid login parameters", nil);
              weakSelf.promptLbl.hidden = NO;
          }
      }];
 }
 - (IBAction)forgotPasswordBtnClick:(id)sender {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Email Address"
-                                                        message:@"Enter the email for your account:"
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Email Address", nil)
+                                                        message:NSLocalizedString(@"Enter the email for your account:", nil)
                                                        delegate:self
-                                              cancelButtonTitle:@"Cancel"
-                                              otherButtonTitles:@"Ok", nil];
+                                              cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                                              otherButtonTitles:NSLocalizedString(@"Ok", nil), nil];
     alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
     [alertView show];}
 
@@ -117,9 +117,9 @@ User *currentUser;
         
         [PFUser requestPasswordResetForEmailInBackground: emailAddress.text];
         
-        UIAlertView *alertViewSuccess = [[UIAlertView alloc] initWithTitle:@"Success! A reset email was sent to you" message:@""
+        UIAlertView *alertViewSuccess = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Success! A reset email was sent to you", nil) message:@""
                                                                   delegate:self
-                                                         cancelButtonTitle:@"Ok"
+                                                         cancelButtonTitle:NSLocalizedString(@"Ok", nil)
                                                          otherButtonTitles:nil];
         [alertViewSuccess show];
     }

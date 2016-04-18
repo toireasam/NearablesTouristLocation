@@ -24,6 +24,7 @@
 AJWValidator *validator;
 @synthesize promptLblUsername;
 @synthesize promptLblEmail;
+NSString *errorMsg;
 
 - (void)viewDidLoad {
     
@@ -64,8 +65,6 @@ AJWValidator *validator;
 {
     UIColor *validGreen = [UIColor colorWithRed:0.27 green:0.63 blue:0.27 alpha:1];
     self.passwordFieldEditTxt.backgroundColor = [validGreen colorWithAlphaComponent:0.3];
-    self.promptlbl.text = NSLocalizedString(@"No errors 😃", nil);
-    self.promptlbl.textColor = validGreen;
 }
 
 - (void)handleInvalid
@@ -152,7 +151,7 @@ AJWValidator *validator;
       
         UIColor *invalidRed = [UIColor colorWithRed:0.89 green:0.18 blue:0.16 alpha:1];
         self.usernameFieldEditTxt.backgroundColor = [invalidRed colorWithAlphaComponent:0.3];
-        promptLblUsername.text = @"Field is required";
+        promptLblUsername.text = [NSString stringWithFormat:NSLocalizedString(@"Field is required", nil)];
         self.usernameFieldEditTxt.textColor = invalidRed;
         return FALSE;
         
@@ -187,7 +186,7 @@ AJWValidator *validator;
             
             weakSelf.promptlbl
             .textColor = [UIColor greenColor];
-            weakSelf.promptlbl.text = @"Signup successful!";
+            weakSelf.promptlbl.text = [NSString stringWithFormat:NSLocalizedString(@"Signup sucessful!", nil)];
             weakSelf.promptlbl.hidden = NO;
             loginBtn.hidden = NO;
             
@@ -196,13 +195,21 @@ AJWValidator *validator;
             weakSelf.promptlbl.textColor = [UIColor redColor];
             UIColor *invalidRed = [UIColor colorWithRed:0.89 green:0.18 blue:0.16 alpha:1];
             usernameFieldEditTxt.backgroundColor = [invalidRed colorWithAlphaComponent:0.3];
-            weakSelf.promptlbl.text = [error userInfo][@"error"];
+            errorMsg = [error userInfo][@"error"];
+            if ([errorMsg rangeOfString:@"username"].location == NSNotFound) {
+                weakSelf.promptlbl.text = [NSString stringWithFormat:NSLocalizedString(@"the email address entered has already been taken", nil)];
+            }
+            else
+            {
+             weakSelf.promptlbl.text = [NSString stringWithFormat:NSLocalizedString(@"the username entered has already been taken", nil)];
+            }
+            
+            
             weakSelf.promptlbl.hidden = NO;
             
         }
     }];
 }
-
 
 -(BOOL)validateEmail:(NSString *)email
 
@@ -227,7 +234,7 @@ AJWValidator *validator;
     else
     {
        
-             promptLblEmail.text = @"Invalid email";
+        promptLblEmail.text = [NSString stringWithFormat:NSLocalizedString(@"Invalid email", nil)];
        UIColor *invalidRed = [UIColor colorWithRed:0.89 green:0.18 blue:0.16 alpha:1];
         self.emailFieldEditTxt.backgroundColor = [invalidRed colorWithAlphaComponent:0.3];
         self.emailFieldEditTxt.textColor = invalidRed;

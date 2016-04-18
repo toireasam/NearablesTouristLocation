@@ -29,3 +29,21 @@
 /* Class = "UIButton"; normalTitle = "Sign up"; ObjectID = "De3-5a-QnZ"; */
 "De3-5a-QnZ.normalTitle" = "Registrera dig";
 
+/* Class = "UITextField"; placeholder = "password"; ObjectID = "KRi-yI-Fn1"; */
+"KRi-yI-Fn1.placeholder" = "lösenord";
+
+/* Class = "UITextField"; placeholder = "email (optional)"; ObjectID = "cdQ-mt-tLn"; */
+"cdQ-mt-tLn.placeholder" = "e-post (tillval)";
+
+/* Class = "UITextField"; placeholder = "username"; ObjectID = "jFk-XW-Rf7"; */
+"jFk-XW-Rf7.placeholder" = "användarnamn";
+
+/* Class = "UITextField"; placeholder = "username"; ObjectID = "kNt-Tv-daM"; */
+"kNt-Tv-daM.placeholder" = "användarnamn";
+
+/* Class = "UITextField"; placeholder = "password"; ObjectID = "kW8-JA-Urw"; */
+"kW8-JA-Urw.placeholder" = "lösenord";
+
+/* Class = "UIButton"; normalTitle = "Login now!"; ObjectID = "Svc-Oa-ovx"; */
+"Svc-Oa-ovx.normalTitle" = "Logga in nu!";
+
