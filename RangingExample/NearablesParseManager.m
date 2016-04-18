@@ -65,6 +65,10 @@ NSArray *places;
     {
         return @"The Mona Lisa";
     }
+    else if([identifier  isEqual: @"5583e7200f965302"])
+    {
+        return @"Welcome info - city hall";
+    }
     else
     {
         return @"unknown";
@@ -95,14 +99,14 @@ NSArray *places;
     {
         return @"cityhall";
     }
-    else if([identifier  isEqual: @"dd9221e73d2f7685"])
-    {
-        return @"cityhall";
-    }
-    else if([identifier  isEqual: @"c578903794d5544c"])
-    {
-        return @"cityhall";
-    }
+//    else if([identifier  isEqual: @"dd9221e73d2f7685"])
+//    {
+//        return @"cityhall";
+//    }
+//    else if([identifier  isEqual: @"c578903794d5544c"])
+//    {
+//        return @"cityhall";
+//    }
 //    else if([identifier  isEqual: @"f16239a0d1b611d6"])
 //    {
 //        return @"notset";
