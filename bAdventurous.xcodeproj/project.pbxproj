@@ -73,18 +73,18 @@
 		95B1A65E1A4ACCCD00102220 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		95B1A6601A4ACCCD00102220 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		95B1A6611A4ACCCD00102220 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		95B1A6631A4ACCCD00102220 /* InsideAttractionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InsideAttractionViewController.h; sourceTree = "<group>"; };
-		95B1A6641A4ACCCD00102220 /* InsideAttractionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InsideAttractionViewController.m; sourceTree = "<group>"; };
+		95B1A6631A4ACCCD00102220 /* InsideAttractionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = InsideAttractionViewController.h; path = RangingExample/InsideAttractionViewController.h; sourceTree = "<group>"; };
+		95B1A6641A4ACCCD00102220 /* InsideAttractionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = InsideAttractionViewController.m; path = RangingExample/InsideAttractionViewController.m; sourceTree = "<group>"; };
 		95B1A6671A4ACCCD00102220 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		95B1A6691A4ACCCD00102220 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		95B1A66C1A4ACCCD00102220 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		95B1A6721A4ACCCD00102220 /* bAdventurous.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = bAdventurous.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		95B1A6771A4ACCCD00102220 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		95B1A6781A4ACCCD00102220 /* RangingExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RangingExampleTests.m; sourceTree = "<group>"; };
-		B207CA061CB80DA60057E3FC /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		B207CA071CB80DA60057E3FC /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		B237EBF51CA187C70031136B /* TouristLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouristLocationViewController.h; sourceTree = "<group>"; };
-		B237EBF61CA187C70031136B /* TouristLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouristLocationViewController.m; sourceTree = "<group>"; };
+		B207CA061CB80DA60057E3FC /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = RangingExample/User.h; sourceTree = "<group>"; };
+		B207CA071CB80DA60057E3FC /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = RangingExample/User.m; sourceTree = "<group>"; };
+		B237EBF51CA187C70031136B /* TouristLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TouristLocationViewController.h; path = RangingExample/TouristLocationViewController.h; sourceTree = "<group>"; };
+		B237EBF61CA187C70031136B /* TouristLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TouristLocationViewController.m; path = RangingExample/TouristLocationViewController.m; sourceTree = "<group>"; };
 		B296BE261CC4DFDE00E7BDB7 /* AJWNumericValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AJWNumericValidator.h; path = "../../.Trash/Validator-objc 2/AJWValidator/AJWNumericValidator.h"; sourceTree = "<group>"; };
 		B296BE271CC4DFDE00E7BDB7 /* AJWNumericValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AJWNumericValidator.m; path = "../../.Trash/Validator-objc 2/AJWValidator/AJWNumericValidator.m"; sourceTree = "<group>"; };
 		B296BE281CC4DFDE00E7BDB7 /* AJWStringValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AJWStringValidator.h; path = "../../.Trash/Validator-objc 2/AJWValidator/AJWStringValidator.h"; sourceTree = "<group>"; };
@@ -111,20 +111,20 @@
 		B296BE481CC4F9B200E7BDB7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		B296BE491CC4F9B200E7BDB7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		B296BE4A1CC4F9B200E7BDB7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
-		B296BE4D1CC54C7100E7BDB7 /* TouristLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouristLocation.h; sourceTree = "<group>"; };
-		B296BE4E1CC54C7100E7BDB7 /* TouristLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouristLocation.m; sourceTree = "<group>"; };
-		B29F63491CB93A9000D2AF20 /* SignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupViewController.h; sourceTree = "<group>"; };
-		B29F634A1CB93A9000D2AF20 /* SignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignupViewController.m; sourceTree = "<group>"; };
-		B2BC5C691C8E03EF00F3A307 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
-		B2BC5C6A1C8E03EF00F3A307 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		B2D988071CB67C3400BFF980 /* BeaconParseManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BeaconParseManager.h; path = "../../../Downloads/Coffee-Shop-MVC-master 2/Models/BeaconParseManager.h"; sourceTree = "<group>"; };
-		B2D9880A1CB67C4D00BFF980 /* BeaconParseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BeaconParseManager.m; path = "../../../Downloads/Coffee-Shop-MVC-master 2/Models/BeaconParseManager.m"; sourceTree = "<group>"; };
-		B2D9880F1CB67C5800BFF980 /* TouristLocationArtefact.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TouristLocationArtefact.h; path = "../../../Downloads/Coffee-Shop-MVC-master 2/Models/TouristLocationArtefact.h"; sourceTree = "<group>"; };
-		B2D988101CB67C5B00BFF980 /* TouristLocationArtefact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TouristLocationArtefact.m; path = "../../../Downloads/Coffee-Shop-MVC-master 2/Models/TouristLocationArtefact.m"; sourceTree = "<group>"; };
-		B2D988121CB6808100BFF980 /* NearablesParseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearablesParseManager.h; sourceTree = "<group>"; };
-		B2D988131CB6808100BFF980 /* NearablesParseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearablesParseManager.m; sourceTree = "<group>"; };
-		B2D988151CB69B9400BFF980 /* LanguageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanguageManager.h; sourceTree = "<group>"; };
-		B2D988161CB69B9400BFF980 /* LanguageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanguageManager.m; sourceTree = "<group>"; };
+		B296BE4D1CC54C7100E7BDB7 /* TouristLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TouristLocation.h; path = RangingExample/TouristLocation.h; sourceTree = "<group>"; };
+		B296BE4E1CC54C7100E7BDB7 /* TouristLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TouristLocation.m; path = RangingExample/TouristLocation.m; sourceTree = "<group>"; };
+		B29F63491CB93A9000D2AF20 /* SignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignupViewController.h; path = RangingExample/SignupViewController.h; sourceTree = "<group>"; };
+		B29F634A1CB93A9000D2AF20 /* SignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignupViewController.m; path = RangingExample/SignupViewController.m; sourceTree = "<group>"; };
+		B2BC5C691C8E03EF00F3A307 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = RangingExample/LoginViewController.h; sourceTree = "<group>"; };
+		B2BC5C6A1C8E03EF00F3A307 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = RangingExample/LoginViewController.m; sourceTree = "<group>"; };
+		B2D988071CB67C3400BFF980 /* BeaconParseManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BeaconParseManager.h; path = "../../Downloads/Coffee-Shop-MVC-master 2/Models/BeaconParseManager.h"; sourceTree = "<group>"; };
+		B2D9880A1CB67C4D00BFF980 /* BeaconParseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BeaconParseManager.m; path = "../../Downloads/Coffee-Shop-MVC-master 2/Models/BeaconParseManager.m"; sourceTree = "<group>"; };
+		B2D9880F1CB67C5800BFF980 /* TouristLocationArtefact.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TouristLocationArtefact.h; path = "../../Downloads/Coffee-Shop-MVC-master 2/Models/TouristLocationArtefact.h"; sourceTree = "<group>"; };
+		B2D988101CB67C5B00BFF980 /* TouristLocationArtefact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TouristLocationArtefact.m; path = "../../Downloads/Coffee-Shop-MVC-master 2/Models/TouristLocationArtefact.m"; sourceTree = "<group>"; };
+		B2D988121CB6808100BFF980 /* NearablesParseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NearablesParseManager.h; path = RangingExample/NearablesParseManager.h; sourceTree = "<group>"; };
+		B2D988131CB6808100BFF980 /* NearablesParseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NearablesParseManager.m; path = RangingExample/NearablesParseManager.m; sourceTree = "<group>"; };
+		B2D988151CB69B9400BFF980 /* LanguageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LanguageManager.h; path = RangingExample/LanguageManager.h; sourceTree = "<group>"; };
+		B2D988161CB69B9400BFF980 /* LanguageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LanguageManager.m; path = RangingExample/LanguageManager.m; sourceTree = "<group>"; };
 		B2D9881A1CB6AE3B00BFF980 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = "parse-library-1.12.0/AudioToolbox.framework"; sourceTree = "<group>"; };
 		B2D9881C1CB6AE4100BFF980 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "parse-library-1.12.0/Bolts.framework"; sourceTree = "<group>"; };
 		B2D9881E1CB6AE4500BFF980 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = "parse-library-1.12.0/CFNetwork.framework"; sourceTree = "<group>"; };
@@ -142,16 +142,16 @@
 		B2D988361CB6AF1500BFF980 /* EstimoteSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EstimoteSDK.framework; path = "../../Downloads/iOS-SDK-master/EstimoteSDK/EstimoteSDK.framework"; sourceTree = "<group>"; };
 		B2E96EAD1C73804000CDAA8B /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		B2E96EAF1C73804600CDAA8B /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
-		B2E96EBF1C74B39500CDAA8B /* FurtherInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FurtherInfoViewController.h; sourceTree = "<group>"; };
-		B2E96EC01C74B39500CDAA8B /* FurtherInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FurtherInfoViewController.m; sourceTree = "<group>"; };
-		B2F3AF401CB163BE007EF759 /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iCarousel.h; path = "../../../Downloads/iCarousel-master/iCarousel/iCarousel.h"; sourceTree = "<group>"; };
-		B2F3AF411CB163BE007EF759 /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iCarousel.m; path = "../../../Downloads/iCarousel-master/iCarousel/iCarousel.m"; sourceTree = "<group>"; };
+		B2E96EBF1C74B39500CDAA8B /* FurtherInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FurtherInfoViewController.h; path = RangingExample/FurtherInfoViewController.h; sourceTree = "<group>"; };
+		B2E96EC01C74B39500CDAA8B /* FurtherInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FurtherInfoViewController.m; path = RangingExample/FurtherInfoViewController.m; sourceTree = "<group>"; };
+		B2F3AF401CB163BE007EF759 /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iCarousel.h; path = "../../Downloads/iCarousel-master/iCarousel/iCarousel.h"; sourceTree = "<group>"; };
+		B2F3AF411CB163BE007EF759 /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iCarousel.m; path = "../../Downloads/iCarousel-master/iCarousel/iCarousel.m"; sourceTree = "<group>"; };
 		B2F47E781C8CB1B20068F5CE /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Main.strings; sourceTree = "<group>"; };
 		B2F47E791C8CB1B20068F5CE /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		B2F47E7B1C8CB1CF0068F5CE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B2F47E7D1C8CB1D20068F5CE /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; };
-		B2FF1D1B1C78ED9800A65ACD /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
-		B2FF1D1C1C78ED9800A65ACD /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		B2FF1D1B1C78ED9800A65ACD /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsViewController.h; path = RangingExample/SettingsViewController.h; sourceTree = "<group>"; };
+		B2FF1D1C1C78ED9800A65ACD /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewController.m; path = RangingExample/SettingsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,12 +191,12 @@
 		95B1A6501A4ACCCD00102220 = {
 			isa = PBXGroup;
 			children = (
+				B296BE591CC55FF800E7BDB7 /* Carousel */,
 				B296BE4C1CC5432D00E7BDB7 /* Estimote */,
 				B296BE4B1CC5426F00E7BDB7 /* Parse */,
 				B22B6F851CBE8B18000A840C /* Validator */,
-				B2D988341CB6AEE800BFF980 /* SVProgressHUD.bundle */,
 				95B1A65B1A4ACCCD00102220 /* bAdventurous */,
-				95B1A6751A4ACCCD00102220 /* bAdcenturousTests */,
+				95B1A6751A4ACCCD00102220 /* bAdventurousTests */,
 				95B1A65A1A4ACCCD00102220 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -215,32 +215,8 @@
 			children = (
 				95B1A6601A4ACCCD00102220 /* AppDelegate.h */,
 				95B1A6611A4ACCCD00102220 /* AppDelegate.m */,
-				B29F63491CB93A9000D2AF20 /* SignupViewController.h */,
-				B29F634A1CB93A9000D2AF20 /* SignupViewController.m */,
-				B2BC5C691C8E03EF00F3A307 /* LoginViewController.h */,
-				B2BC5C6A1C8E03EF00F3A307 /* LoginViewController.m */,
-				B237EBF51CA187C70031136B /* TouristLocationViewController.h */,
-				B237EBF61CA187C70031136B /* TouristLocationViewController.m */,
-				B296BE4D1CC54C7100E7BDB7 /* TouristLocation.h */,
-				B296BE4E1CC54C7100E7BDB7 /* TouristLocation.m */,
-				95B1A6631A4ACCCD00102220 /* InsideAttractionViewController.h */,
-				95B1A6641A4ACCCD00102220 /* InsideAttractionViewController.m */,
-				B2E96EBF1C74B39500CDAA8B /* FurtherInfoViewController.h */,
-				B2E96EC01C74B39500CDAA8B /* FurtherInfoViewController.m */,
-				B2FF1D1B1C78ED9800A65ACD /* SettingsViewController.h */,
-				B2FF1D1C1C78ED9800A65ACD /* SettingsViewController.m */,
-				B2F3AF401CB163BE007EF759 /* iCarousel.h */,
-				B2F3AF411CB163BE007EF759 /* iCarousel.m */,
-				B207CA061CB80DA60057E3FC /* User.h */,
-				B207CA071CB80DA60057E3FC /* User.m */,
-				B2D988121CB6808100BFF980 /* NearablesParseManager.h */,
-				B2D988131CB6808100BFF980 /* NearablesParseManager.m */,
-				B2D9880A1CB67C4D00BFF980 /* BeaconParseManager.m */,
-				B2D988071CB67C3400BFF980 /* BeaconParseManager.h */,
-				B2D9880F1CB67C5800BFF980 /* TouristLocationArtefact.h */,
-				B2D988101CB67C5B00BFF980 /* TouristLocationArtefact.m */,
-				B2D988151CB69B9400BFF980 /* LanguageManager.h */,
-				B2D988161CB69B9400BFF980 /* LanguageManager.m */,
+				B296BE571CC55F9D00E7BDB7 /* Models */,
+				B296BE581CC55FBE00E7BDB7 /* Controllers */,
 				B2F47E7C1C8CB1CF0068F5CE /* Localizable.strings */,
 				95B1A6661A4ACCCD00102220 /* Main.storyboard */,
 				95B1A6691A4ACCCD00102220 /* Images.xcassets */,
@@ -260,13 +236,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		95B1A6751A4ACCCD00102220 /* bAdcenturousTests */ = {
+		95B1A6751A4ACCCD00102220 /* bAdventurousTests */ = {
 			isa = PBXGroup;
 			children = (
 				95B1A6781A4ACCCD00102220 /* RangingExampleTests.m */,
 				95B1A6761A4ACCCD00102220 /* Supporting Files */,
 			);
-			name = bAdcenturousTests;
+			name = bAdventurousTests;
 			path = RangingExampleTests;
 			sourceTree = "<group>";
 		};
@@ -311,6 +287,7 @@
 		B296BE4B1CC5426F00E7BDB7 /* Parse */ = {
 			isa = PBXGroup;
 			children = (
+				B2D988341CB6AEE800BFF980 /* SVProgressHUD.bundle */,
 				B2E96EAD1C73804000CDAA8B /* libz.tbd */,
 				B2E96EAF1C73804600CDAA8B /* libsqlite3.tbd */,
 				B2D988321CB6AE8F00BFF980 /* ParseFacebookUtilsV4.framework */,
@@ -336,6 +313,55 @@
 				B2D988361CB6AF1500BFF980 /* EstimoteSDK.framework */,
 			);
 			name = Estimote;
+			sourceTree = "<group>";
+		};
+		B296BE571CC55F9D00E7BDB7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B296BE4D1CC54C7100E7BDB7 /* TouristLocation.h */,
+				B296BE4E1CC54C7100E7BDB7 /* TouristLocation.m */,
+				B207CA061CB80DA60057E3FC /* User.h */,
+				B207CA071CB80DA60057E3FC /* User.m */,
+				B2D988121CB6808100BFF980 /* NearablesParseManager.h */,
+				B2D988131CB6808100BFF980 /* NearablesParseManager.m */,
+				B2D9880A1CB67C4D00BFF980 /* BeaconParseManager.m */,
+				B2D988071CB67C3400BFF980 /* BeaconParseManager.h */,
+				B2D9880F1CB67C5800BFF980 /* TouristLocationArtefact.h */,
+				B2D988101CB67C5B00BFF980 /* TouristLocationArtefact.m */,
+				B2D988151CB69B9400BFF980 /* LanguageManager.h */,
+				B2D988161CB69B9400BFF980 /* LanguageManager.m */,
+			);
+			name = Models;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		B296BE581CC55FBE00E7BDB7 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B29F63491CB93A9000D2AF20 /* SignupViewController.h */,
+				B29F634A1CB93A9000D2AF20 /* SignupViewController.m */,
+				B2BC5C691C8E03EF00F3A307 /* LoginViewController.h */,
+				B2BC5C6A1C8E03EF00F3A307 /* LoginViewController.m */,
+				B237EBF51CA187C70031136B /* TouristLocationViewController.h */,
+				B237EBF61CA187C70031136B /* TouristLocationViewController.m */,
+				95B1A6631A4ACCCD00102220 /* InsideAttractionViewController.h */,
+				95B1A6641A4ACCCD00102220 /* InsideAttractionViewController.m */,
+				B2E96EBF1C74B39500CDAA8B /* FurtherInfoViewController.h */,
+				B2E96EC01C74B39500CDAA8B /* FurtherInfoViewController.m */,
+				B2FF1D1B1C78ED9800A65ACD /* SettingsViewController.h */,
+				B2FF1D1C1C78ED9800A65ACD /* SettingsViewController.m */,
+			);
+			name = Controllers;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		B296BE591CC55FF800E7BDB7 /* Carousel */ = {
+			isa = PBXGroup;
+			children = (
+				B2F3AF401CB163BE007EF759 /* iCarousel.h */,
+				B2F3AF411CB163BE007EF759 /* iCarousel.m */,
+			);
+			name = Carousel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

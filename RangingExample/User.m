@@ -9,5 +9,8 @@
 #import "User.h"
 
 @implementation User
+
 @synthesize username;
+@synthesize isLoggedIn;
+
 @end

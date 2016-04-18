@@ -68,6 +68,7 @@ User *currentUser;
                  currentUser.username = [[PFUser currentUser] objectForKey:@"username"];
                  [self setUsernameDefaults:currentUser.username];
                  
+                 currentUser.isLoggedIn = TRUE;
                  [self setLoginStatusDefaults:@"in"];
                  
                  // Send notification

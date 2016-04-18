@@ -30,7 +30,6 @@
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray *nearablesArray;
 @property (nonatomic, strong) ESTNearableManager *nearableManager;
-@property (nonatomic) NSDictionary *placesByBeacons;
 
 @end
 
@@ -38,7 +37,6 @@
 
 @synthesize touristLocationName;
 NSString *museumsOn;
-NSArray *places;
 TouristLocationArtefact *locationPainting;
 NearablesParseManager *nearablesParseManager;
 TouristLocation *touristLocation;
@@ -66,7 +64,6 @@ TouristLocation *touristLocation;
     self.nearableManager = [ESTNearableManager new];
     self.nearableManager.delegate = self;
     [self.nearableManager startRangingForType:ESTNearableTypeAll];
-    [nearablesParseManager setPlacesbyNearable];
 }
 
 -(void)getUserDefaults
@@ -91,7 +88,7 @@ TouristLocation *touristLocation;
     for (i = 0; i < [self.nearablesArray count]; i++) {
         
         ESTNearable *nearable = [self.nearablesArray objectAtIndex:i];
-        locationPainting.touristLocationCategory = [nearablesParseManager identifierNearablCategoru:nearable.identifier];
+        locationPainting.touristLocationCategory = [nearablesParseManager getArtefactCategory:nearable.identifier];
         touristLocation = [[TouristLocation alloc]init];
         touristLocation.touristLocationName = touristLocationName;
         if([locationPainting.touristLocationCategory  isEqual:@"museum" ] && [touristLocationName isEqual:@"Ulster Museum"])
@@ -121,8 +118,6 @@ NSMutableArray *insideTouristAttractionBeacons;
                withType:(ESTNearableType)type
 {
     ESTNearable *nearestBeacon = nearables.firstObject;
-
-    places = [nearablesParseManager getPlacesByNearable:nearestBeacon];
     
     self.nearablesArray = nearables;
     
@@ -181,7 +176,7 @@ NSMutableArray *insideTouristAttractionBeacons;
     ESTNearable *nearable = [insideTouristAttractionBeacons objectAtIndex:indexPath.row];
     ESTTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellIdentifier" forIndexPath:indexPath];
     
-    locationPainting.artefactName = [nearablesParseManager identifierNearablType:nearable.identifier];
+    locationPainting.artefactName = [nearablesParseManager getArtefactName:nearable.identifier];
 
     cell.textLabel.text = locationPainting.artefactName;
     
