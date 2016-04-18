@@ -104,21 +104,20 @@ NearablesParseManager *nearablesParseManager;
         
         ESTNearable *nearable = [self.nearablesArray objectAtIndex:i];
         locationPainting.touristLocationCategory = [nearablesParseManager identifierNearablCategoru:nearable.identifier];
-        if([locationPainting.touristLocationCategory  isEqual:@"museum" ] && [insideCategory isEqual:@"Belfast City Hall"])
+        if([locationPainting.touristLocationCategory  isEqual:@"museum" ] && [insideCategory isEqual:@"Ulster Museum"])
         {
-            NSLog(@"shouldnt add this object to array");
-            
-            // dont
+             [insideTouristAttractionBeacons addObject:nearable];
             
         }
-        else if([locationPainting  isEqual:@"cityhall" ] && [insideCategory isEqual:@"Ulster Museum"])
+        else if([locationPainting.touristLocationCategory  isEqual:@"cityhall" ] && [insideCategory isEqual:@"Belfast City Hall"])
         {
-            NSLog(@"shouldnt add this object to array");
+
+         [insideTouristAttractionBeacons addObject:nearable];
         
         }
         else
         {
-            [insideTouristAttractionBeacons addObject:nearable];
+            // don't add to array
 
         }
         
@@ -197,7 +196,7 @@ NSMutableArray *insideTouristAttractionBeacons;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-     ESTNearable *nearable = [insideTouristAttractionBeacons objectAtIndex:indexPath.row];
+    ESTNearable *nearable = [insideTouristAttractionBeacons objectAtIndex:indexPath.row];
     ESTTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellIdentifier" forIndexPath:indexPath];
     
     // Check if the nearable is in parse
