@@ -12,7 +12,7 @@
 "IFV-YA-l80.text" = "Label";
 
 /* Class = "UITextField"; placeholder = "password"; ObjectID = "KRi-yI-Fn1"; */
-"KRi-yI-Fn1.placeholder" = "password";
+"KRi-yI-Fn1.placeholder" = "パスワード";
 
 /* Class = "UIButton"; normalTitle = "Forgot?"; ObjectID = "LAt-4O-lRG"; */
 "LAt-4O-lRG.normalTitle" = "忘れていた?";
@@ -27,7 +27,7 @@
 "brQ-ny-fwe.title" = "ホーム";
 
 /* Class = "UITextField"; placeholder = "email (optional)"; ObjectID = "cdQ-mt-tLn"; */
-"cdQ-mt-tLn.placeholder" = "email (optional)";
+"cdQ-mt-tLn.placeholder" = "電子メール（オプション）";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "csm-T8-BjZ"; */
 "csm-T8-BjZ.text" = "Label";
@@ -39,13 +39,13 @@
 "flm-22-LUy.text" = "Label";
 
 /* Class = "UITextField"; placeholder = "username"; ObjectID = "jFk-XW-Rf7"; */
-"jFk-XW-Rf7.placeholder" = "username";
+"jFk-XW-Rf7.placeholder" = "ユーザ名";
 
 /* Class = "UITextField"; placeholder = "username"; ObjectID = "kNt-Tv-daM"; */
-"kNt-Tv-daM.placeholder" = "username";
+"kNt-Tv-daM.placeholder" = "ユーザ名";
 
 /* Class = "UITextField"; placeholder = "password"; ObjectID = "kW8-JA-Urw"; */
-"kW8-JA-Urw.placeholder" = "password";
+"kW8-JA-Urw.placeholder" = "パスワード";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "sOp-zn-mKR"; */
 "sOp-zn-mKR.text" = "Label";

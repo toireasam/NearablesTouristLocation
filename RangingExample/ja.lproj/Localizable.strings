@@ -1,7 +1,13 @@
-/* 
-  Localizable.strings
-  NearablesTouristLocationApplication
-
-  Created by Toireasa Moley on 06/03/2016.
-  Copyright © 2016 Estimote. All rights reserved.
-*/
+"Field is required" = "フィールドは必須項目です";
+"Min length is 6 characters!" = "最小の長さは6文字です";
+"Signup sucessful!" = "成功サインアップ！";
+"Invalid email" = "無効なEメール";
+"No errors" = "エラーなし";
+"Success! A reset email was sent to you" = "成功！リセット電子メールがあなたに送信されました";
+"Ok" = "はい";
+"Cancel" = "キャンセル";
+"Email Address" = "電子メールアドレス";
+"Enter the email for your account:" = "アカウントのメールアドレスを入力:";
+"invalid login parameters" = "無効なログインパラメータ";
+"the email address entered has already been taken" = "入力されたメールアドレスは既に使用されています";
+"the username entered has already been taken" = "入力されたユーザ名は、すでに使われています";
