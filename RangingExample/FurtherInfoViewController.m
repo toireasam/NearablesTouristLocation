@@ -42,8 +42,8 @@ NSString *currentLanguage;
 {
     imagesOfAttraction = [NSMutableArray array];
     
-    PFQuery *query = [PFQuery queryWithClassName:@"TestClass"];
-    [query whereKey:@"TouristLocationName" equalTo:locationPainting.touristLocationName];
+    PFQuery *query = [PFQuery queryWithClassName:@"InsideTouristLocation"];
+    [query whereKey:@"InsideTouristLocationArtefact" equalTo:locationPainting.touristLocationName];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             // The find succeeded. The first 100 objects are available in objects
@@ -61,7 +61,7 @@ NSString *currentLanguage;
 -(void)getLocationInfoAndDisplay
 {
     PFQuery *query = [PFQuery queryWithClassName:currentLanguage];
-    [query whereKey:@"TouristLocationName" equalTo:locationPainting.touristLocationName];
+    [query whereKey:@"InsideTouristLocationArtefact" equalTo:locationPainting.touristLocationName];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error)
         {
@@ -113,7 +113,7 @@ NSString *currentLanguage;
     }
     
     PFObject *eachObject = [imagesOfAttraction objectAtIndex:index];
-    PFFile *theImage = [eachObject objectForKey:@"Image"];
+    PFFile *theImage = [eachObject objectForKey:@"ArtefactImage"];
     NSData *imageData = [theImage getData];
     UIImage *image = [UIImage imageWithData:imageData];
     
