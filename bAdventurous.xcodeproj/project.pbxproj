@@ -107,6 +107,9 @@
 		B296BE3A1CC4DFDE00E7BDB7 /* AJWValidatorRule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AJWValidatorRule.m; path = "../../.Trash/Validator-objc 2/AJWValidator/AJWValidatorRule.m"; sourceTree = "<group>"; };
 		B296BE3B1CC4DFDE00E7BDB7 /* UIView+AJWValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+AJWValidator.h"; path = "../../.Trash/Validator-objc 2/AJWValidator/UIView+AJWValidator.h"; sourceTree = "<group>"; };
 		B296BE3C1CC4DFDE00E7BDB7 /* UIView+AJWValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+AJWValidator.m"; path = "../../.Trash/Validator-objc 2/AJWValidator/UIView+AJWValidator.m"; sourceTree = "<group>"; };
+		B296BE481CC4F9B200E7BDB7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
+		B296BE491CC4F9B200E7BDB7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		B296BE4A1CC4F9B200E7BDB7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B29F63491CB93A9000D2AF20 /* SignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupViewController.h; sourceTree = "<group>"; };
 		B29F634A1CB93A9000D2AF20 /* SignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignupViewController.m; sourceTree = "<group>"; };
 		B2BC5C691C8E03EF00F3A307 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -379,6 +382,7 @@
 				en,
 				Base,
 				sv,
+				ja,
 			);
 			mainGroup = 95B1A6501A4ACCCD00102220;
 			productRefGroup = 95B1A65A1A4ACCCD00102220 /* Products */;
@@ -470,6 +474,7 @@
 			children = (
 				95B1A6671A4ACCCD00102220 /* Base */,
 				B2F47E781C8CB1B20068F5CE /* sv */,
+				B296BE481CC4F9B200E7BDB7 /* ja */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -479,6 +484,7 @@
 			children = (
 				95B1A66C1A4ACCCD00102220 /* Base */,
 				B2F47E791C8CB1B20068F5CE /* sv */,
+				B296BE491CC4F9B200E7BDB7 /* ja */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";
@@ -488,6 +494,7 @@
 			children = (
 				B2F47E7B1C8CB1CF0068F5CE /* en */,
 				B2F47E7D1C8CB1D20068F5CE /* sv */,
+				B296BE4A1CC4F9B200E7BDB7 /* ja */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

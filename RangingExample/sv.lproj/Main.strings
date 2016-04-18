@@ -13,3 +13,19 @@
 
 /* Class = "UITabBarItem"; title = "inställningar"; ObjectID = "xw6-JQ-Zra"; */
 "xw6-JQ-Zra.title" = "inställningar";
+
+/* Class = "UIButton"; normalTitle = "logout"; ObjectID = "dP2-Rv-ZZD"; */
+"dP2-Rv-ZZD.normalTitle" = "logga ut";
+
+/* Class = "UIButton"; normalTitle = "Login"; ObjectID = "wB2-gn-ZVX"; */
+"wB2-gn-ZVX.normalTitle" = "logga in";
+
+/* Class = "UIButton"; normalTitle = "Sign up"; ObjectID = "wY0-9Z-t7t"; */
+"wY0-9Z-t7t.normalTitle" = "registrera dig";
+
+/* Class = "UIButton"; normalTitle = "Forgot?"; ObjectID = "LAt-4O-lRG"; */
+"LAt-4O-lRG.normalTitle" = "glömde?";
+
+/* Class = "UIButton"; normalTitle = "Sign up"; ObjectID = "De3-5a-QnZ"; */
+"De3-5a-QnZ.normalTitle" = "Registrera dig";
+

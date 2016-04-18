@@ -1,0 +1,63 @@
+
+/* Class = "UITabBarItem"; title = "Home"; ObjectID = "8Td-bb-twF"; */
+"8Td-bb-twF.title" = "ホーム";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "BiB-XI-fbf"; */
+"BiB-XI-fbf.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Sign up"; ObjectID = "De3-5a-QnZ"; */
+"De3-5a-QnZ.normalTitle" = "サインアップ";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "IFV-YA-l80"; */
+"IFV-YA-l80.text" = "Label";
+
+/* Class = "UITextField"; placeholder = "password"; ObjectID = "KRi-yI-Fn1"; */
+"KRi-yI-Fn1.placeholder" = "password";
+
+/* Class = "UIButton"; normalTitle = "Forgot?"; ObjectID = "LAt-4O-lRG"; */
+"LAt-4O-lRG.normalTitle" = "忘れていた?";
+
+/* Class = "UIButton"; normalTitle = "Login now!"; ObjectID = "Svc-Oa-ovx"; */
+"Svc-Oa-ovx.normalTitle" = "ここでログイン！";
+
+/* Class = "UILabel"; text = "Museum"; ObjectID = "VRG-Y3-rZC"; */
+"VRG-Y3-rZC.text" = "博物館";
+
+/* Class = "UITabBarItem"; title = "Home"; ObjectID = "brQ-ny-fwe"; */
+"brQ-ny-fwe.title" = "ホーム";
+
+/* Class = "UITextField"; placeholder = "email (optional)"; ObjectID = "cdQ-mt-tLn"; */
+"cdQ-mt-tLn.placeholder" = "email (optional)";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "csm-T8-BjZ"; */
+"csm-T8-BjZ.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "logout"; ObjectID = "dP2-Rv-ZZD"; */
+"dP2-Rv-ZZD.normalTitle" = "ログアウト";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "flm-22-LUy"; */
+"flm-22-LUy.text" = "Label";
+
+/* Class = "UITextField"; placeholder = "username"; ObjectID = "jFk-XW-Rf7"; */
+"jFk-XW-Rf7.placeholder" = "username";
+
+/* Class = "UITextField"; placeholder = "username"; ObjectID = "kNt-Tv-daM"; */
+"kNt-Tv-daM.placeholder" = "username";
+
+/* Class = "UITextField"; placeholder = "password"; ObjectID = "kW8-JA-Urw"; */
+"kW8-JA-Urw.placeholder" = "password";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "sOp-zn-mKR"; */
+"sOp-zn-mKR.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Login"; ObjectID = "wB2-gn-ZVX"; */
+"wB2-gn-ZVX.normalTitle" = "ログイン";
+
+/* Class = "UILabel"; text = "City Hall "; ObjectID = "wEI-Tw-sEW"; */
+"wEI-Tw-sEW.text" = "市役所";
+
+/* Class = "UIButton"; normalTitle = "Sign up"; ObjectID = "wY0-9Z-t7t"; */
+"wY0-9Z-t7t.normalTitle" = "サインアップ";
+
+/* Class = "UITabBarItem"; title = "Settings"; ObjectID = "xw6-JQ-Zra"; */
+"xw6-JQ-Zra.title" = "設定";

@@ -11,6 +11,7 @@
 @implementation LanguageManager
 NSString *currentLanguage;
 NSString *swedish = @"sv-GB";
+NSString *japanese = @"ja-GB";
 
 - (id)init
 {
@@ -28,7 +29,11 @@ NSString *swedish = @"sv-GB";
 {
     if([currentLanguage isEqualToString:swedish])
     {
-        return @"TouristLocationsSpanish";
+        return @"TouristLocationsSwedish";
+    }
+    else if([currentLanguage isEqualToString:japanese])
+    {
+        return @"TouristLocationsJapanese";
     }
     else
     {
