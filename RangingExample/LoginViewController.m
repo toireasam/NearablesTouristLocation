@@ -62,14 +62,16 @@ User *currentUser;
          if (pfUser && !error) {
              
              // Proceed to next screen after successful login.
-             
-             weakSelf.promptLbl.hidden = YES;
-             
-             currentUser = [[User alloc]init];
-             currentUser.username = [[PFUser currentUser] objectForKey:@"username"];
-             [self setUsernameDefaults:currentUser.username];
-             
-                 // They are a tourist but not an admin
+             NSString *userType = [[PFUser currentUser] objectForKey:@"UserType"];
+            
+             if([userType isEqual: @"Tourist"])
+             {
+                 weakSelf.promptLbl.hidden = YES;
+                 
+                 currentUser = [[User alloc]init];
+                 currentUser.username = [[PFUser currentUser] objectForKey:@"username"];
+                 [self setUsernameDefaults:currentUser.username];
+                 
                  
                  [self setLoginStatusDefaults:@"in"];
                  
@@ -78,6 +80,17 @@ User *currentUser;
                  
                  // Dismiss login screen
                  [self dismissViewControllerAnimated:YES completion:nil];
+                 
+             }
+             else
+             {
+                 // The login failed. Show error.
+                 weakSelf.promptLbl.textColor = [UIColor redColor];
+                 weakSelf.promptLbl.text = @"invalid credentials";
+                 weakSelf.promptLbl.hidden = NO;
+                 
+             }
+            
              }
              
           else {
