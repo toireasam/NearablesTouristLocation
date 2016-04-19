@@ -61,6 +61,7 @@ NSString *errorMsg;
 {
     UIColor *validGreen = [UIColor colorWithRed:0.27 green:0.63 blue:0.27 alpha:1];
     self.passwordTxt.backgroundColor = [validGreen colorWithAlphaComponent:0.3];
+    promptLblPassword.hidden = YES;
 }
 
 - (void)handleInvalid
@@ -69,6 +70,7 @@ NSString *errorMsg;
     self.passwordTxt.backgroundColor = [invalidRed colorWithAlphaComponent:0.3];
     self.promptLblPassword.text = [validator.errorMessages componentsJoinedByString:@" 💣\n"];
     self.passwordTxt.textColor = invalidRed;
+    promptLblPassword.hidden = NO;
 }
 
 - (void)handleWaiting
