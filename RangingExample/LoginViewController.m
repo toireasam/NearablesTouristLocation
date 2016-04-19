@@ -60,7 +60,14 @@ User *currentUser;
              // Proceed to next screen after successful login.
              NSString *userType = [[PFUser currentUser] objectForKey:@"UserType"];
              
-             if([userType isEqual: @"Tourist"])
+             if([userType isEqual: @"Admin"])
+             {
+                 // The login failed. Show error.
+                 weakSelf.promptLblGeneral.textColor = [UIColor redColor];
+                 weakSelf.promptLblGeneral.text = NSLocalizedString(@"invalid login parameters", nil);
+                 weakSelf.promptLblGeneral.hidden = NO;                 
+             }
+             else
              {
                  weakSelf.promptLblGeneral.hidden = YES;
                  
@@ -78,15 +85,6 @@ User *currentUser;
                  [self dismissViewControllerAnimated:YES completion:nil];
                  
              }
-             else
-             {
-                 // The login failed. Show error.
-                 weakSelf.promptLblGeneral.textColor = [UIColor redColor];
-                 weakSelf.promptLblGeneral.text = NSLocalizedString(@"invalid login parameters", nil);
-                 weakSelf.promptLblGeneral.hidden = NO;
-                 
-             }
-             
          }
          else
          {

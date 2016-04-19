@@ -157,7 +157,7 @@ NSString *errorMsg;
     PFUser *pfUser = [PFUser user];
     pfUser.username = self.usernameTxt.text;
     pfUser.password = self.passwordTxt.text;
-    if(email != NULL)
+    if(emailTxt.text.length > 0)
     {
         pfUser.email = email;
     }
