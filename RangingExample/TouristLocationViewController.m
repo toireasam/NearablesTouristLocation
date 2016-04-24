@@ -91,6 +91,8 @@ TouristLocation *touristLocation;
     }
     
     cell.textLabel.text = [tableData objectAtIndex:indexPath.row];
+    cell.textLabel.textColor = [UIColor darkGrayColor];
+    cell.textLabel.font = [UIFont systemFontOfSize:18.0];
     return cell;
 }
 

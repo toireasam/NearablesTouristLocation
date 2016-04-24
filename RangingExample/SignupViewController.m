@@ -18,18 +18,31 @@
 @synthesize promptLblUsername;
 @synthesize promptLblEmail;
 @synthesize loginBtn;
+@synthesize signUpBtn;
+@synthesize login;
 AJWValidator *validator;
 NSString *errorMsg;
 
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    loginBtn.hidden = YES;
     
     // Create password validator
     validator = [AJWValidator validatorWithType:AJWValidatorTypeString];
     [validator addValidationToEnsureMinimumLength:6 invalidMessage:NSLocalizedString(@"Min length is 6 characters!", nil)];
     [self setValidator:validator];
+    
+    loginBtn.userInteractionEnabled = NO;
+    signUpBtn.userInteractionEnabled = NO;
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self
+                                   action:@selector(dismissKeyboard)];
+    
+    [self.view addGestureRecognizer:tap];
+    loginBtn.hidden = YES;
+    login.hidden = YES;
+    
 }
 
 - (void)setValidator:(AJWValidator *)validator
@@ -59,8 +72,7 @@ NSString *errorMsg;
 
 - (void)handleValid
 {
-    UIColor *validGreen = [UIColor colorWithRed:0.27 green:0.63 blue:0.27 alpha:1];
-    self.passwordTxt.backgroundColor = [validGreen colorWithAlphaComponent:0.3];
+    self.passwordTxt.backgroundColor = [UIColor whiteColor];
     promptLblPassword.hidden = YES;
 }
 
@@ -69,7 +81,6 @@ NSString *errorMsg;
     UIColor *invalidRed = [UIColor colorWithRed:0.89 green:0.18 blue:0.16 alpha:1];
     self.passwordTxt.backgroundColor = [invalidRed colorWithAlphaComponent:0.3];
     self.promptLblPassword.text = [validator.errorMessages componentsJoinedByString:@" 💣\n"];
-    self.passwordTxt.textColor = invalidRed;
     promptLblPassword.hidden = NO;
 }
 
@@ -141,14 +152,12 @@ NSString *errorMsg;
         UIColor *invalidRed = [UIColor colorWithRed:0.89 green:0.18 blue:0.16 alpha:1];
         self.usernameTxt.backgroundColor = [invalidRed colorWithAlphaComponent:0.3];
         promptLblUsername.text = [NSString stringWithFormat:NSLocalizedString(@"Field is required", nil)];
-        self.usernameTxt.textColor = invalidRed;
         return FALSE;
     }
     else
     {
         promptLblUsername.text = @"";
-        UIColor *validGreen = [UIColor colorWithRed:0.27 green:0.63 blue:0.27 alpha:1];
-        self.usernameTxt.backgroundColor = [validGreen colorWithAlphaComponent:0.3];
+        self.usernameTxt.backgroundColor = [UIColor whiteColor];
         return TRUE;
     }
 }
@@ -171,24 +180,26 @@ NSString *errorMsg;
         if (!error)
         {
             weakSelf.promptLblGeneral
-            .textColor = [UIColor greenColor];
+            .textColor = [UIColor whiteColor];
             weakSelf.promptLblGeneral.text = [NSString stringWithFormat:NSLocalizedString(@"Signup sucessful!", nil)];
             weakSelf.promptLblGeneral.hidden = NO;
             loginBtn.hidden = NO;
+            login.hidden = NO;
             
         }
         else
         {
             weakSelf.promptLblGeneral.textColor = [UIColor redColor];
             UIColor *invalidRed = [UIColor colorWithRed:0.89 green:0.18 blue:0.16 alpha:1];
-            usernameTxt.backgroundColor = [invalidRed colorWithAlphaComponent:0.3];
             errorMsg = [error userInfo][@"error"];
             if ([errorMsg rangeOfString:@"username"].location == NSNotFound) {
                 weakSelf.promptLblGeneral.text = [NSString stringWithFormat:NSLocalizedString(@"the email address entered has already been taken", nil)];
+                emailTxt.backgroundColor = [invalidRed colorWithAlphaComponent:0.3];
             }
             else
             {
                 weakSelf.promptLblGeneral.text = [NSString stringWithFormat:NSLocalizedString(@"the username entered has already been taken", nil)];
+                usernameTxt.backgroundColor = [invalidRed colorWithAlphaComponent:0.3];
             }
             
             weakSelf.promptLblGeneral.hidden = NO;
@@ -205,15 +216,13 @@ NSString *errorMsg;
     if(isValid)
     {
         promptLblEmail.text = @"";
-        UIColor *validGreen = [UIColor colorWithRed:0.27 green:0.63 blue:0.27 alpha:1];
-        self.emailTxt.backgroundColor = [validGreen colorWithAlphaComponent:0.3];
+        self.emailTxt.backgroundColor = [UIColor whiteColor];
     }
     else
     {
         promptLblEmail.text = [NSString stringWithFormat:NSLocalizedString(@"Invalid email", nil)];
         UIColor *invalidRed = [UIColor colorWithRed:0.89 green:0.18 blue:0.16 alpha:1];
         self.emailTxt.backgroundColor = [invalidRed colorWithAlphaComponent:0.3];
-        self.emailTxt.textColor = invalidRed;
     }
     
     return isValid;
@@ -223,6 +232,12 @@ NSString *errorMsg;
     
     // Dismiss login screen
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)dismissKeyboard {
+    [usernameTxt resignFirstResponder];
+    [passwordTxt resignFirstResponder];
+    [emailTxt resignFirstResponder];
 }
 
 @end

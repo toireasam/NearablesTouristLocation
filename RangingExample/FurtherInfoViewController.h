@@ -12,7 +12,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *artefactInfoLbl;
 @property (weak, nonatomic) IBOutlet UILabel *artefactNameLbl;
 @property (nonatomic, strong) NSString *artefactNameTxt;
-@property (weak, nonatomic) IBOutlet PFImageView *holder;
 @property (weak, nonatomic) IBOutlet iCarousel *carousel;
 
 @end

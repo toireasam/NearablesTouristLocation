@@ -12,6 +12,7 @@
 @synthesize museumSwitch;
 @synthesize cityHallSwitch;
 @synthesize logoutBtn;
+@synthesize logout;
 
 - (IBAction)logoutClick:(id)sender {
     
@@ -34,6 +35,8 @@
     [super viewDidLoad];
     
     [self getUserCategoryDefaults];
+    
+    logout.userInteractionEnabled = NO;
 }
 
 -(void)getUserCategoryDefaults

@@ -12,9 +12,11 @@
 		95B1A6651A4ACCCD00102220 /* InsideAttractionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B1A6641A4ACCCD00102220 /* InsideAttractionViewController.m */; };
 		95B1A6681A4ACCCD00102220 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95B1A6661A4ACCCD00102220 /* Main.storyboard */; };
 		95B1A66A1A4ACCCD00102220 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95B1A6691A4ACCCD00102220 /* Images.xcassets */; };
-		95B1A66D1A4ACCCD00102220 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95B1A66B1A4ACCCD00102220 /* LaunchScreen.xib */; };
 		95B1A6791A4ACCCD00102220 /* RangingExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B1A6781A4ACCCD00102220 /* RangingExampleTests.m */; };
 		B207CA081CB80DA60057E3FC /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = B207CA071CB80DA60057E3FC /* User.m */; };
+		B20B141C1CCB8404007C37F2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B20B141B1CCB8404007C37F2 /* LaunchScreen.storyboard */; };
+		B20B141E1CCB8445007C37F2 /* LaunchImage.png in Resources */ = {isa = PBXBuildFile; fileRef = B20B141D1CCB8445007C37F2 /* LaunchImage.png */; };
+		B20B14221CCB9B19007C37F2 /* b.png in Resources */ = {isa = PBXBuildFile; fileRef = B20B14211CCB9B19007C37F2 /* b.png */; };
 		B237EBF71CA187C70031136B /* TouristLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B237EBF61CA187C70031136B /* TouristLocationViewController.m */; };
 		B296BE3D1CC4DFDE00E7BDB7 /* AJWNumericValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = B296BE271CC4DFDE00E7BDB7 /* AJWNumericValidator.m */; };
 		B296BE3E1CC4DFDE00E7BDB7 /* AJWStringValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = B296BE291CC4DFDE00E7BDB7 /* AJWStringValidator.m */; };
@@ -29,6 +31,7 @@
 		B296BE471CC4DFDE00E7BDB7 /* UIView+AJWValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = B296BE3C1CC4DFDE00E7BDB7 /* UIView+AJWValidator.m */; };
 		B296BE4F1CC54C7100E7BDB7 /* TouristLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = B296BE4E1CC54C7100E7BDB7 /* TouristLocation.m */; };
 		B29F634B1CB93A9000D2AF20 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B29F634A1CB93A9000D2AF20 /* SignupViewController.m */; };
+		B2ADEC3C1CCBE1A000D84F23 /* settings1.png in Resources */ = {isa = PBXBuildFile; fileRef = B2ADEC3B1CCBE1A000D84F23 /* settings1.png */; };
 		B2BC5C6B1C8E03EF00F3A307 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2BC5C6A1C8E03EF00F3A307 /* LoginViewController.m */; };
 		B2D9880B1CB67C4D00BFF980 /* BeaconParseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D9880A1CB67C4D00BFF980 /* BeaconParseManager.m */; };
 		B2D988111CB67C5B00BFF980 /* TouristLocationArtefact.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D988101CB67C5B00BFF980 /* TouristLocationArtefact.m */; };
@@ -77,12 +80,14 @@
 		95B1A6641A4ACCCD00102220 /* InsideAttractionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = InsideAttractionViewController.m; path = RangingExample/InsideAttractionViewController.m; sourceTree = "<group>"; };
 		95B1A6671A4ACCCD00102220 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		95B1A6691A4ACCCD00102220 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		95B1A66C1A4ACCCD00102220 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		95B1A6721A4ACCCD00102220 /* bAdventurous.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = bAdventurous.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		95B1A6771A4ACCCD00102220 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		95B1A6781A4ACCCD00102220 /* RangingExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RangingExampleTests.m; sourceTree = "<group>"; };
 		B207CA061CB80DA60057E3FC /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = RangingExample/User.h; sourceTree = "<group>"; };
 		B207CA071CB80DA60057E3FC /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = RangingExample/User.m; sourceTree = "<group>"; };
+		B20B141B1CCB8404007C37F2 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B20B141D1CCB8445007C37F2 /* LaunchImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchImage.png; sourceTree = "<group>"; };
+		B20B14211CCB9B19007C37F2 /* b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = b.png; sourceTree = "<group>"; };
 		B237EBF51CA187C70031136B /* TouristLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TouristLocationViewController.h; path = RangingExample/TouristLocationViewController.h; sourceTree = "<group>"; };
 		B237EBF61CA187C70031136B /* TouristLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TouristLocationViewController.m; path = RangingExample/TouristLocationViewController.m; sourceTree = "<group>"; };
 		B296BE261CC4DFDE00E7BDB7 /* AJWNumericValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AJWNumericValidator.h; path = "../../.Trash/Validator-objc 2/AJWValidator/AJWNumericValidator.h"; sourceTree = "<group>"; };
@@ -109,12 +114,12 @@
 		B296BE3B1CC4DFDE00E7BDB7 /* UIView+AJWValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+AJWValidator.h"; path = "../../.Trash/Validator-objc 2/AJWValidator/UIView+AJWValidator.h"; sourceTree = "<group>"; };
 		B296BE3C1CC4DFDE00E7BDB7 /* UIView+AJWValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+AJWValidator.m"; path = "../../.Trash/Validator-objc 2/AJWValidator/UIView+AJWValidator.m"; sourceTree = "<group>"; };
 		B296BE481CC4F9B200E7BDB7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
-		B296BE491CC4F9B200E7BDB7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		B296BE4A1CC4F9B200E7BDB7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B296BE4D1CC54C7100E7BDB7 /* TouristLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TouristLocation.h; path = RangingExample/TouristLocation.h; sourceTree = "<group>"; };
 		B296BE4E1CC54C7100E7BDB7 /* TouristLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TouristLocation.m; path = RangingExample/TouristLocation.m; sourceTree = "<group>"; };
 		B29F63491CB93A9000D2AF20 /* SignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignupViewController.h; path = RangingExample/SignupViewController.h; sourceTree = "<group>"; };
 		B29F634A1CB93A9000D2AF20 /* SignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignupViewController.m; path = RangingExample/SignupViewController.m; sourceTree = "<group>"; };
+		B2ADEC3B1CCBE1A000D84F23 /* settings1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings1.png; sourceTree = "<group>"; };
 		B2BC5C691C8E03EF00F3A307 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = RangingExample/LoginViewController.h; sourceTree = "<group>"; };
 		B2BC5C6A1C8E03EF00F3A307 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = RangingExample/LoginViewController.m; sourceTree = "<group>"; };
 		B2D988071CB67C3400BFF980 /* BeaconParseManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BeaconParseManager.h; path = "../../Downloads/Coffee-Shop-MVC-master 2/Models/BeaconParseManager.h"; sourceTree = "<group>"; };
@@ -147,7 +152,6 @@
 		B2F3AF401CB163BE007EF759 /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iCarousel.h; path = "../../Downloads/iCarousel-master/iCarousel/iCarousel.h"; sourceTree = "<group>"; };
 		B2F3AF411CB163BE007EF759 /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iCarousel.m; path = "../../Downloads/iCarousel-master/iCarousel/iCarousel.m"; sourceTree = "<group>"; };
 		B2F47E781C8CB1B20068F5CE /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Main.strings; sourceTree = "<group>"; };
-		B2F47E791C8CB1B20068F5CE /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		B2F47E7B1C8CB1CF0068F5CE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B2F47E7D1C8CB1D20068F5CE /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B2FF1D1B1C78ED9800A65ACD /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsViewController.h; path = RangingExample/SettingsViewController.h; sourceTree = "<group>"; };
@@ -219,8 +223,11 @@
 				B296BE581CC55FBE00E7BDB7 /* Controllers */,
 				B2F47E7C1C8CB1CF0068F5CE /* Localizable.strings */,
 				95B1A6661A4ACCCD00102220 /* Main.storyboard */,
+				B2ADEC3B1CCBE1A000D84F23 /* settings1.png */,
 				95B1A6691A4ACCCD00102220 /* Images.xcassets */,
-				95B1A66B1A4ACCCD00102220 /* LaunchScreen.xib */,
+				B20B141D1CCB8445007C37F2 /* LaunchImage.png */,
+				B20B141B1CCB8404007C37F2 /* LaunchScreen.storyboard */,
+				B20B14211CCB9B19007C37F2 /* b.png */,
 				95B1A65C1A4ACCCD00102220 /* Supporting Files */,
 			);
 			name = bAdventurous;
@@ -447,11 +454,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B20B141E1CCB8445007C37F2 /* LaunchImage.png in Resources */,
 				B2F47E7A1C8CB1CF0068F5CE /* Localizable.strings in Resources */,
+				B2ADEC3C1CCBE1A000D84F23 /* settings1.png in Resources */,
 				B2D988351CB6AEE800BFF980 /* SVProgressHUD.bundle in Resources */,
 				95B1A6681A4ACCCD00102220 /* Main.storyboard in Resources */,
-				95B1A66D1A4ACCCD00102220 /* LaunchScreen.xib in Resources */,
 				95B1A66A1A4ACCCD00102220 /* Images.xcassets in Resources */,
+				B20B141C1CCB8404007C37F2 /* LaunchScreen.storyboard in Resources */,
+				B20B14221CCB9B19007C37F2 /* b.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -525,16 +535,6 @@
 				B296BE481CC4F9B200E7BDB7 /* ja */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		95B1A66B1A4ACCCD00102220 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				95B1A66C1A4ACCCD00102220 /* Base */,
-				B2F47E791C8CB1B20068F5CE /* sv */,
-				B296BE491CC4F9B200E7BDB7 /* ja */,
-			);
-			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
 		B2F47E7C1C8CB1CF0068F5CE /* Localizable.strings */ = {

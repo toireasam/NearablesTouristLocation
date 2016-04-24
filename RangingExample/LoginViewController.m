@@ -15,6 +15,7 @@
 @synthesize promptLblGeneral;
 @synthesize passwordTxt;
 @synthesize usernameTxt;
+@synthesize loginBtn;
 User *currentUser;
 
 - (void)viewDidLoad {
@@ -24,6 +25,9 @@ User *currentUser;
     
     UITapGestureRecognizer *tapViewGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapOnView)];
     [self.view addGestureRecognizer:tapViewGR];
+    
+    loginBtn.userInteractionEnabled = NO;
+    
 }
 
 - (void)didReceiveMemoryWarning {

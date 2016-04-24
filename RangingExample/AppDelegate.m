@@ -41,6 +41,8 @@
                                        settingsForTypes:UIUserNotificationTypeAlert
                                        categories:nil]];
     
+    [[UITabBar appearance] setTintColor:[UIColor darkGrayColor]];
+    
     // Present login screen if user has not yet logged in
     NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
     if ([[standardDefaults stringForKey:@"loggedin"] isEqual: @"out"])

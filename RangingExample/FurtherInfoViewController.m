@@ -35,6 +35,8 @@ TouristLocationArtefact *locationArtefact;
     // Configure carousel
     _carousel.type = iCarouselTypeCoverFlow2;
     
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    
 }
 
 -(void)getLocationImagesAndDisplay
@@ -80,6 +82,7 @@ TouristLocationArtefact *locationArtefact;
                 NSLog(@"%@",object);
                 artefactNameLbl.text = object[@"TouristLocationName"];
                 artefactInfoLbl.text = object[@"Information"];
+                artefactInfoLbl.textColor = [UIColor darkGrayColor];
             }
         }
         else

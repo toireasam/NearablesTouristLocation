@@ -64,6 +64,8 @@ TouristLocation *touristLocation;
     self.nearableManager = [ESTNearableManager new];
     self.nearableManager.delegate = self;
     [self.nearableManager startRangingForType:ESTNearableTypeAll];
+    
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
 }
 
 -(void)getUserDefaults
@@ -193,6 +195,11 @@ NSMutableArray *insideTouristAttractionBeacons;
         cell.textLabel.text = locationPainting.artefactName;
         [cell.textLabel setTextColor:[UIColor redColor]];
     }
+    else
+    {
+        cell.textLabel.textColor = [UIColor darkGrayColor];
+    }
+    cell.textLabel.font = [UIFont systemFontOfSize:18.0];
     
     return cell;
 }

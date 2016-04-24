@@ -11,6 +11,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *promptLblUsername;
 @property (weak, nonatomic) IBOutlet UILabel *promptLblPassword;
 @property (weak, nonatomic) IBOutlet UILabel *promptLblEmail;
-@property (weak, nonatomic) IBOutlet UIButton *loginBtn;
+@property (weak, nonatomic) IBOutlet UITextField *signUpBtn;
+@property (weak, nonatomic) IBOutlet UITextField *loginBtn;
+@property (weak, nonatomic) IBOutlet UIButton *login;
 
 @end
