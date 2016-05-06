@@ -34,7 +34,7 @@
     [self.beaconManager startMonitoringForRegion:[[CLBeaconRegion alloc]
                                                   initWithProximityUUID:[[NSUUID alloc]
                                                                          initWithUUIDString:@"8492E75F-4FD6-469D-B132-043FE94921D8"]
-                                                  major:3059 minor:17204 identifier:@"monitored region"]];
+                                                  major:437 minor:10261 identifier:@"monitored region"]];
     
     [[UIApplication sharedApplication]
      registerUserNotificationSettings:[UIUserNotificationSettings
